@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <title>로그인_proto</title>
+  <style>
+    .back{
+      background-color: #000;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .login_page {
+      background-color: #fff;
+      height: 450px;
+      width: 600px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 10px 10px 7px red;
+    }
+    
+    .site_main{ /* 뚝배기 */
+      height: 100px;
+      width: 500px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .site_main img {
+      width: 100%;
+      height: 100%;
+    }
+    .site_login { /* form 메일 비밀번호 */
+      height: 150px;
+      width: 500px;
+      background-color: #000;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .site_login form {
+      display: flex;
+      flex-direction: column;
+      width: 300px;
+      height: 110px;
+    }
+
+    .site_login form input {
+      width: 300px;
+      height: 50px;
+    }
+
+    .site_login .input_id {
+      margin-bottom: 10px;
+    }
+    .site_login button {
+      width: 100px;
+      height: 110px;
+      margin-left: 10px;
+      font-size: 25px;
+      background-color: #fff;
+    }
+    .create { /* 가입 또는 id / pw 찾기 */
+      width: 500px;
+      height: 50px;
+      margin-bottom: 10px;
+      display: flex;
+    }
+    .find_id {
+      height: 45px;
+      width: 245px;
+      margin-right: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #000;
+      color: #fff;
+      font-size: 15px;
+    }
+    .create_account {
+      height: 45px;
+      width: 245px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #000;
+      color: #fff;
+      font-size: 15px;
+    }
+    .social_login { /* 소셜 로그인 구현 */
+      width: 500px;
+      height: 50px;
+      background-color: #000;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+    }
+    a {
+      color: black;
+    }
+    a:hover,
+    a:visited {
+      text-decoration: none;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <div class="back">
+    <div class="login_page">
+      <div class="site_main">
+        <img src="css/img/real_logo.png" alt="로고다옹">
+      </div>
+      <div class="site_login">
+        <div class="input">
+          <form action="">
+            <input class="input_id" type="text" placeholder="user_mail"> 
+            <input class="input_password" type="password" placeholder="user_password">
+          </form>
+        </div>
+        <button class="form_login">로그인</button>
+      </div>
+      <div class="create">
+        <a href="#아이디찾기">
+          <div class="find_id">
+            id / password 찾기
+          </div>
+        </a>
+        <a href="#회원가입">
+          <div class="create_account">
+            회원가입
+          </div>
+        </a>
+      </div>
+      <a href="#소셜로그인">
+        <div class="social_login">
+          SOCIAL 로그인 KAKAO
+        </div>
+      </a>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+</body>
+</html>
