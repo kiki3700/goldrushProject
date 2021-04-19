@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <title>회원가입_proto</title>
+  <style>
+    .back{
+      background-color: #000;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .login_page {
+      background-color: #fff;
+      height: 450px;
+      width: 600px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 10px 10px 7px red;
+    }
+    .login_page img {
+      width: 100%;
+      height: 100%;
+    }
+    .site_main{ /* 뚝배기 */
+      height: 100px;
+      width: 500px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .site_login { /* form 메일 비밀번호 */
+      height: 300px;
+      width: 500px;
+      background-color: white;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .site_login form {
+      display: flex;
+      flex-direction: column;
+      width: 300px;
+      height: 300px;
+    }
+
+    .site_login form input {
+      width: 500px;
+      height: 110px;
+      margin-left: -100px;
+    }
+
+    .site_login input {
+      margin-bottom: 10px;
+    }
+    .site_login button {
+      width: 500px;
+      height: 110px;
+      margin-left: -100px;
+      font-size: 25px;
+      background-color: #000;
+      color: #fff;
+    }
+    
+    a {
+      color: black;
+    }
+    a:hover,
+    a:visited {
+      text-decoration: none;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <div class="back">
+    <div class="login_page">
+      <div class="site_main">
+        <img src="css/img/real_logo.png" alt="로고다옹">
+      </div>
+      <div class="site_login">
+        <div class="input">
+          <form action="">
+            <input class="input_name" type="text" placeholder="user_name"> 
+            <input class="input_id" type="text" placeholder="user_mail"> 
+            <input class="input_password" type="password" placeholder="user_password">
+            <button class="form_login">회원가입</button>
+          </form>
+        </div>
+        
+      </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+</body>
+</html>
