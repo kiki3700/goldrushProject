@@ -5,10 +5,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/bootstrap.css">
+  <link href="//db.onlinewebfonts.com/c/31ed0189fe1ff1e740a652e0f75b77dc?family=Snell+Roundhand" rel="stylesheet" type="text/css"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
   <title>회원가입_proto</title>
   <style>
+    body{
+      font-family: 'Nanum Gothic', sans-serif;
+    }
     .back{
-      background-color: #000;
+      background-color: #d3b8993d;
       height: 100vh;
       width: 100vw;
       display: flex;
@@ -23,11 +29,15 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      box-shadow: 10px 10px 7px red;
+      box-shadow: 0 6px 6px rgba(0,0,0,0.2);
     }
-    .login_page img {
-      width: 100%;
-      height: 100%;
+    
+    .logo{
+      font-size: 45px;
+      font-family: "Snell Roundhand";
+      color: rgb(240, 204, 0);
+      font-weight: 700;
+      text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     }
     .site_main{ /* 뚝배기 */
       height: 100px;
@@ -69,6 +79,8 @@
       font-size: 25px;
       background-color: #000;
       color: #fff;
+      border-radius: 8px;
+      color: rgb(167, 167, 167);
     }
     
     a {
@@ -85,7 +97,7 @@
   <div class="back">
     <div class="login_page">
       <div class="site_main">
-        <img src="css/img/real_logo.png" alt="로고다옹">
+        <p class="logo">Gold Rush</p>
       </div>
       <div class="site_login">
         <div class="input">
