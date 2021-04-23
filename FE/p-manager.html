@@ -11,147 +11,179 @@
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
   <link href="//db.onlinewebfonts.com/c/31ed0189fe1ff1e740a652e0f75b77dc?family=Snell+Roundhand" rel="stylesheet" type="text/css"/>
   <title>매니저_proto</title>
-  <style>
-    body {
-      font-family: 'Nanum Gothic', sans-serif;
-      padding: 50px 0px;
-      background-color: #d3b8993d;
-    }
-    .navbar {
-      background-color: #000;
-    }    
-    .navbar-brand {
-      padding: 0px;
-    }
-    .menu {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      display: flex;
-      flex-direction: column;
-      padding: 0px;
-    }
-    .logo {
-      height: 50px;
-      font-size: 23px;
-      margin: 15px;
-      color: rgb(240, 204, 0);
-      font-family: "Snell Roundhand";
-      font-weight: 700;
-      text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    }
-    .list {
-      padding-right: 0px;
-    }
-    .menu ul {
-      list-style: none;
-      height: 100%;
-      width: 100%;
-      margin-bottom: 0px;
-      border-top: 5px solid #79955f;
-      
-    }
-    .menu li {
-      height: 10%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 0px;
-      border-bottom: 5px solid #79955f;
-      font-size: 30px;
-      background-color: #d3b89900;
-    }
-    .choice_menu {
-      padding: 0px;
-    }
-    .item_ul {
-      padding-left: 0px;
-      list-style: none;
-      border: 5px solid #79955F;
-      border-bottom: none;
-
-    }
-    .item_ul li {
-      border-bottom: 5px solid #79955f;
-      height: 100px;
-      height: 150px;
-      padding: 0px 15px;
-      
-    }
-    .image_box {
-    width: 100px;
-    height: 100px;
-    padding: 0px;
-    margin: 25px 0px;
-    }
-    .image_box img {
-      width: 100%;
-      height: 100%;
-    }
-    .item_small{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 30px;
-    }
-    
-    .footer_content {
-      padding: 30px;
-      background-color:#000; 
-      color: #fff;
-      font-size: 30px;
-    }
-    .detail {
-      padding: 0px;
-      height: 995px;
-    }
-    .manager_detail {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      height: 95%;
-      
-    }
-    .image_window {
-      display: flex;
-      width: 100%;
-      height: 25%;
-      
-      justify-content: center;
-    }
-    .image_window img {
-      height: 100%;
-      margin-right: 20px;
-    }
-    .image_input {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      
-    }
-    .etc_window {
-      width: 100%;
-      height: 75%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-    .etc_window p {
-      margin-bottom: 20px;
-      font-size: 30px;
-    }
-    .etc_window textarea {
-      margin-top: -20px;
-      margin-bottom: 20px;
-    }
-    .btn {
-      background-color: #79955f;
-      color: #fff;
-    }
-  </style>
 </head>
+<style>
+  body {
+    font-family: 'Nanum Gothic', sans-serif;
+    padding: 50px 0px;
+  }
+  .navbar {
+    background-color: #000;
+  }    
+  .navbar-brand {
+    padding: 0px;
+  }
+  .logo {
+    height: 50px;
+    font-size: 23px;
+    margin: 15px;
+    color: rgb(240, 204, 0);
+    font-family: "Snell Roundhand";
+    font-weight: 700;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  }
+
+  .merchandise_list {
+    width: 100vw;
+    height: 90vh;
+    padding-top: 50px;
+    background-color: #d3b8993d;
+  }
+  .menu {
+    background-color: #fff;
+    border: 1px solid #79955f;
+    border-right: none;
+    height: 80vh;
+    display: flex;
+    padding: 30px;
+    font-size: 20px;
+  }
+  .item_list {
+    background-color: #fff;
+    padding: 0px 0px;
+    height: 80vh;
+    color: #000;
+    border: 1px solid #79955f;
+  }
+  .item_ul {
+    padding-left: 0px;
+    list-style: none;
+    margin-bottom: 0px;
+  }
+  .item_ul li {
+    border-bottom: 1px solid #79955f;
+    padding: 0px 15px;
+  }
+  .item_ul li:last-child {
+    border-bottom: none;
+  }
+  .item_small {
+    margin: 0px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .image_box {
+    width: 7vh;
+    height: auto;
+    padding: 0px;
+  }
+  .image_box img {
+    width: 100%;
+    height: 100%;
+  }
+  .item_small p {
+    margin-bottom: 0px;
+  }
+  .item_detail {
+    height: 80vh;
+    padding: 0px;
+    border: 1px solid #79955f;
+    border-left: none;
+    background-color: #fff;
+  }
+  .contract {
+    background-color: #fff;
+    height: 10vh;
+    width: 100%;
+    margin-left: 0.5px;
+    border-bottom: 1px solid #79955f;
+    position: sticky;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .contract .btn {
+    height: fit-content;
+    width: fit-content;
+    background-color: #79955F;;
+    color: #fff;
+  }
+  .contract .btn:hover,
+  .contract .btn:focus {
+    color: #fff;
+  }
+  .item_detail .item_image {
+    height: 30%;
+    border-bottom: 1px solid #79955f;
+    text-align: center;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: cneter;
+    align-items: center;
+
+  }
+  .item_image img {
+    height: 90%;
+    width: 20%;
+  }
+  .item_image input {
+    width: 20%;
+  }
+  .item_container {
+    background-color: #fff;
+    color: #000;
+    width: 100%;
+    height: auto;
+    padding: 30px;
+    border-top: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .item_info {
+    margin: 0px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: auto;
+    font-size: 20px;
+    border: 1px #79955F solid;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .item_info p {
+    margin: 10px 0px;
+  }
+
+  .footer_content {
+    background-color:#000; 
+    color: #fff;
+    height: 5vh;
+    font-size: 30px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+
+  a {
+    color: #000;
+  }
+  a:hover,
+  a:active {
+    text-decoration: none;
+    color: #79955f;
+  }
+
+  .selected {
+    color: #79955f;
+  }
+  
+</style>
 <body>
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -166,156 +198,179 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">카탈로그</a></li>
-          <li><a href="#">관리자님 환영합니다.</a></li>
+          <li><a href="#">환영합니다! 관리자님!</a></li>
           <li><a href="#">로그아웃</a></li>
         </ul>
       </div> 
     </div>
   </nav>
-  <div class="row">
-    <div class="menu col-lg-1">
-      <ul class="list-group">
-        <li class="list-group-item">상품관리</li>
-        <li class="list-group-item">상품등록</li>
-        <li class="list-group-item">회원조회</li>
-      </ul>
-    </div>
-    <div class="choice_menu col-lg-11">
-      <!-- 상품 관리를 눌렀을 때 -->
-      <div class="row">
-        <div class="col-lg-4 list">
-          <div style="overflow:auto; width:100%; height:100vh;">
-            <ul class="item_ul text-center">
-              <li class="item_li">
-                <div class="row item_small">
-                  <div class="image_box col-lg-4 col-xs-4">
-                    <img src="css/img/item_small_noback.png" alt="item_image_small">
-                  </div>
-                  <p class="col-lg-4 col-xs-5 text-center">스폰지밥  IPO</p>
-                  <p class="col-lg-4 col-xs-5 text-center">수익률  30%</p>
+  
+  <section class="merchandise_list">
+    <div class="container-fluid">
+      <div class="item_box">
+        <div class="row">
+          <div class="menu col-lg-2">
+            <div class="row">
+                <div class="col">
+                  <a href="" class="selected"><p>상품 관리</p></a>
+                  <a href=""><p>상품 등록</p></a>
+                  <a href=""><p>회원 관리</p></a>
                 </div>
-              </li>
-              <li class="item_li">
-                <div class="row item_small">
-                  <div class="image_box col-lg-4 col-xs-4">
-                    <img src="css/img/item_small_noback.png" alt="item_image_small">
-                  </div>
-                  <p class="col-lg-4 col-xs-5 text-center">스폰지밥  IPO</p>
-                  <p class="col-lg-4 col-xs-5 text-center">수익률  30%</p>
-                </div>
-              </li>
-              <li class="item_li">
-                <div class="row item_small">
-                  <div class="image_box col-lg-4 col-xs-4">
-                    <img src="css/img/item_small_noback.png" alt="item_image_small">
-                  </div>
-                  <p class="col-lg-4 col-xs-5 text-center">스폰지밥  IPO</p>
-                  <p class="col-lg-4 col-xs-5 text-center">수익률  30%</p>
-                </div>
-              </li>
-              <li class="item_li">
-                <div class="row item_small">
-                  <div class="image_box col-lg-4 col-xs-4">
-                    <img src="css/img/item_small_noback.png" alt="item_image_small">
-                  </div>
-                  <p class="col-lg-4 col-xs-5 text-center">스폰지밥  IPO</p>
-                  <p class="col-lg-4 col-xs-5 text-center">수익률  30%</p>
-                </div>
-              </li>
-              <li class="item_li">
-                <div class="row item_small">
-                  <div class="image_box col-lg-4 col-xs-4">
-                    <img src="css/img/item_small_noback.png" alt="item_image_small">
-                  </div>
-                  <p class="col-lg-4 col-xs-5 text-center">스폰지밥  IPO</p>
-                  <p class="col-lg-4 col-xs-5 text-center">수익률  30%</p>
-                </div>
-              </li>
-              <li class="item_li">
-                <div class="row item_small">
-                  <div class="image_box col-lg-4 col-xs-4">
-                    <img src="css/img/item_small_noback.png" alt="item_image_small">
-                  </div>
-                  <p class="col-lg-4 col-xs-5 text-center">스폰지밥  IPO</p>
-                  <p class="col-lg-4 col-xs-5 text-center">수익률  30%</p>
-                </div>
-              </li>
-              <li class="item_li">
-                <div class="row item_small">
-                  <div class="image_box col-lg-4 col-xs-4">
-                    <img src="css/img/item_small_noback.png" alt="item_image_small">
-                  </div>
-                  <p class="col-lg-4 col-xs-5 text-center">스폰지밥  IPO</p>
-                  <p class="col-lg-4 col-xs-5 text-center">수익률  30%</p>
-                </div>
-              </li>
-              <li class="item_li">
-                <div class="row item_small">
-                  <div class="image_box col-lg-4 col-xs-4">
-                    <img src="css/img/item_small_noback.png" alt="item_image_small">
-                  </div>
-                  <p class="col-lg-4 col-xs-5 text-center">스폰지밥  IPO</p>
-                  <p class="col-lg-4 col-xs-5 text-center">수익률  30%</p>
-                </div>
-              </li>
-              <li class="item_li">
-                <div class="row item_small">
-                  <div class="image_box col-lg-4 col-xs-4">
-                    <img src="css/img/item_small_noback.png" alt="item_image_small">
-                  </div>
-                  <p class="col-lg-4 col-xs-5 text-center">스폰지밥  IPO</p>
-                  <p class="col-lg-4 col-xs-5 text-center">수익률  30%</p>
-                </div>
-              </li>
-              <li class="item_li">
-                <div class="row item_small">
-                  <div class="image_box col-lg-4 col-xs-4">
-                    <img src="css/img/item_small_noback.png" alt="item_image_small">
-                  </div>
-                  <p class="col-lg-4 col-xs-5 text-center">스폰지밥  IPO</p>
-                  <p class="col-lg-4 col-xs-5 text-center">수익률  30%</p>
-                </div>
-              </li>
-              <li class="item_li">
-                <div class="row item_small">
-                  <div class="image_box col-lg-4 col-xs-4">
-                    <img src="css/img/item_small_noback.png" alt="item_image_small">
-                  </div>
-                  <p class="col-lg-4 col-xs-5 text-center">스폰지밥  IPO</p>
-                  <p class="col-lg-4 col-xs-5 text-center">수익률  30%</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-8 detail">
-          <div class="manager_detail">
-            <div class="image_window">
-              <img src="css/img/item.jpg" alt="">
-              <div class="form-group image_input">
-                <input type="file" class="form-control-file" name="" id="" placeholder="">
               </div>
             </div>
-            <div class="etc_window">
-              <p> 상품명 : <input type="text"> </p>
-              <p> 상품가격 : <input type="text"> </p>
-              <p> 조각 수 : <input type="number"> </p>
-              <p> 설명  </p>
-              <textarea name="" id="" cols="50" rows="10"></textarea>
-              <p> IPO Stage : <input type="date" name="" id=""> </p>
-              <p> Trading Stage : <input type="date" name="" id=""> </p>
-              <p> Clearing Stage : <input type="date" name="" id=""> </p>
+          <div class="item_list col-lg-3 col-xs-3">
+            <div style="overflow:auto; width:100%; height:79vh;">
+              <ul class="item_ul text-center">
+                <li class="item_li">
+                  <div class="row item_small">
+                    <div class="image_box col-lg-4 col-xs-4">
+                      <img src="css/img/item_small_noback.png" alt="item_image_small">
+                    </div>
+                    <p class="col-lg-4 col-xs-5 text-center">스폰지밥  IPO</p>
+                    <p class="col-lg-4 col-xs-5 text-center">수익률  30%</p>
+                  </div>
+                </li>
+                <li class="item_li">
+                  <div class="row item_small">
+                    <div class="image_box col-lg-4 col-xs-4">
+                      <img src="css/img/item_small_noback.png" alt="item_image_small">
+                    </div>
+                    <p class="col-lg-4 col-xs-5 text-center">스폰지밥  IPO</p>
+                    <p class="col-lg-4 col-xs-5 text-center">수익률  30%</p>
+                  </div>
+                </li>
+                <li class="item_li">
+                  <div class="row item_small">
+                    <div class="image_box col-lg-4 col-xs-4">
+                      <img src="css/img/item_small_noback.png" alt="item_image_small">
+                    </div>
+                    <p class="col-lg-4 col-xs-5 text-center">스폰지밥  IPO</p>
+                    <p class="col-lg-4 col-xs-5 text-center">수익률  30%</p>
+                  </div>
+                </li>
+                <li class="item_li">
+                  <div class="row item_small">
+                    <div class="image_box col-lg-4 col-xs-4">
+                      <img src="css/img/item_small_noback.png" alt="item_image_small">
+                    </div>
+                    <p class="col-lg-4 col-xs-5 text-center">스폰지밥  IPO</p>
+                    <p class="col-lg-4 col-xs-5 text-center">수익률  30%</p>
+                  </div>
+                </li>
+                <li class="item_li">
+                  <div class="row item_small">
+                    <div class="image_box col-lg-4 col-xs-4">
+                      <img src="css/img/item_small_noback.png" alt="item_image_small">
+                    </div>
+                    <p class="col-lg-4 col-xs-5 text-center">스폰지밥  IPO</p>
+                    <p class="col-lg-4 col-xs-5 text-center">수익률  30%</p>
+                  </div>
+                </li>
+                <li class="item_li">
+                  <div class="row item_small">
+                    <div class="image_box col-lg-4 col-xs-4">
+                      <img src="css/img/item_small_noback.png" alt="item_image_small">
+                    </div>
+                    <p class="col-lg-4 col-xs-5 text-center">스폰지밥  IPO</p>
+                    <p class="col-lg-4 col-xs-5 text-center">수익률  30%</p>
+                  </div>
+                </li>
+                <li class="item_li">
+                  <div class="row item_small">
+                    <div class="image_box col-lg-4 col-xs-4">
+                      <img src="css/img/item_small_noback.png" alt="item_image_small">
+                    </div>
+                    <p class="col-lg-4 col-xs-5 text-center">스폰지밥  IPO</p>
+                    <p class="col-lg-4 col-xs-5 text-center">수익률  30%</p>
+                  </div>
+                </li>
+                <li class="item_li">
+                  <div class="row item_small">
+                    <div class="image_box col-lg-4 col-xs-4">
+                      <img src="css/img/item_small_noback.png" alt="item_image_small">
+                    </div>
+                    <p class="col-lg-4 col-xs-5 text-center">스폰지밥  IPO</p>
+                    <p class="col-lg-4 col-xs-5 text-center">수익률  30%</p>
+                  </div>
+                </li>
+                <li class="item_li">
+                  <div class="row item_small">
+                    <div class="image_box col-lg-4 col-xs-4">
+                      <img src="css/img/item_small_noback.png" alt="item_image_small">
+                    </div>
+                    <p class="col-lg-4 col-xs-5 text-center">스폰지밥  IPO</p>
+                    <p class="col-lg-4 col-xs-5 text-center">수익률  30%</p>
+                  </div>
+                </li>
+                <li class="item_li">
+                  <div class="row item_small">
+                    <div class="image_box col-lg-4 col-xs-4">
+                      <img src="css/img/item_small_noback.png" alt="item_image_small">
+                    </div>
+                    <p class="col-lg-4 col-xs-5 text-center">스폰지밥  IPO</p>
+                    <p class="col-lg-4 col-xs-5 text-center">수익률  30%</p>
+                  </div>
+                </li>
+                <li class="item_li">
+                  <div class="row item_small">
+                    <div class="image_box col-lg-4 col-xs-4">
+                      <img src="css/img/item_small_noback.png" alt="item_image_small">
+                    </div>
+                    <p class="col-lg-4 col-xs-5 text-center">스폰지밥  IPO</p>
+                    <p class="col-lg-4 col-xs-5 text-center">수익률  30%</p>
+                  </div>
+                </li>
+                
+              </ul>
             </div>
           </div>
-          <button class="btn btn-lg col-lg-offset-5">수정</button>
-          <button class="btn btn-lg">삭제</button>  
+          <div class="item_detail col-lg-7 col-xs-7">
+            <div class="item_image">
+              <img src="css/img/item.jpg" alt="detail_image">
+              <input type="file" name="" id="">
+            </div>
+            <div class="item_container">
+              <div class="row item_info">
+                <p class="col-lg-6 col-xs-6 name">스폰지밥</p>
+                <input type="text">
+              </div>
+              <div class="row item_info">
+                <p class="col-lg-6 col-xs-6 cost">10000000원</p>
+                <input type="text">
+              </div>
+              <div class="row item_info">
+                <p class="col-lg-6 col-xs-6 piece">300조각</p>
+                <input type="text">
+              </div>
+              <div class="row item_info">
+                <p class="col-lg-6 col-xs-6 ipo">IPO Stage - 2021.04.23</p>
+                <input type="text">
+              </div>
+              <div class="row item_info">
+                <p class="col-lg-6 col-xs-6 trading">Trading Stage - 2021.05.12</p>
+                <input type="text">
+              </div>
+              <div class="row item_info">
+                <p class="col-lg-6 col-xs-6 clearing">Clearing Stage - 2021.05.13</p>
+                <input type="text">
+              </div>
+              <div class="row item_info">
+                <textarea class="col-lg-12 item_Description"></textarea>
+              </div>
+              <div class="button-group">
+                <button type="button" class="btn btn-outline-info">수정</button>
+                <button type="button" class="btn btn-outline-info">삭제</button>
+              </div>
+            </div>
+            </div>
+          </div>
         </div>
       </div>
+      
     </div>
-  </div>
+  </section>
   
-  
+
   <footer>
     <div class="col-lg-12 text-center footer_content">
       4주 프로젝트
