@@ -5,21 +5,20 @@ public class MemberDTO {
 	private String usersId;
 	private String name;
 	private String password;
-	private int balance;
 	
 	public MemberDTO() {
 
 	}
 	
-	public MemberDTO(int membersId, String usersId, String name, String password, int balance) {
+	public MemberDTO(int membersId, String usersId, String name, String password) {
 		super();
 		this.membersId = membersId;
 		this.usersId = usersId;
 		this.name = name;
 		this.password = password;
-		this.balance = balance;
 	}
 	
+	//getter setter
 	public int getMembersId() {
 		return membersId;
 	}
@@ -44,17 +43,12 @@ public class MemberDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getBalance() {
-		return balance;
-	}
-	public void setBalance(int balance) {
-		this.balance = balance;
-	}
-	
 	@Override
 	public String toString() {
 		return "MemberDTO [membersId=" + membersId + ", usersId=" + usersId + ", name=" + name + ", password="
-				+ password + ", balance=" + balance + "]";
+				+ password + "]";
 	}
+	
+	
 	
 }

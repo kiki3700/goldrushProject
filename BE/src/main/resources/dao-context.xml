@@ -8,10 +8,10 @@
 
     <!-- DataSource 설정 -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-        <property name="url" value="jdbc:mysql://localhost/open_banking"/>
+        <property name="url" value="jdbc:mysql://localhost/goldrush"/>
         <property name="username" value="lee" />
         <property name="password" value="kiki3700" />
-        <property name="driverClass" value="com.mysql.cj.jdbc.Driver" />
+        <property name="driverClass" value="com.mysql.jdbc.Driver" />
     </bean>
 
 	 <bean id="DBHandler" class="com.goldrush.dao.DBHandler"/>
