@@ -69,5 +69,20 @@ public class MemberDAO {
 		}
 		return result;	
 	}
+	
+	public int signOut(String userId) {
+		String SQL = "UPDATE members SET user_id = signoutMember WHERE user_id= ?";
+		int result=0;
+		try {
+			Connection con = db.connect();
+			PreparedStatement pstmt = con.prepareStatement(SQL);
+			pstmt.setString(1, userId);
+			if(pstmt.execute()) result=1;
+			con.close();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;	
+	}
 }
 
