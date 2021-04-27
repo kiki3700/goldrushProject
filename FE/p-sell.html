@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+  <link href="//db.onlinewebfonts.com/c/31ed0189fe1ff1e740a652e0f75b77dc?family=Snell+Roundhand" rel="stylesheet" type="text/css"/>
+  <title>매수_proto</title>
+</head>
+<style>
+  body {
+    font-family: 'Nanum Gothic', sans-serif;
+    padding: 50px 0px;
+  }
+  .navbar {
+    background-color: #000;
+  }    
+  .navbar-brand {
+    padding: 0px;
+  }
+  .logo {
+    height: 50px;
+    font-size: 23px;
+    margin: 15px;
+    color: rgb(240, 204, 0);
+    font-family: "Snell Roundhand";
+    font-weight: 700;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  }
+  section {
+    width: 100vw;
+    height: 90vh;
+    background-color: #d3b8993d;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+  }
+  .service {
+    background-color: #fff;
+    height: fit-content;
+    width: 40%;
+    border: 1px solid #79955f;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .service h1 {
+    margin: 5% 0;
+  }
+  .table {
+    margin: 5% 0px;
+    width: 60%;
+  }
+  .sell {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 5% 0px;
+  }
+  .sell_item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .sell_offer {
+    display: flex;
+    flex-direction: column;
+    
+  }
+  .footer_content {
+    background-color:#000; 
+    color: #fff;
+    height: 5vh;
+    font-size: 30px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+  .style-five {
+    border: 0;
+    width: 60%;
+    height: 1px;
+    margin: 0px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+  }
+  a {
+    color: #000;
+  }
+  .btn-lg {
+    background-color: #79955f;
+    color: #fff;
+  }
+  a:hover,
+  a:active {
+    text-decoration: none;
+    color: #79955f;
+  }
+  .selected {
+    color: #79955f;
+  }
+</style>
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">toggle navgation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a class="navbar-brand" href="#"><p class="logo">Gold Rush</p></a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">환영합니다! 이름님!</a></li>
+          <li><a href="#">로그아웃</a></li>
+        </ul>
+      </div> 
+    </div>
+  </nav>
+  
+  <section>
+    <div class="container service">
+      <h1 class="text-center">스폰지밥 : 매도 & 오퍼</h1>
+      <hr class="style-five">
+      <table class="table text-center">
+        <thead>
+          <tr>
+            <th scope="col" class="text-center">가격</th>
+            <th scope="col" class="text-center">수량</th>
+          </tr>
+        </thead>  
+        <tbody>
+          <tr>
+            <td>17000원</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>15000원</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>13000원</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>12000원</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>10000원</td>
+            <td>100</td>
+          </tr>
+        </tbody>
+      </table>
+      <hr class="style-five">
+      <div class="sell">
+        <div class="sell_item">  
+          <input type="number" class="form-control" placeholder="수량을 입력하세요.">
+          
+          <button type="submit" class="btn-lg">매도</button>
+        </div>
+        <div class="sell_offer">
+          <input type="number" class="form-control" placeholder="가격을 입력하세요.">
+          <input type="number" class="form-control" placeholder="수량을 입력하세요.">
+          <button type="submit" class="btn-lg">오퍼</button>
+        </div>  
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="col-lg-12 text-center footer_content">
+      4주 프로젝트
+    </div>
+  </footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+</body>
+</html>

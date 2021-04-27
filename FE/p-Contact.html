@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
   <link href="//db.onlinewebfonts.com/c/31ed0189fe1ff1e740a652e0f75b77dc?family=Snell+Roundhand" rel="stylesheet" type="text/css"/>
-  <title>개인 유저 정보_proto</title>
+  <title>Contact_proto</title>
 </head>
 <style>
   body {
@@ -159,7 +159,7 @@
   }
 
   a:hover,
-  a:active {
+  a:focus {
     text-decoration: none;
     color: #79955f;
   }
@@ -203,6 +203,20 @@
   .change_id_pwd {
     margin-bottom: 5%;
   }
+  /*-------QNA style--------*/
+
+  /* ------ Contact ------ */
+  .question {
+    height: 80vh;
+    background-color: #fff;
+    border: 1px solid #79955f;
+    display: flex;
+    flex-direction: column;
+  }
+  .mail-form {
+    display: flex;
+    
+  }
 </style>
 <body>
   <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -231,126 +245,45 @@
         <div class="row">
           <div class="menu col-lg-2">
             <div class="row">
-                <div class="col">
-                  <a href="" class="selected"><p>My Info</p></a>
-                  <a class="collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><p>item</p></a>
-                  <ul id="collapseOne" class="nav flex-column collapse collapsed">
-                    <li>
-                      <a href="#">Total</a>
-                    </li>
-                    <li>
-                      <a href="#">IPO Stage</a>
-                    </li>
-                    <li>
-                      <a href="#">Trading Stage</a>
-                    </li>
-                    <li>
-                      <a href="#">Clearing Stage</a>
-                    </li>
-                  </ul>
-                  <a href=""><p>QNA</p></a>
-                  <a href=""><p>Contact</p></a>
-                </div>
+              <div class="col">
+                <a href=""><p>My Info</p></a>
+                <a class="collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><p>item</p></a>
+                <ul id="collapseOne" class="nav flex-column collapse collapsed">
+                  <li>
+                    <a href="#">Total</a>
+                  </li>
+                  <li>
+                    <a href="#">IPO Stage</a>
+                  </li>
+                  <li>
+                    <a href="#">Trading Stage</a>
+                  </li>
+                  <li>
+                    <a href="#">Clearing Stage</a>
+                  </li>
+                </ul>
+                <a href=""><p>QNA</p></a>
+                <a href="" class="selected"><p>Contact</p></a>
               </div>
             </div>
-          <div class="follow_menu col-lg-10">
-            <div style="overflow:auto; width:100%; height:79vh;">
-              <div class="account_info">
-                <h1>계좌 정보</h1>
-                <div class="account_transfer">
-                  잔액 : <b>300000</b>
-                  <button class="btn btn-sm">입금</button>
-                  <button class="btn btn-sm">출금</button>
-                </div> 
-              </div>
-              <div class="portfolio">
-                <h1>Portfolio</h1>
-                <table class="table portfolio_table">
-                  <thead>
-                    <tr>
-                      <th scope="col">아이템 ID</th>
-                      <th scope="col">구매 가격</th>
-                      <th scope="col">현재 가격</th>
-                      <th scope="col">수량</th>
-                      <th scope="col">수익률</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">스폰지밥</th>
-                      <td>10000원</td>
-                      <td>20000원</td>
-                      <td>1</td>
-                      <td>100%</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Total</th>
-                      <td>10000원</td>
-                      <td>20000원</td>
-                      <td>1</td>
-                      <td>100%</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="check_log">
-                <h1>account_log</h1>
-                <table id="collapseTableOne" class="table check_log_table">
-                  <thead>
-                    <tr>
-                      <th scope="col">날짜</th>
-                      <th scope="col">입 / 출</th>
-                      <th scope="col">금액</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">2021.03.12</th>
-                      <td>입금</td>
-                      <td>10000원</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <p class="pull-right account">잔액 : 0원</p> 
-              </div>
-              <div class="trade_log">
-                <h1>거래내역</h1>
-                <table class="table trade_log_table">
-                  <thead>
-                    <tr>
-                      <th>item</th>
-                      <th>가격</th>
-                      <th>양</th>
-                      <th>매수 / 매도</th>
-                    </tr>
-                  </thead>  
-                  <tbody>
-                    <tr>
-                      <th scope="row">스폰지밥</th>
-                      <td>10000원</td>
-                      <td>1</td>
-                      <td>매수</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="change_id_pwd">
-                <h1>회원정보수정</h1>
-                <div class="form-group">
-                  <label for="emailcheck">회원님의 이메일</label>
-                  <input type="email" class="form-control" id="emailcheck" placeholder="변경하실 이메일을 적어주세요.">
-                  <small>이미 있는 이메일입니다.</small>
-                  <br>
-                  <br>
-                  <label for="pwdcheck">회원님의 비밀번호</label>
-                  <input type="password" class="form-control" id="pwdcheck" placeholder="변경하실 비밀번호를 적어주세요.">
-                  <input type="password" class="form-control" id="pwd_double_check" placeholder="다시 한번 적어주세요">
-                  <small>비밀번호가 일치합니다</small>
-                  <br>
-                  <button class="btn">내 정보 수정</button>
-                </div>
-              </div>
-            </div>
+          </div>
+        <div class="follow_menu col-lg-10">
+          <h1>추가로 궁금하신 사항이 있으시면 메일주세요!</h1>
+          <div class="form-group mail-form">
+            <input type="text" class="form-control required" name="name" placeholder="이름" title="Name">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control required" name="email" placeholder="이메일" title="Email">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control required" name="subject" placeholder="제목" title="Subject">
+          </div>
+          <div class="form-group">
+            <textarea type="message" class="form-control required" name="subject" placeholder="내용" title="Message" rows="5"></textarea>
+          </div>
+          <div class="form-group">
+            <button class="send_btn btn" type="submit">전 송</button>
+            <button class="send_btn btn" type="reset">재 설 정</button>
           </div>
         </div>
       </div>
