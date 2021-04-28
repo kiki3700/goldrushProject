@@ -2,34 +2,33 @@ package com.goldrush.dto;
 
 public class MemberDTO {
 	private int membersId;
-	private String usersId;
+	private String userId;
 	private String name;
 	private String password;
 	
-	public MemberDTO() {
-
-	}
 	
-	public MemberDTO(int membersId, String usersId, String name, String password) {
+	public MemberDTO() {
+		super();
+	}
+	public MemberDTO(int membersId, String userId, String name, String password) {
 		super();
 		this.membersId = membersId;
-		this.usersId = usersId;
+		this.userId = userId;
 		this.name = name;
 		this.password = password;
 	}
 	
-	//getter setter
 	public int getMembersId() {
 		return membersId;
 	}
 	public void setMembersId(int membersId) {
 		this.membersId = membersId;
 	}
-	public String getUsersId() {
-		return usersId;
+	public String getUserId() {
+		return userId;
 	}
-	public void setUsersId(String usersId) {
-		this.usersId = usersId;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public String getName() {
 		return name;
@@ -43,12 +42,10 @@ public class MemberDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
 	@Override
 	public String toString() {
-		return "MemberDTO [membersId=" + membersId + ", usersId=" + usersId + ", name=" + name + ", password="
-				+ password + "]";
+		return "MemberDTO [membersId=" + membersId + ", userId=" + userId + ", name=" + name + ", password=" + password
+				+ "]";
 	}
-	
-	
-	
 }

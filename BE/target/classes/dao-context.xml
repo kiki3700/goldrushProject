@@ -16,5 +16,8 @@
 
 	 <bean id="DBHandler" class="com.goldrush.dao.DBHandler"/>
 	 
+	 <bean id="MemberDAO" class="com.goldrush.dao.MemberDAOImpl">
+	 	<property name="db" ref="DBHandler"/>
+	 </bean>
 
 </beans>
