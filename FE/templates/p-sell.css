@@ -1,0 +1,96 @@
+body {
+  font-family: "Nanum Gothic", sans-serif;
+  padding: 50px 0px;
+}
+.navbar {
+  background-color: #000;
+}
+.navbar-brand {
+  padding: 0px;
+}
+.logo {
+  height: 50px;
+  font-size: 23px;
+  margin: 15px;
+  color: rgb(240, 204, 0);
+  font-family: "Snell Roundhand";
+  font-weight: 700;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+section {
+  width: 100vw;
+  height: 90vh;
+  background-color: #d3b8993d;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+.service {
+  background-color: #fff;
+  height: fit-content;
+  width: 40%;
+  border: 1px solid #79955f;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.service h1 {
+  margin: 5% 0;
+}
+.table {
+  margin: 5% 0px;
+  width: 60%;
+}
+.sell {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 5% 0px;
+}
+.sell_item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.sell_offer {
+  display: flex;
+  flex-direction: column;
+}
+.footer_content {
+  background-color: #000;
+  color: #fff;
+  height: 5vh;
+  font-size: 30px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.style-five {
+  border: 0;
+  width: 60%;
+  height: 1px;
+  margin: 0px;
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.75),
+    rgba(0, 0, 0, 0)
+  );
+}
+a {
+  color: #000;
+}
+.btn-lg {
+  background-color: #79955f;
+  color: #fff;
+}
+a:hover,
+a:active {
+  text-decoration: none;
+  color: #79955f;
+}
+.selected {
+  color: #79955f;
+}
