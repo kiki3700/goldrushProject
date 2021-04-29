@@ -1,13 +1,13 @@
-import MainController from './MainPage/main.controller.js'
-import LoginController from './LoginPage/login.controller.js'
-import CreateController from './CreatePage/create.controller.js'
-import CatalogueController from './CataloguePage/catalogue.controller.js'
-import ManagerController from './ManagerPage/manager.controller.js'
-import UserInfoController from './UserInfoPage/userInfo.controller.js'
-import QnaController from './QnaPage/qna.controller.js'
-import ContactController from './ContactPage/contact.controller.js'
-import EnrollController from './EnrollPage/enroll.controller.js'
-import UserManageController from './UserManagePage/userManage.controller.js'
+import MainController from './Pages/MainPage/main.controller.js'
+import LoginController from './Pages/LoginPage/login.controller.js'
+import CreateController from './Pages/CreatePage/create.controller.js'
+import CatalogueController from './Pages/CataloguePage/catalogue.controller.js'
+import ManagerController from './Pages/ManagerPage/manager.controller.js'
+import UserInfoController from './Pages/UserInfoPage/userInfo.controller.js'
+import QnaController from './Pages/QnaPage/qna.controller.js'
+import ContactController from './Pages/ContactPage/contact.controller.js'
+import EnrollController from './Pages/EnrollPage/enroll.controller.js'
+import UserManageController from './Pages/UserManagePage/userManage.controller.js'
 
 import Router from './Route/router.js'
 
@@ -22,7 +22,7 @@ router.addRoute('userInfo', new UserInfoController());
 router.addRoute('qna', new QnaController());
 router.addRoute('contact', new ContactController());
 router.addRoute('enroll', new EnrollController());
-router.addRoute('userManager', new UserManageController());
+router.addRoute('userManage', new UserManageController());
 
 
 
