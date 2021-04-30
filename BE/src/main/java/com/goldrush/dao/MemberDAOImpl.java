@@ -28,34 +28,44 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public MemberDTO selectByUserId(String userId) {
 		MemberDTO dto = new MemberDTO();
-		
+		Statement stmt= null;
+		ResultSet rs = null;
+		Connection con= null;
+		String SQL = "SELECT * FROM members WHERE user_id ='"+userId+"'";
 		try {
-			Connection con = db.connect();
-			String SQL = "SELECT * FROM members WHERE user_id ='"+userId+"'";
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(SQL);
+			 con = db.connect();
+			
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(SQL);
 			if(rs.next()) {
 				int id = rs.getInt("members_id");
 				String password = rs.getString("password");
 				String name = rs.getString("name");
 				dto = new MemberDTO(id, userId,name, password);
-				con.close();
 			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
-		
+        if (con != null) {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }	
 		return dto;
 	}
 	@Override
 	public int insertNewMemeber(MemberDTO dto) {
 		String SQL = "INSERT INTO members(user_id, name, password) values(?, ?,?)";
 		int result=0;
+		PreparedStatement pstmt= null;
+		Connection con= null;
 		try {
-			Connection con = db.connect();
-			PreparedStatement pstmt = con.prepareStatement(SQL);
+			con = db.connect();
+			pstmt = con.prepareStatement(SQL);
 			pstmt.setString(1, dto.getUserId());
 			pstmt.setString(2, dto.getName());
 			pstmt.setString(3, dto.getPassword());
@@ -64,15 +74,24 @@ public class MemberDAOImpl implements MemberDAO{
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
+		if (con != null) {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }	
 		return result;		
 	}
 	@Override
 	public int updatePassword(int membersId, String password) {
 		String SQL = "UPDATE members SET password = ? WHERE members_id= ?";
 		int result=0;
+		PreparedStatement pstmt= null;
+		Connection con= null;
 		try {
-			Connection con = db.connect();
-			PreparedStatement pstmt = con.prepareStatement(SQL);
+			con = db.connect();
+			pstmt = con.prepareStatement(SQL);
 			pstmt.setString(1, password);
 			pstmt.setInt(2, membersId);
 			if(pstmt.execute()) result=1;
@@ -80,6 +99,13 @@ public class MemberDAOImpl implements MemberDAO{
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
+		if (con != null) {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }	
 		return result;	
 	}
 
@@ -87,9 +113,11 @@ public class MemberDAOImpl implements MemberDAO{
 	public int signOut(String userId) {
 		String SQL = "UPDATE members SET user_id = signoutMember WHERE user_id= ?";
 		int result=0;
+		PreparedStatement pstmt= null;
+		Connection con= null;
 		try {
-			Connection con = db.connect();
-			PreparedStatement pstmt = con.prepareStatement(SQL);
+			con = db.connect();
+			pstmt = con.prepareStatement(SQL);
 			pstmt.setString(1, userId);
 			if(pstmt.execute()) result=1;
 			con.close();
@@ -98,6 +126,13 @@ public class MemberDAOImpl implements MemberDAO{
 			e.printStackTrace();
 			result=0;
 		}
+		if (con != null) {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }	
 		return result;	
 	}
 }

@@ -1,6 +1,7 @@
 package com.goldrush.dto;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
+
 
 public class ItemDTO {
 	private int itemsId;
@@ -10,20 +11,20 @@ public class ItemDTO {
 	private String stage;
 	private int cost;
 	private int quantity;
-	private LocalDateTime openingDate;
-	private LocalDateTime ipoDate;
-	private LocalDateTime tradingDate;
-	private LocalDateTime clearingDate;
+	private Timestamp openingDate;
+	private Timestamp ipoDate;
+	private Timestamp tradingDate;
+	private Timestamp clearingDate;
 	private String description;
 	private String imgAddress;
 	
-	
 	public ItemDTO() {
+		super();
 	}
 	
 	public ItemDTO(int itemsId, String code, String name, String category, String stage, int cost, int quantity,
-			LocalDateTime openingDate, LocalDateTime ipoDate, LocalDateTime tradingDate, LocalDateTime clearingDate,
-			String description, String imgAddress) {
+			Timestamp openingDate, Timestamp ipoDate, Timestamp tradingDate, Timestamp clearingDate, String description,
+			String imgAddress) {
 		super();
 		this.itemsId = itemsId;
 		this.code = code;
@@ -39,6 +40,7 @@ public class ItemDTO {
 		this.description = description;
 		this.imgAddress = imgAddress;
 	}
+
 	
 	public int getItemsId() {
 		return itemsId;
@@ -82,28 +84,28 @@ public class ItemDTO {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public LocalDateTime getOpeningDate() {
+	public Timestamp getOpeningDate() {
 		return openingDate;
 	}
-	public void setOpeningDate(LocalDateTime openingDate) {
+	public void setOpeningDate(Timestamp openingDate) {
 		this.openingDate = openingDate;
 	}
-	public LocalDateTime getIpoDate() {
+	public Timestamp getIpoDate() {
 		return ipoDate;
 	}
-	public void setIpoDate(LocalDateTime ipoDate) {
+	public void setIpoDate(Timestamp ipoDate) {
 		this.ipoDate = ipoDate;
 	}
-	public LocalDateTime getTradingDate() {
+	public Timestamp getTradingDate() {
 		return tradingDate;
 	}
-	public void setTradingDate(LocalDateTime tradingDate) {
+	public void setTradingDate(Timestamp tradingDate) {
 		this.tradingDate = tradingDate;
 	}
-	public LocalDateTime getClearingDate() {
+	public Timestamp getClearingDate() {
 		return clearingDate;
 	}
-	public void setClearingDate(LocalDateTime clearingDate) {
+	public void setClearingDate(Timestamp clearingDate) {
 		this.clearingDate = clearingDate;
 	}
 	public String getDescription() {
@@ -118,6 +120,7 @@ public class ItemDTO {
 	public void setImgAddress(String imgAddress) {
 		this.imgAddress = imgAddress;
 	}
+
 	@Override
 	public String toString() {
 		return "ItemDTO [itemsId=" + itemsId + ", code=" + code + ", name=" + name + ", category=" + category
@@ -125,6 +128,5 @@ public class ItemDTO {
 				+ ", ipoDate=" + ipoDate + ", tradingDate=" + tradingDate + ", clearingDate=" + clearingDate
 				+ ", description=" + description + ", imgAddress=" + imgAddress + "]";
 	}
-
 
 }

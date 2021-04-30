@@ -17,13 +17,9 @@ public class junit {
 //		MemberDAOImpl dao = new MemberDAOImpl(db);
 //		System.out.println(dao.selectByUserId("admin").getPassword());
 		MemberService ser = new MemberService();
-		
 		MemberDTO dto = new MemberDTO();
-		dto.setName("sh");
-		dto.setUserId("kiki");
-		dto.setPassword("god");
-		int a = ser.signup(dto);
-		System.out.println(a);
+		dto.setUserId("admin");
+		ser.login(dto);
 	}
 
 }
