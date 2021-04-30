@@ -19,5 +19,13 @@
 	 <bean id="MemberDAO" class="com.goldrush.dao.MemberDAOImpl">
 	 	<property name="db" ref="DBHandler"/>
 	 </bean>
+	 
+	 <bean id="InventoryDAO" class="com.goldrush.dao.InventoryDAOImpl">
+	 	<property name="db" ref="DBHandler"/>
+	 </bean>
+	 
+	 <bean id="ItemDAO" class="com.goldrush.dao.ItemDAOImpl">
+	 	<property name="db" ref="DBHandler"/>
+	 </bean>
 
 </beans>

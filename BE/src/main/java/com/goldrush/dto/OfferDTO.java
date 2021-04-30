@@ -1,8 +1,10 @@
 package com.goldrush.dto;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
+
 
 public class OfferDTO {
+
 	private int offersId;
 	private int membersId;
 	private int itemsId;
@@ -11,14 +13,14 @@ public class OfferDTO {
 	private boolean isComplete;
 	private int quantity;
 	private int quantityBalance;
-	private LocalDateTime timeStamp;
+	private Timestamp timeStamp;
 	
 	public OfferDTO() {
 		super();
 	}
 
 	public OfferDTO(int offersId, int membersId, int itemsId, boolean buy, int offerPrice, boolean isComplete,
-			int quantity, int quantityBalance, LocalDateTime timeStamp) {
+			int quantity, int quantityBalance, Timestamp timeStamp) {
 		super();
 		this.offersId = offersId;
 		this.membersId = membersId;
@@ -95,11 +97,11 @@ public class OfferDTO {
 		this.quantityBalance = quantityBalance;
 	}
 
-	public LocalDateTime getTimeStamp() {
+	public Timestamp getTimeStamp() {
 		return timeStamp;
 	}
 
-	public void setTimeStamp(LocalDateTime timeStamp) {
+	public void setTimeStamp(Timestamp timeStamp) {
 		this.timeStamp = timeStamp;
 	}
 
@@ -109,5 +111,4 @@ public class OfferDTO {
 				+ ", offerPrice=" + offerPrice + ", isComplete=" + isComplete + ", quantity=" + quantity
 				+ ", quantityBalance=" + quantityBalance + ", timeStamp=" + timeStamp + "]";
 	}
-
 }
