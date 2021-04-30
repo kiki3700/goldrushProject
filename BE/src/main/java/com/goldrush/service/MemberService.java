@@ -13,8 +13,7 @@ public class MemberService {
 	private MemberDAO memberDAO;
 	
 	public MemberService() {
-		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
-		ctx.load("classpath:dao-context.xml");
+		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:dao-context.xml");
 		this.memberDAO = (MemberDAO) ctx.getBean("MemberDAO");
 	}
 	

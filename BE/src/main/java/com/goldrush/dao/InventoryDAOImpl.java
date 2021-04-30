@@ -11,6 +11,14 @@ import com.goldrush.dto.PortfolioDTO;
 
 public class InventoryDAOImpl implements InventoryDAO{
 	DB db;
+	public InventoryDAOImpl() {
+	}
+	public DB getDb() {
+		return db;
+	}
+	public void setDb(DB db) {
+		this.db = db;
+	}
 	public InventoryDAOImpl(DB db) {
 		this.db=db;
 	}

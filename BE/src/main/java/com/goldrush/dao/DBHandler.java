@@ -19,8 +19,7 @@ public class DBHandler implements DB {
 		// TODO Auto-generated method stub
 
 		 try {
-			GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
-			ctx.load("classpath:dao-context.xml");
+			GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:dao-context.xml");
 			SimpleDriverDataSource ds = (SimpleDriverDataSource) ctx.getBean("dataSource");
 			conn = ds.getConnection();
 			System.out.println("정상적으로 연결되었습니다.");
