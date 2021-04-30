@@ -36,7 +36,7 @@ import com.goldrush.service.MemberService;
 
 @RestController
 @CrossOrigin
-@RequestMapping(value="/member", produces = "application/json;charset=UTF-8")
+@RequestMapping(value="/member", produces = "charset=UTF-8")
 public class MemberController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
