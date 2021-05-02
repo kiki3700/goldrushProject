@@ -2,8 +2,7 @@ package com.goldrush.dto;
 
 import java.sql.Timestamp;
 
-
-public class ItemDTO {
+public class ItemListDTO {
 	private int itemsId;
 	private String code;
 	private String name;
@@ -17,15 +16,17 @@ public class ItemDTO {
 	private Timestamp clearingDate;
 	private String description;
 	private String imgAddress;
-
+	private int price;
+	private int buyOffer;
+	private int sellOffer;
 	
-	public ItemDTO() {
+	public ItemListDTO() {
 		super();
 	}
 	
-	public ItemDTO(int itemsId, String code, String name, String category, String stage, int cost, int quantity,
+	public ItemListDTO(int itemsId, String code, String name, String category, String stage, int cost, int quantity,
 			Timestamp openingDate, Timestamp ipoDate, Timestamp tradingDate, Timestamp clearingDate, String description,
-			String imgAddress) {
+			String imgAddress, int price, int buyOffer, int sellOffer) {
 		super();
 		this.itemsId = itemsId;
 		this.code = code;
@@ -40,8 +41,10 @@ public class ItemDTO {
 		this.clearingDate = clearingDate;
 		this.description = description;
 		this.imgAddress = imgAddress;
+		this.price = price;
+		this.buyOffer = buyOffer;
+		this.sellOffer = sellOffer;
 	}
-
 	
 	public int getItemsId() {
 		return itemsId;
@@ -121,13 +124,31 @@ public class ItemDTO {
 	public void setImgAddress(String imgAddress) {
 		this.imgAddress = imgAddress;
 	}
-
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public int getBuyOffer() {
+		return buyOffer;
+	}
+	public void setBuyOffer(int buyOffer) {
+		this.buyOffer = buyOffer;
+	}
+	public int getSellOffer() {
+		return sellOffer;
+	}
+	public void setSellOffer(int sellOffer) {
+		this.sellOffer = sellOffer;
+	}
+	
 	@Override
 	public String toString() {
-		return "ItemDTO [itemsId=" + itemsId + ", code=" + code + ", name=" + name + ", category=" + category
+		return "ItemListDTO [itemsId=" + itemsId + ", code=" + code + ", name=" + name + ", category=" + category
 				+ ", stage=" + stage + ", cost=" + cost + ", quantity=" + quantity + ", openingDate=" + openingDate
 				+ ", ipoDate=" + ipoDate + ", tradingDate=" + tradingDate + ", clearingDate=" + clearingDate
-				+ ", description=" + description + ", imgAddress=" + imgAddress + "]";
+				+ ", description=" + description + ", imgAddress=" + imgAddress + ", price=" + price + ", buyOffer="
+				+ buyOffer + ", sellOffer=" + sellOffer + "]";
 	}
-
 }

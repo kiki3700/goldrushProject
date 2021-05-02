@@ -1,41 +1,33 @@
 package com.goldrush.dto;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public class TradeDTO {
 	private int tradesId;
-	private int unitPrice;
 	private int quantity;
 	private int offersId;
 	private int membersId;
-	private LocalDateTime timeStamp;
+	private Timestamp timeStamp;
 	
 	public TradeDTO() {
-
+		super();
 	}
 	
-	public TradeDTO(int tradesId, int unitPrice, int quantity, int offersId, int membersId, LocalDateTime timeStamp) {
+	public TradeDTO(int tradesId, int quantity, int offersId, int membersId, Timestamp timeStamp) {
 		super();
 		this.tradesId = tradesId;
-		this.unitPrice = unitPrice;
 		this.quantity = quantity;
 		this.offersId = offersId;
 		this.membersId = membersId;
 		this.timeStamp = timeStamp;
 	}
 	
-	
 	public int getTradesId() {
 		return tradesId;
 	}
 	public void setTradesId(int tradesId) {
 		this.tradesId = tradesId;
-	}
-	public int getUnitPrice() {
-		return unitPrice;
-	}
-	public void setUnitPrice(int unitPrice) {
-		this.unitPrice = unitPrice;
 	}
 	public int getQuantity() {
 		return quantity;
@@ -55,16 +47,19 @@ public class TradeDTO {
 	public void setMembersId(int membersId) {
 		this.membersId = membersId;
 	}
-	public LocalDateTime getTimeStamp() {
+	public Timestamp getTimeStamp() {
 		return timeStamp;
 	}
-	public void setTimeStamp(LocalDateTime timeStamp) {
+	public void setTimeStamp(Timestamp timeStamp) {
 		this.timeStamp = timeStamp;
 	}
 	
 	@Override
 	public String toString() {
-		return "TradeDTO [tradesId=" + tradesId + ", unitPrice=" + unitPrice + ", quantity=" + quantity + ", offersId="
-				+ offersId + ", membersId=" + membersId + ", timeStamp=" + timeStamp + "]";
+		return "TradeDTO [tradesId=" + tradesId + ", quantity=" + quantity + ", offersId=" + offersId + ", membersId="
+				+ membersId + ", timeStamp=" + timeStamp + "]";
 	}
+	
+
+	
 }

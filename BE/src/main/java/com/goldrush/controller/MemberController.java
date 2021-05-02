@@ -36,7 +36,7 @@ import com.goldrush.service.MemberService;
 
 @RestController
 @CrossOrigin
-@RequestMapping(value="/member", produces = "charset=UTF-8")
+@RequestMapping(value="/member")
 public class MemberController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
@@ -45,31 +45,26 @@ public class MemberController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-	public @ResponseBody  ResponseEntity<String> signup(@RequestBody MemberDTO dto) {
+	public @ResponseBody  ResponseEntity<ResponseDTO> signup(@RequestBody MemberDTO dto) {
 		MemberService memberService  = new MemberService();
 		ResponseDTO result=memberService.signup(dto);
-		ResponseEntity<String> response;
+		ResponseEntity<ResponseDTO> response;
 		if(result.getResult()==1) {
-			return new ResponseEntity<String>(result.getMessage(),HttpStatus.ACCEPTED);
+			return new ResponseEntity<ResponseDTO>(result,HttpStatus.ACCEPTED);
 		}else {
-			return new ResponseEntity<String>(result.getMessage(),HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<ResponseDTO>(result,HttpStatus.BAD_REQUEST);
 		}
 		
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public @ResponseBody ResponseEntity<String> login(@RequestBody MemberDTO dto, HttpServletResponse response) {
+	public @ResponseBody ResponseEntity<ResponseDTO> login(@RequestBody MemberDTO dto, HttpServletResponse response) {
 		MemberService memberService  = new MemberService();
 		ResponseDTO result = memberService.login(dto);
 		if(result.getResult()==0) {
-			return new ResponseEntity<String>(result.getMessage(),HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<ResponseDTO>(result,HttpStatus.BAD_REQUEST);
 		}else {
-			MemberDTO dtoFromDb =(MemberDTO) result.getObj(); 
-			Cookie membersIdCookie = new Cookie("memberId",Integer.toString(dtoFromDb.getMembersId()));
-			Cookie nameCookie = new Cookie("name",dtoFromDb.getName());
-			response.addCookie(nameCookie);
-			response.addCookie(membersIdCookie);
-			return new ResponseEntity<String>(result.getMessage(),HttpStatus.ACCEPTED);
+			return new ResponseEntity<ResponseDTO>(result,HttpStatus.ACCEPTED);
 		}
 	}
 	
@@ -85,16 +80,16 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
-	public @ResponseBody ResponseEntity<String> changePassword(@CookieValue(value="membersId", required=false) Cookie membersIdCookie
+	public @ResponseBody ResponseEntity<ResponseDTO> changePassword(@CookieValue(value="membersId", required=false) Cookie membersIdCookie
 								,@RequestBody String newPassword){
-		if(membersIdCookie==null) return new ResponseEntity<String>("로그인을 하지 않았습니다.",HttpStatus.BAD_REQUEST);
+		if(membersIdCookie==null) return new ResponseEntity<ResponseDTO>(new ResponseDTO(0,"로그인을 하지 않았습니다."),HttpStatus.BAD_REQUEST);
 		MemberService memberService = new MemberService();
 		ResponseDTO response = memberService.changePassword(Integer.parseInt(membersIdCookie.getValue()), newPassword);
 		
 		if(response.getResult()==1) {
-			return new ResponseEntity<String>(response.getMessage(),HttpStatus.ACCEPTED);
+			return new ResponseEntity<ResponseDTO>(response,HttpStatus.ACCEPTED);
 		}else {
-			return new ResponseEntity<String>(response.getMessage(),HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<ResponseDTO>(response,HttpStatus.BAD_REQUEST);
 		}
 	}
 }
