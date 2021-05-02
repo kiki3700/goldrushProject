@@ -12,8 +12,17 @@ import com.goldrush.dto.OfferDTO;
 import com.goldrush.dto.OffersListDTO;
 import com.goldrush.dto.ResponseDTO;
 
-public class OfferDAOImpl {
+public class OfferDAOImpl implements OfferDAO {
 	DB db;
+
+	public OfferDAOImpl() {
+		
+	}
+	
+	public OfferDAOImpl(DB db) {
+		// TODO Auto-generated constructor stub
+		this.db = db;
+	}
 
 	public DB getDb() {
 		return db;
@@ -22,7 +31,7 @@ public class OfferDAOImpl {
 	public void setDb(DB db) {
 		this.db = db;
 	}
-	
+	@Override
 	public List<OfferDTO> selectOffers() {
 		String SQL = "SELECT * FROM offers";
 		PreparedStatement pstmt= null;
@@ -51,7 +60,7 @@ public class OfferDAOImpl {
 		}
 		return listOffer;
 	}
-	
+	@Override
 	public List<OfferDTO> selectOffersByPrice(int price) {
 		String SQL = "SELECT * FROM offers WHERE offer_price = ? is_compelete = 0";
 		PreparedStatement pstmt= null;
@@ -81,7 +90,7 @@ public class OfferDAOImpl {
 		}
 		return listOffer;
 	}
-	
+	@Override
 	public List<OfferDTO> selectOffersByItemsId(int itemsId) {
 		String SQL = "SELECT * FROM offers WHERE items_id = ? is_compelete = 0";
 		PreparedStatement pstmt= null;
@@ -110,33 +119,37 @@ public class OfferDAOImpl {
 		}
 		return listOffer;
 	}
-	public ResponseDTO InsertNewOffer(OfferDTO dto) {
-		String SQL = "INSERT INTO offers(members_id, itmes_id, buy, offer_price,"
-				+ " quantity, quantity_balance) value(?, ?, ?, ?, ?)";
+	@Override
+	public ResponseDTO insertNewOffer(OfferDTO dto) {
+		String SQL = "INSERT INTO offers(members_id, items_id, buy, offer_price,"
+				+ " quantity, quantity_balance) value(?, ?, ?, ?, ?, ?)";
 		PreparedStatement pstmt= null;
 		Connection con= null;
-		Boolean rs = null;
 		ResponseDTO response=null;
 		try {
 			con = db.connect();
 			pstmt = con.prepareStatement(SQL);
 			pstmt.setInt(1, dto.getMembersId());
-			pstmt.setInt(1, dto.getItemsId());
-			pstmt.setBoolean(1, dto.isBuy());
-			pstmt.setInt(1, dto.getOfferPrice());
-			pstmt.setInt(1, dto.getQuantity());
-			rs= pstmt.execute();
-			if(rs) {
+			pstmt.setInt(2, dto.getItemsId());
+			pstmt.setBoolean(3, dto.isBuy());
+			pstmt.setInt(4, dto.getOfferPrice());
+			pstmt.setInt(5, dto.getQuantity());
+			pstmt.setInt(6, dto.getQuantity());
+			
+			if(pstmt.executeUpdate()==1) {
 				response= new ResponseDTO(1, "offer를 기록했습니다.");
 			}else {
 				response = new ResponseDTO(0,"offer 기록을 실패했습니다.");
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
+			response = new ResponseDTO(0,"offer 기록을 실패했습니다.");
 		}
 		return response;
 	}
 	
+	
+	@Override
 	public ResponseDTO deleteOffer(OfferDTO dto) {
 		String SQL = "DELETE FROM offers WHERE offers_id = ?";
 		PreparedStatement pstmt= null;
@@ -147,42 +160,66 @@ public class OfferDAOImpl {
 			con = db.connect();
 			pstmt = con.prepareStatement(SQL);
 			pstmt.setInt(1, dto.getOffersId());
-			rs= pstmt.execute();
-			if(rs) {
+			if(pstmt.executeUpdate()==1) {
 				response= new ResponseDTO(1, "offer를 삭제했습니다..");
 			}else {
 				response = new ResponseDTO(0,"offer 삭제에 실패했습니다..");
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
+			response = new ResponseDTO(0,"offer 삭제에 실패했습니다..");
 		}
 		return response;
 	}
-	
+	@Override
 	public ResponseDTO updateOfferByQuantity(OfferDTO dto) {
-		String SQL = "UPDATE offers SET quantity = ?, quantity_balance= 0 , is_complete=1 WHERE offers_id = id";
+		String SQL = "UPDATE offers SET quantity = ?, quantity_balance= 0 , is_complete= true WHERE offers_id = ?";
 		PreparedStatement pstmt= null;
 		Connection con= null;
-		Boolean rs = null;
 		ResponseDTO response=null;
 		try {
 			con = db.connect();
 			pstmt = con.prepareStatement(SQL);
 			pstmt.setInt(1, dto.getQuantity()-dto.getQuantityBalance());
-			rs= pstmt.execute();
-			if(rs) {
+			pstmt.setInt(2, dto.getItemsId());
+			if(pstmt.executeUpdate()==1) {
 				response= new ResponseDTO(1, "업데이트를 성공했습니다.");
 			}else {
 				response = new ResponseDTO(0,"업데이트를 실패했습니다...");
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
+			response = new ResponseDTO(0,"업데이트를 실패했습니다...");
 		}
 		return response;
 	}
 	
+
+	@Override
+	public ResponseDTO updateCompeleteOffer(OfferDTO dto) {
+		String SQL = "UPDATE offers SET is_complete= true WHERE offers_id = ?";
+		PreparedStatement pstmt= null;
+		Connection con= null;
+		ResponseDTO response=null;
+		try {
+			con = db.connect();
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, dto.getItemsId());
+			if(pstmt.executeUpdate()==1) {
+				response= new ResponseDTO(1, "오퍼를 닫았습니다..");
+			}else {
+				response = new ResponseDTO(0,"오퍼 종결에 실패했습니다...");
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+			response = new ResponseDTO(0,"오퍼 종결에 실패했습니다...");
+		}
+		return response;
+	}
+	
+	@Override
 	public List<OffersListDTO> selectBuyOfferList(OfferDTO dto){
-		String SQL = "SELECT * FROM offers WHERE items_id = ?, is_complete=0, buy=1 ORDER BY offer_price ASC";
+		String SQL = "SELECT * FROM offers WHERE items_id = ? AND is_complete=false AND buy=true ORDER BY offer_price ASC";
 		PreparedStatement pstmt= null;
 		Connection con= null;
 		ResultSet rs = null;
@@ -215,9 +252,9 @@ public class OfferDAOImpl {
 		
 		return offerList;
 	}
-	
+	@Override
 	public List<OffersListDTO> selectSellOfferList(OfferDTO dto){
-		String SQL = "SELECT * FROM offers WHERE items_id = ?, is_complete=0, buy=0 ORDER BY offer_price DESC";
+		String SQL = "SELECT * FROM offers WHERE items_id = ? AND is_complete=0 AND buy=0 ORDER BY offer_price DESC";
 		PreparedStatement pstmt= null;
 		Connection con= null;
 		ResultSet rs = null;
