@@ -9,6 +9,10 @@
 	Hello world!  
 </h1>
 
-<P> fuck U </P>
+<form action="/" method="POST" >
+<input type="file"><br>
+<input type="text"><br>
+<input type="submit">
+</form>
 </body>
 </html>
