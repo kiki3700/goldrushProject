@@ -1,11 +1,8 @@
 package com.goldrush.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.support.GenericXmlApplicationContext;
-import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
+import org.springframework.context.support.GenericXmlApplicationContext;
 import com.goldrush.dao.MemberDAO;
-import com.goldrush.dao.MemberDAOImpl;
 import com.goldrush.dto.MemberDTO;
 import com.goldrush.dto.ResponseDTO;
 
@@ -50,6 +47,18 @@ public class MemberService {
 			return new ResponseDTO(1, "비밀번호가 변경되었습니다.");
 		}else {
 			return new ResponseDTO(0, "비밀번호를 변경할 수 없습니다.다시 시도해 주세요.");
+		}
+	}
+	
+	public ResponseDTO signout(int membersId) {
+//		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
+//		ctx.load("classpath:dao-context.xml");
+//		MemberDAO memberDAO = (MemberDAO) ctx.getBean("MemberDAO");
+		int result = memberDAO.signout(membersId);
+		if(result==1) {
+			return new ResponseDTO(1, "회원탈퇴되었습니다..");
+		}else {
+			return new ResponseDTO(0, "회원탈퇴를 실패했습니다..");
 		}
 	}
 }

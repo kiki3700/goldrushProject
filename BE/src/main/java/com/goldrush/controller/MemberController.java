@@ -80,11 +80,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
-	public @ResponseBody ResponseEntity<ResponseDTO> changePassword(@CookieValue(value="membersId", required=false) Cookie membersIdCookie
-								,@RequestBody String newPassword){
-		if(membersIdCookie==null) return new ResponseEntity<ResponseDTO>(new ResponseDTO(0,"로그인을 하지 않았습니다."),HttpStatus.BAD_REQUEST);
+	public @ResponseBody ResponseEntity<ResponseDTO> changePassword(@RequestBody MemberDTO memberDTO){
+		int membersId = memberDTO.getMembersId();
+		String newPassword = memberDTO.getPassword();
 		MemberService memberService = new MemberService();
-		ResponseDTO response = memberService.changePassword(Integer.parseInt(membersIdCookie.getValue()), newPassword);
+		ResponseDTO response = memberService.changePassword(membersId, newPassword);
 		
 		if(response.getResult()==1) {
 			return new ResponseEntity<ResponseDTO>(response,HttpStatus.ACCEPTED);

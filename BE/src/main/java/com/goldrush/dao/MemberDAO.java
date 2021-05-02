@@ -12,6 +12,6 @@ public interface MemberDAO {
 
 	int updatePassword(int membersId, String password);
 
-	int signOut(String userId);
+	int signout(int membersId);
 
 }
