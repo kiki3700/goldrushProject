@@ -11,7 +11,18 @@ import com.goldrush.dto.AccountDTO;
 
 public class AccountDAOImpl implements AccountDAO{
 	DB db;
+	
+	public AccountDAOImpl() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public AccountDAOImpl(DB db) {
+		this.db = db;
+	}
+	public DB getDb() {
+		return db;
+	}
+	public void setDb(DB db) {
 		this.db = db;
 	}
 	//잔액 조회
@@ -38,7 +49,7 @@ public class AccountDAOImpl implements AccountDAO{
 	@Override
 	public List<AccountDTO> selectAccountLog(int membersId){
 		ResultSet rs = null;
-		List<AccountDTO> listAccount = new ArrayList();
+		List<AccountDTO> listAccount = new ArrayList<AccountDTO>();
 		String SQL = "select * from accounts where members_id = ?";
 		try(Connection con = db.connect()){
 			PreparedStatement pstmt = con.prepareStatement(SQL);

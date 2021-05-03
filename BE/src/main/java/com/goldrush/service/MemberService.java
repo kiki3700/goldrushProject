@@ -1,17 +1,46 @@
 package com.goldrush.service;
 
 
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+import javax.imageio.ImageIO;
+
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import com.goldrush.dao.AccountDAO;
+import com.goldrush.dao.InventoryDAO;
 import com.goldrush.dao.MemberDAO;
+import com.goldrush.dao.OfferDAO;
+import com.goldrush.dao.TradeDAO;
+import com.goldrush.dto.AccountDTO;
 import com.goldrush.dto.MemberDTO;
+import com.goldrush.dto.OfferDTO;
+import com.goldrush.dto.OfferLogDTO;
+import com.goldrush.dto.PortfolioDTO;
 import com.goldrush.dto.ResponseDTO;
+import com.goldrush.dto.TradeLogDTO;
 
 public class MemberService {
 	private MemberDAO memberDAO;
-	
+	private InventoryDAO inventoryDAO;
+	private AccountDAO accountDAO;
+	private OfferDAO offerDAO;
+	private TradeDAO tradeDAO;
 	public MemberService() {
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:dao-context.xml");
+		this.inventoryDAO = (InventoryDAO) ctx.getBean("InventoryDAO");
 		this.memberDAO = (MemberDAO) ctx.getBean("MemberDAO");
+		this.accountDAO = (AccountDAO) ctx.getBean("AccountDAO");
+		this.offerDAO = (OfferDAO) ctx.getBean("OfferDAO");
+		this.tradeDAO = (TradeDAO) ctx.getBean("TradeDAO");
 	}
 	
 	
@@ -60,5 +89,19 @@ public class MemberService {
 		}else {
 			return new ResponseDTO(0, "회원탈퇴를 실패했습니다..");
 		}
+	}
+	
+	public List<PortfolioDTO> getPortfolio(int membersId) {
+		return inventoryDAO.selectPortfolio(membersId);
+	}
+	public List<AccountDTO> getAccountLog(int membersId){
+		return accountDAO.selectAccountLog(membersId);
+	}
+	
+	public List<OfferLogDTO> getOfferLog(int membersId){
+		return offerDAO.selectOffersByMembersId(membersId);
+	}
+	public List<TradeLogDTO> getTradeLog(int membersId){
+		return tradeDAO.selectTradeLog(membersId);
 	}
 }

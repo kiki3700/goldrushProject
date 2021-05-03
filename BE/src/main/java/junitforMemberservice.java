@@ -10,7 +10,9 @@ public class junitforMemberservice {
 	public void test() {
 		MemberService memberService  = new MemberService();
 		MemberDTO dto =new MemberDTO();
-
+		
+		System.out.println(memberService.getOfferLog(1));
+		System.out.println(memberService.getTradeLog(1));
 	}
 
 }

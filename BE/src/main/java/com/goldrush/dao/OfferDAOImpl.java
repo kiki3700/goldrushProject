@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.goldrush.dto.OfferDTO;
+import com.goldrush.dto.OfferLogDTO;
 import com.goldrush.dto.OffersListDTO;
 import com.goldrush.dto.ResponseDTO;
 
@@ -119,6 +120,49 @@ public class OfferDAOImpl implements OfferDAO {
 		}
 		return listOffer;
 	}
+	
+
+	@Override
+	public List<OfferLogDTO> selectOffersByMembersId(int membersId) {
+		String SQL = "SELECT * FROM offers LEFT JOIN items on offers.items_id = items.items_id WHERE members_id = ? AND is_complete = false";
+		PreparedStatement pstmt= null;
+		Connection con= null;
+		ResultSet rs = null;
+		List<OfferLogDTO> listOffer = new ArrayList<OfferLogDTO>();
+		try {
+			con = db.connect();
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, membersId);
+			rs= pstmt.executeQuery();
+			while(rs.next()) {
+				int offersId = rs.getInt("offers_id");
+				int itemsId = rs.getInt("items_id");
+				String code = rs.getString("code");
+				boolean buy = rs.getBoolean("buy");
+				int offerPrice = rs.getInt("offer_price");
+				boolean isComplete = rs.getBoolean("is_complete");
+				int quantity = rs.getInt("quantity");
+				int quantityBalance = rs.getInt("quantity_balance");
+				Timestamp timeStamp = rs.getTimestamp("time_stamp");
+				OfferLogDTO dto = new OfferLogDTO();
+				dto.setBuy(buy);
+				dto.setOfferPrice(offerPrice);
+				dto.setOffersId(offersId);
+				dto.setCode(code);
+				dto.setQuantityBalance(quantityBalance);
+				dto.setTimeStamp(timeStamp);
+				dto.setMembersId(membersId);
+				dto.setItemsId(itemsId);
+				
+				
+				listOffer.add(dto);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return listOffer;
+	}
+	
 	@Override
 	public ResponseDTO insertNewOffer(OfferDTO dto) {
 		String SQL = "INSERT INTO offers(members_id, items_id, buy, offer_price,"
