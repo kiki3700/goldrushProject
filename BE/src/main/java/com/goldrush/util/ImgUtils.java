@@ -15,7 +15,7 @@ public class ImgUtils {
 	
 	public static String uploadFile(String name, byte[] fileData) throws Exception{
 		String path = "src/main/webapp/WEB-INF/itemImg/";
-		File target = new File(path,name+".jpg");
+		File target = new File(path,name);
 		FileCopyUtils.copy(fileData, target);
 		return null;
 	}

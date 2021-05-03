@@ -10,15 +10,15 @@ import com.goldrush.dto.TradeDTO;
 
 public class junitForTrade {
 
-	@Test
-	public void test() {
-		TradeDAO dao = new TradeDAOImpl(new DBHandler());
-		TradeDTO dto = new TradeDTO();
-		dto.setMembersId(2);
-		dto.setOffersId(5);
-		dto.setQuantity(1);
-		System.out.println(dao.insertTrade(dto));
-	}
+//	@Test
+//	public void test() {
+//		TradeDAO dao = new TradeDAOImpl(new DBHandler());
+//		TradeDTO dto = new TradeDTO();
+//		dto.setMembersId(2);
+//		dto.setOffersId(5);
+//		dto.setQuantity(1);
+//		System.out.println(dao.insertTrade(dto));
+//	}
 //	@Test
 //	public void select() {
 //		MemberDTO mem = new MemberDTO();
@@ -27,5 +27,11 @@ public class junitForTrade {
 //		System.out.println(dao.selectTrade(mem));
 //		
 //	}
+	@Test
+	public void test() {
+		TradeDAO dao = new TradeDAOImpl(new DBHandler());
+		TradeDTO dto = new TradeDTO();
 
+		System.out.println(dao.selectTradeLog(1));
+	}
 }

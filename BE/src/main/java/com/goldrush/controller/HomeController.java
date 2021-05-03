@@ -1,22 +1,40 @@
 package com.goldrush.controller;
 
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.imageio.ImageIO;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.util.FileCopyUtils;
 
+import com.goldrush.dto.ItemDTO;
 import com.goldrush.dto.MemberDTO;
+import com.goldrush.dto.ResponseDTO;
 import com.goldrush.dto.test;
+import com.goldrush.service.ItemService;
 import com.goldrush.service.MemberService;
+import com.goldrush.util.ImgUtils;
 
 
 /**
@@ -54,5 +72,13 @@ public class HomeController {
 //		
 //		return "fuck";
 //	}
+	
+	@RequestMapping(value="/god")
+	public String  registerItem(MultipartHttpServletRequest request) throws IOException{
+		ItemService it = new ItemService();
+		it.postPicture("1wer", request);
+
+		return "form";
+	}
 	
 }

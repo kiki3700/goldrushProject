@@ -3,6 +3,7 @@ package com.goldrush.controller;
 import java.lang.annotation.Annotation;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.Cookie;
@@ -21,11 +22,15 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import com.goldrush.dto.AccountDTO;
 import com.goldrush.dto.MemberDTO;
+import com.goldrush.dto.OfferLogDTO;
+import com.goldrush.dto.PortfolioDTO;
 import com.goldrush.dto.ResponseDTO;
 import com.goldrush.service.MemberService;
 
@@ -40,13 +45,12 @@ import com.goldrush.service.MemberService;
 public class MemberController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
-	
+	private static MemberService memberService =new MemberService();
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public @ResponseBody  ResponseEntity<ResponseDTO> signup(@RequestBody MemberDTO dto) {
-		MemberService memberService  = new MemberService();
 		ResponseDTO result=memberService.signup(dto);
 		ResponseEntity<ResponseDTO> response;
 		if(result.getResult()==1) {
@@ -59,7 +63,6 @@ public class MemberController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<ResponseDTO> login(@RequestBody MemberDTO dto, HttpServletResponse response) {
-		MemberService memberService  = new MemberService();
 		ResponseDTO result = memberService.login(dto);
 		if(result.getResult()==0) {
 			return new ResponseEntity<ResponseDTO>(result,HttpStatus.BAD_REQUEST);
@@ -68,6 +71,7 @@ public class MemberController {
 		}
 	}
 	
+	//폐기해야할 것
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<String> logout(HttpServletResponse response){
 		Cookie membersIdCookie = new Cookie("memberId",null);
@@ -83,7 +87,6 @@ public class MemberController {
 	public @ResponseBody ResponseEntity<ResponseDTO> changePassword(@RequestBody MemberDTO memberDTO){
 		int membersId = memberDTO.getMembersId();
 		String newPassword = memberDTO.getPassword();
-		MemberService memberService = new MemberService();
 		ResponseDTO response = memberService.changePassword(membersId, newPassword);
 		
 		if(response.getResult()==1) {
@@ -91,5 +94,18 @@ public class MemberController {
 		}else {
 			return new ResponseEntity<ResponseDTO>(response,HttpStatus.BAD_REQUEST);
 		}
+	}
+	
+	@RequestMapping(value = "/portfolio", method = RequestMethod.GET)
+	public @ResponseBody List<PortfolioDTO> getPortfolio(@RequestParam("mebersId") int membersId ){
+		return memberService.getPortfolio(membersId);
+	}
+	@RequestMapping(value = "/offer", method = RequestMethod.GET)
+	public @ResponseBody List<OfferLogDTO> getOfferLog(@RequestParam("mebersId") int membersId ){
+		return memberService.getOfferLog(membersId);
+	}
+	@RequestMapping(value = "/account", method = RequestMethod.GET)
+	public @ResponseBody List<AccountDTO> getAccountLog(@RequestParam("mebersId") int membersId ){
+		return memberService.getAccountLog(membersId);
 	}
 }
