@@ -21,17 +21,17 @@ export default class LoginModel {
         if (response.status === 202) {
           response.json().then(json => {
             console.log(json.result, json.message, json.obj);
-            localStorage.setItem('userInfo', JSON.stringify(json.obj));
-            let getUser = localStorage.getItem('userInfo');
+            window.localStorage.setItem('userInfo', JSON.stringify(json.obj));
+            let getUser = window.localStorage.getItem('userInfo');
             const usingUser = JSON.parse(getUser);
-            console.log(usingUser.name);
-            console.log(usingUser.membersId);
-            console.log(usingUser.userId);
-            console.log(usingUser.password);
+            
+            if ( usingUser.membersId === 1) {
+              location.href = '#manager';
+            } else {
+              location.href = '#catalogue'
+            }
+            
           });
-          // localStorage('userInfo', json.obj);
-          // console.log(userInfo);
-          location.href = '#catalogue';
         } else {
           response.json().then(json => alert('실패', json.message));
         }

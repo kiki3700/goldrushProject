@@ -7,6 +7,11 @@ export default class QnaController {
     this.model = new QnaModel();
   }
   total = () => {
+    this.view.BindLogoutButton(this.clickLogout);
 
-  } 
+    
+  }
+  clickLogout = () => {
+    window.localStorage.removeItem('userInfo');
+  }
 }

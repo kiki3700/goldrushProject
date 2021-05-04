@@ -28,6 +28,10 @@ class UserManageView{
   BindKickButton = (callback) => {
     this.kickButton.forEach(item => item.addEventListener('click', callback));
   }
+  BindLogoutButton = (callback) => {
+    this.logout = document.querySelector('.logout');
+    this.logout.addEventListener('click', callback);
+  }
 }
 
 export default UserManageView;

@@ -12,8 +12,8 @@ const qna = `
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#userInfo">환영합니다! 이름님!</a></li>
-          <li><a href="#main">로그아웃</a></li>
+          <li><a href="#userInfo" class="welcome">환영합니다! 이름님!</a></li>
+          <li><a href="#main" class="logout">로그아웃</a></li>
         </ul>
       </div> 
     </div>

@@ -6,13 +6,20 @@ export default class UserInfoController {
     this.view = new UserInfoView();
     this.model = new UserInfoModel();
   }
+
   total = () => {
+    const user = JSON.parse(window.localStorage.getItem('userInfo'));
+    if ( !user ) {
+      alert('접근권한이 없습니다.');
+      location.href = '#main';
+    }
     this.view.BindChargeButton(this.clickChargeBtn);
     this.view.BindDischargeButton(this.clickDisChargeBtn);
     this.view.BindMailForm(this.keyupMail);
     this.view.BindfirstPwdForm(this.keyupPwd);
     this.view.BindSecondPwdForm(this.keyupPwd);
     this.view.BindUpdateUser(this.update);
+    this.view.BindLogoutButton(this.clickLogout);
   } 
   clickChargeBtn = () => {
     console.log('입금버튼이 눌렸다.');
@@ -41,5 +48,8 @@ export default class UserInfoController {
   }
   update = () => {
     console.log('수정버튼이 눌렸다.');
+  }
+  clickLogout = () => {
+    window.localStorage.removeItem('userInfo');
   }
 }

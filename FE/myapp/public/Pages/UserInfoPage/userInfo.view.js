@@ -17,6 +17,10 @@ export default class UserInfoView{
     this.css.setAttribute('href', 'Pages/UserInfoPage/userInfo.css');
     newRoot.insertAdjacentHTML('afterbegin', this.view);
 
+    const user = JSON.parse(window.localStorage.getItem('userInfo'));
+    this.welcome = document.querySelector('.welcome');
+    this.welcome.innerHTML = `환영합니다! ${user.name}님!`;
+
     this.chargeButton = document.querySelector('.charge_money');
     this.dischargeButton = document.querySelector('.discharge_money');
     this.mailForm = document.querySelector('#emailcheck');
@@ -43,5 +47,9 @@ export default class UserInfoView{
   }
   BindUpdateUser = (callback) => {
     this.updateUser.addEventListener('click', callback);
+  }
+  BindLogoutButton = (callback) => {
+    this.logout = document.querySelector('.logout');
+    this.logout.addEventListener('click', callback);
   }
 }

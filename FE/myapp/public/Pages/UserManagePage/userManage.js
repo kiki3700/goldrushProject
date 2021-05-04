@@ -12,8 +12,8 @@ const userManage = `
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#manager">환영합니다! 관리자님!</a></li>
-          <li><a href="#main">로그아웃</a></li>
+        <li><a href="#manager" class="welcome">환영합니다! 관리자님!</a></li>
+        <li><a href="#main" class="logout">로그아웃</a></li>
         </ul>
       </div> 
     </div>

@@ -18,10 +18,23 @@ class EnrollView{
     newRoot.insertAdjacentHTML('afterbegin', this.view);
 
     this.enrollButton = document.querySelector('.enroll_button');
+    this.inputBtn = document.querySelector('#image_uploads');
   }
 
   BindEnrollButton = (callback) => {
+    this.formData = document.querySelector('.enroll_form');
+    
     this.enrollButton.addEventListener('click', callback);
+  }
+  
+  BindInputButton = (callback) => {
+    this.previewImage = document.querySelector('.preview');
+    this.inputBtn.addEventListener('change', callback);
+  }
+
+  BindLogoutButton = (callback) => {
+    this.logout = document.querySelector('.logout');
+    this.logout.addEventListener('click', callback);
   }
 }
 
