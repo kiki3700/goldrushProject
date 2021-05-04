@@ -9,6 +9,7 @@ export default class QnaController {
   total = () => {
     this.view.BindSearchForm(this.search)
     this.view.BindKickButton(this.kick)
+    this.view.BindLogoutButton(this.clickLogout);
   } 
   search = () => {
     console.log('keyup event발생!');
@@ -20,5 +21,8 @@ export default class QnaController {
       alert('탈퇴를 취소하셨습니다.');
     }
     console.log('지금 찍은 사람의 ID', event.target.innerHTML);
+  }
+  clickLogout = () => {
+    window.localStorage.removeItem('userInfo');
   }
 }

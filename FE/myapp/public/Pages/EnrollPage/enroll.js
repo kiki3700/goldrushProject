@@ -12,8 +12,8 @@ const enroll = `
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#manager">환영합니다! 관리자님!</a></li>
-          <li><a href="#main">로그아웃</a></li>
+          <li><a href="#manager" class="welcome">환영합니다! 관리자님!</a></li>
+          <li><a href="#main" class="logout">로그아웃</a></li>
         </ul>
       </div> 
     </div>
@@ -33,42 +33,66 @@ const enroll = `
             </div>
           </div>
           <div class="follow_menu col-lg-10 col-xs-10">
-            <div class="item_image">
-              <img src="/css/img/item.jpg" alt="detail_image">
-              <input type="file" id="img_input" accept="img/*">
-            </div>
-            <div class="item_container">
-              <div class="row item_info">
-                <p class="col-lg-6 col-xs-6 name">상품이름</p>
-                <input type="text">
+            <form class='enroll_form' enctype="multipart/form-data">  
+              <div class="item_image">
+                <div class='image_form'>
+                  <div>
+                    <label for="image_uploads">첨부할 사진을 올려주세요 (click!)</label>
+                    <input type="file" id="image_uploads" name="img" accept=".jpg, .jpeg, .png" multiple>
+                  </div>
+                  <div class="preview">
+                    <p>100*100px의 크기로 들어가요!</p>
+                  </div>
+                </div>
               </div>
-              <div class="row item_info">
-                <p class="col-lg-6 col-xs-6 cost">원가</p>
-                <input type="text">
+              <div class="item_container">
+                <div class='necessary_form'>
+                  <div class="item_info">
+                    <p class="name">상품이름</p>
+                    <input type="text" name='name'>
+                  </div>
+                  <div class="item_info">
+                    <p class="cost">상품코드</p>
+                    <input type="text" name='code'>
+                  </div>
+                  <div class="item_info">
+                    <p class="piece">원가</p>
+                    <input type="text" name='cost'>
+                  </div>
+                  <div class="item_info">
+                    <p class="piece">조각</p>
+                    <input type="text" name='quantity'>
+                  </div>
+                  <div class="item_info">
+                    <p class="opening">Opening Stage</p>
+                    <input type="date" name='openingDate'>
+                  </div>
+                  <div class="item_info">
+                    <p class="ipo">IPO Stage</p>
+                    <input type="date" name='ipoDate'>
+                  </div>
+                  <div class="item_info">
+                    <p class="trading">Trading Stage</p>
+                    <input type="date" name='tradingDate'>
+                  </div>
+                  <div class="item_info">
+                    <p class="clearing">Clearing Stage</p>
+                    <input type="date" name='clearingDate'>
+                  </div>
+                  <div class="item_info">
+                    <p class="piece">카테고리</p>
+                    <input type="text" name='category'>
+                  </div>
+                  <div class="item_info">
+                    <textarea name="description"></textarea>
+                  </div>
+                </div>  
+                
+                <div class="button-group">
+                  <input type="submit" class="btn enroll_button"></input>
+                </div>
               </div>
-              <div class="row item_info">
-                <p class="col-lg-6 col-xs-6 piece">조각</p>
-                <input type="text">
-              </div>
-              <div class="row item_info">
-                <p class="col-lg-6 col-xs-6 ipo">IPO Stage</p>
-                <input type="text">
-              </div>
-              <div class="row item_info">
-                <p class="col-lg-6 col-xs-6 trading">Trading Stage</p>
-                <input type="text">
-              </div>
-              <div class="row item_info">
-                <p class="col-lg-6 col-xs-6 clearing">Clearing Stage</p>
-                <input type="text">
-              </div>
-              <div class="row item_info">
-                <textarea class="col-lg-12 item_Description"></textarea>
-              </div>
-              <div class="button-group">
-                <button type="button" class="btn enroll_button">등록</button>
-              </div>
-            </div>
+            </form>   
           </div>
         </div>
       </div>
