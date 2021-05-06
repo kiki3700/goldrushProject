@@ -18,4 +18,5 @@ public interface ItemDAO {
 	ItemListDTO selectItemForView(int itemsId);
 	List<ItemListDTO> selectItemListForView();
 	public List<ItemListDTO> selectItemListForViewByStage(String stage);
+	ResponseDTO updateStage(String stage, int itemsId);
 }

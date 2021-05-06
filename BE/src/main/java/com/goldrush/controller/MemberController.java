@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -97,15 +98,15 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/portfolio", method = RequestMethod.GET)
-	public @ResponseBody List<PortfolioDTO> getPortfolio(@RequestParam("mebersId") int membersId ){
+	public @ResponseBody List<PortfolioDTO> getPortfolio(@RequestParam("membersId") int membersId ){
 		return memberService.getPortfolio(membersId);
 	}
 	@RequestMapping(value = "/offer", method = RequestMethod.GET)
-	public @ResponseBody List<OfferLogDTO> getOfferLog(@RequestParam("mebersId") int membersId ){
+	public @ResponseBody List<OfferLogDTO> getOfferLog(@RequestParam("membersId") int membersId ){
 		return memberService.getOfferLog(membersId);
 	}
 	@RequestMapping(value = "/account", method = RequestMethod.GET)
-	public @ResponseBody List<AccountDTO> getAccountLog(@RequestParam("mebersId") int membersId ){
+	public @ResponseBody List<AccountDTO> getAccountLog(@RequestParam("membersId") int membersId ){
 		return memberService.getAccountLog(membersId);
 	}
 }

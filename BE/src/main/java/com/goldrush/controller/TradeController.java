@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.goldrush.dto.OfferDTO;
 import com.goldrush.dto.OffersListDTO;
 import com.goldrush.dto.ResponseDTO;
+import com.goldrush.dto.TraderDTO;
 import com.goldrush.service.TradeService;
 
 /**
@@ -65,5 +67,27 @@ public class TradeController {
 		return tradeService.getOfferList(dto);
 	}
 	
+	@RequestMapping(value="/trade", method=RequestMethod.POST)
+	public @ResponseBody ResponseEntity<ResponseDTO> trade(@RequestBody TraderDTO traderDTO){
+		ResponseDTO response = tradeService.trade(traderDTO);
+		if(response.getResult()==1) {
+			return new ResponseEntity<ResponseDTO>(response, HttpStatus.ACCEPTED);
+		}else {
+			return new ResponseEntity<ResponseDTO>(response, HttpStatus.BAD_REQUEST);
+		}
+	}
+	@RequestMapping(value="/subscription", method=RequestMethod.POST)
+	public @ResponseBody ResponseEntity<ResponseDTO> subscription(@RequestBody OfferDTO offerDTO){
+		ResponseDTO response =tradeService.makeSubscription(offerDTO);
+		if(response.getResult()==1) {
+			return new ResponseEntity<ResponseDTO>(response, HttpStatus.ACCEPTED);
+		}else {
+			return new ResponseEntity<ResponseDTO>(response, HttpStatus.BAD_REQUEST);
+		}
+	}
+	@Scheduled(cron="0 0 9 * * *")
+	public void time() {
+		System.out.println("print every in 9h");
+	}
 	
 }

@@ -61,16 +61,19 @@ public class junitForOffer {
 	@Test
 	public void buytrade() {
 		
-		TraderDTO dto = new TraderDTO();
-		dto.setBuy(false);
-		dto.setItemsId(1);
-		dto.setPrice(120);
-		dto.setQuantity(6);
-		dto.setMembersId(4);
+//		TraderDTO dto = new TraderDTO();
+
 		TradeService ser = new TradeService();
-		System.out.println(ser.trade(dto));
+//		System.out.println(ser.trade(dto));
 		
-//		OfferDTO offer = new OfferDTO();
+		OfferDTO dto = new OfferDTO();
+		dto.setBuy(true);
+		dto.setItemsId(1);
+		dto.setOfferPrice(130);
+		dto.setQuantity(7);
+		dto.setMembersId(6);
+		System.out.println(ser.makeOffer(dto));
+		
 //		offer.setMembersId(1);
 //		ser.checkEnoughBalance(offer);
 		

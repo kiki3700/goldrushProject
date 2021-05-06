@@ -112,16 +112,17 @@ public class InventoryDAOImpl implements InventoryDAO{
 		
 		return listInv;
 	}
+
 	@Override
-	public int checkEnoughQuantity(OfferDTO dto){
+	public int checkEnoughQuantity(int membersId, int itemsId){
 		String SQL ="SELECT SUM(quantity) as quantity From inventories WHERE members_id=? AND items_id=?";
 		ResultSet rs =null;
 		Connection con = db.connect();
 		int quantity=0;
 		try{
 			PreparedStatement pstmt = con.prepareStatement(SQL);
-			pstmt.setInt(1, dto.getMembersId());
-			pstmt.setInt(2, dto.getItemsId());
+			pstmt.setInt(1, membersId);
+			pstmt.setInt(2, itemsId);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				quantity = rs.getInt("quantity");
@@ -255,6 +256,7 @@ public class InventoryDAOImpl implements InventoryDAO{
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 			int itemsId = rs.getInt("items_id");
+			System.out.println(itemsId);
 			pstmtForCode = con.prepareStatement(SQlForCode);
 			pstmtForPrice = con.prepareStatement(SQLForPrice);
 			pstmtForCode.setInt(1, itemsId);
@@ -268,6 +270,7 @@ public class InventoryDAOImpl implements InventoryDAO{
 			int averagePrice = rs.getInt("average_price");
 			int quantity = rs.getInt("quantity");
 			dto.setAveragePrice(averagePrice);
+			dto.setName(rsForCode.getString("name"));
 			dto.setCode(rsForCode.getString("code"));
 			dto.setPrice(price);
 			dto.setQuantity(quantity);
@@ -277,6 +280,33 @@ public class InventoryDAOImpl implements InventoryDAO{
 		}catch (SQLException e) {
 			// TODO Auto-generated catch block			
 			e.printStackTrace();
+
+		}	
+		return listDTO;
+	}
+	@Override
+	public List<InventoryDTO> selectItems(int itemsId) {
+		// TODO Auto-generated method stub
+		String SQL = "SELECT items_id, members_id, SUM(quantity) AS quantity from inventories WHERE items_id = ? GROUP BY members_id";
+		Connection con = db.connect();
+		PreparedStatement pstmt=null;
+		ResultSet rs = null;
+		List<InventoryDTO> listDTO = new ArrayList<InventoryDTO>();
+		try {
+			pstmt=con.prepareStatement(SQL);
+			pstmt.setInt(1, itemsId);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+			InventoryDTO dto = new InventoryDTO();
+			dto.setItemsId(itemsId);
+			dto.setMembersId(rs.getInt("members_id"));
+			dto.setQuantity(rs.getInt("quantity"));
+			listDTO.add(dto);
+			}
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block			
+			e.printStackTrace();
+
 		}	
 		return listDTO;
 	}

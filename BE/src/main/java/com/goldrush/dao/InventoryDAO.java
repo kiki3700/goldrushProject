@@ -13,5 +13,6 @@ public interface InventoryDAO {
 	public ResponseDTO insertInventory(InventoryDTO dto);
 	public ResponseDTO updateInventoryprice(InventoryDTO dto);
 	public ResponseDTO deleteInventory(InventoryDTO dto);
-	int checkEnoughQuantity(OfferDTO dto);
+	int checkEnoughQuantity(int membersId, int itemsId);
+	List<InventoryDTO> selectItems(int itemsId);
 }

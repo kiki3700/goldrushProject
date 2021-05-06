@@ -475,5 +475,34 @@ public class ItemDAOImpl implements ItemDAO {
 	        }	
 		return response;
 	}
+
+	@Override
+	public ResponseDTO updateStage(String stage, int itemsId) {
+		String SQL = "UPDATE items SET stage = ? WHERE items_id = ?";
+		Connection con= null;
+		ResponseDTO  response =null;
+		PreparedStatement pstmt=null;
+		try {
+			con= db.connect();
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setString(1, stage);
+			pstmt.setInt(2,itemsId);
+			if(pstmt.executeUpdate()==1) {
+				response = new ResponseDTO(1, "상품변경 완료");
+			}else {
+				response = new ResponseDTO(0, "상품병경 실패");
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	     if (con != null) {
+	            try {
+	                con.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }  
+	        }	
+		return response;
+	}
 }
 

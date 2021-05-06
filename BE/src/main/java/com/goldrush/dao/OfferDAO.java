@@ -18,10 +18,15 @@ public interface OfferDAO {
 	public List<OffersListDTO> selectSellOfferList(OfferDTO dto);
 	ResponseDTO updateCompeleteOffer(OfferDTO dto);
 	List<OfferLogDTO> selectOffersByMembersId(int membersId);
-	int checkEnoughBalance(OfferDTO dto);
-	int checkOfferedQuantity(OfferDTO dto);
 	OfferDTO selectOffer(OfferDTO offerDTO);
 	OfferDTO selectOfferBytrade(TraderDTO dto);
 	ResponseDTO insertOffer(OfferDTO dto);
 	ResponseDTO updateOfferByTrade(OfferDTO dto);
+	int checkEnoughBalance(int membersId);
+	int checkOfferedQuantity(int membersId, int itemsId);
+	int checkQuantityBalance(int itemsId);
+	List<OfferDTO> selectOffersForIpo(int itemsId);
+	ResponseDTO deleteOffersForClearing(int itemsId);
+	ResponseDTO insertOfferForClear(OfferDTO dto);
+	OfferDTO selectOfferForClearing(OfferDTO offerDTO);
 }

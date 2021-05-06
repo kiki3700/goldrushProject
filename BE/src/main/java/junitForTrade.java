@@ -49,15 +49,20 @@ public class junitForTrade {
 //		System.out.println(trade.checkEnoughBalance(dto));
 //	}
 	
+//	@Test
+//	public void test() {
+//		TraderDTO dto = new TraderDTO();
+//		dto.setBuy(true);
+//		dto.setItemsId(1);
+//		dto.setMembersId(1);
+//		dto.setPrice(130);
+//		dto.setQuantity(3);
+//		TradeService trade = new TradeService();
+//		trade.trade(dto);
+//	}
 	@Test
 	public void test() {
-		TraderDTO dto = new TraderDTO();
-		dto.setBuy(true);
-		dto.setItemsId(1);
-		dto.setMembersId(1);
-		dto.setPrice(130);
-		dto.setQuantity(3);
 		TradeService trade = new TradeService();
-		trade.trade(dto);
+		trade.changeStage();
 	}
 }

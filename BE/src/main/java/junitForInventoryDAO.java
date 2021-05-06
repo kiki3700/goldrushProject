@@ -50,10 +50,7 @@ public class junitForInventoryDAO {
 	public void insert() {
 		InventoryDAO dao = new InventoryDAOImpl(new DBHandler());
 		InventoryDTO dto = new InventoryDTO();
-		dto.setItemsId(1);
-		dto.setMembersId(4);
-		dto.setPrice(100);
-		dto.setQuantity(20);
-		dao.insertInventory(dto);
+		System.out.println(dao.selectItems(1));
+		
 	}
 }

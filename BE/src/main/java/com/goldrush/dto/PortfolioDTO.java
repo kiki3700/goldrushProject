@@ -2,16 +2,19 @@ package com.goldrush.dto;
 
 public class PortfolioDTO {
 	private String code;
+	private String name;
 	private int averagePrice;
 	private int quantity;
 	private int price;
 	private float rateOfReturn;
 	public PortfolioDTO() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
-	public PortfolioDTO(String code, int averagePrice, int quantity, int price, float rateOfReturn) {
+	public PortfolioDTO(String code, String name, int averagePrice, int quantity, int price, float rateOfReturn) {
 		super();
 		this.code = code;
+		this.name = name;
 		this.averagePrice = averagePrice;
 		this.quantity = quantity;
 		this.price = price;
@@ -22,6 +25,12 @@ public class PortfolioDTO {
 	}
 	public void setCode(String code) {
 		this.code = code;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public int getAveragePrice() {
 		return averagePrice;
@@ -49,9 +58,8 @@ public class PortfolioDTO {
 	}
 	@Override
 	public String toString() {
-		return "PortfolioDTO [code=" + code + ", averagePrice=" + averagePrice + ", quantity=" + quantity + ", price="
-				+ price + ", rateOfReturn=" + rateOfReturn + "]";
+		return "PortfolioDTO [code=" + code + ", name=" + name + ", averagePrice=" + averagePrice + ", quantity="
+				+ quantity + ", price=" + price + ", rateOfReturn=" + rateOfReturn + "]";
 	}
-	
 
 }

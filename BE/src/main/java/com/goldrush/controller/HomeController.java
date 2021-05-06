@@ -24,6 +24,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -61,8 +62,10 @@ public class HomeController {
 
 		System.out.println(pathSet);	
 		
-		return "form";
+		return "fff";
 	}
+	
+
 //	@RequestMapping(value = "/", method = RequestMethod.POST)
 //	public String post(@RequestBody test test) {
 //		System.out.println(test);
