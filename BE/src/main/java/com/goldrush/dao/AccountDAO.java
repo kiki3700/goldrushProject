@@ -8,12 +8,12 @@ public interface AccountDAO {
 
 	int selectBalacne(int members_id);
 	List<AccountDTO> selectAccountLog(int membersId);
-	int insertSellResult(int membersId, int amount, int balance);
-	int insertBuyResult(int membersId, int amount, int balance);
-	int insertIpoResult(int membersId, int amount, int balance);
-	int insertClearingResult(int membersId, int amount, int balance);
 	int insertFeeResult(int membersId, int amount, int balance);
-	int insertDepositResult(int membersId, int amount, int balance);
-	int insertWithdrawResult(int membersId, int amount, int balance);
+	int insertSellResult(int membersId, int amount);
+	int insertBuyResult(int membersId, int amount);
+	int insertIpoResult(int membersId, int amount);
+	int insertClearingResult(int membersId, int amount);
+	int insertWithdrawResult(int membersId, int amount);
+	int insertDepositResult(int membersId, int amount);
 
 }

@@ -39,5 +39,7 @@
  	 <bean id="AccountDAO" class="com.goldrush.dao.AccountDAOImpl">
 	 	<property name="db" ref="DBHandler"/>
 	 </bean>
+	 
+
 
 </beans>

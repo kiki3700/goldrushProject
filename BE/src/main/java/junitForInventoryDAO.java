@@ -33,18 +33,27 @@ public class junitForInventoryDAO {
 //		dto.setMembersId(1);
 //		System.out.println(dao.selectInv(2));
 //	}
-
+//
 //	@Test
 //	public void portfolio() {
 //		InventoryDTO dto = new InventoryDTO();
 //		InventoryDAO dao = new InventoryDAOImpl(new DBHandler());
 //		
-//		dto.setAveragePrice(120);
+//		dto.setPrice(120);
 //		dto.setQuantity(5);
 //		dto.setItemsId(1);
 //		dto.setMembersId(1);
-//		System.out.println(dao.selectPortfolio(1));
+//		System.out.println(dao.selectPortfolio(4));
 //	}
-	
-	
+//	
+	@Test
+	public void insert() {
+		InventoryDAO dao = new InventoryDAOImpl(new DBHandler());
+		InventoryDTO dto = new InventoryDTO();
+		dto.setItemsId(1);
+		dto.setMembersId(4);
+		dto.setPrice(100);
+		dto.setQuantity(20);
+		dao.insertInventory(dto);
+	}
 }
