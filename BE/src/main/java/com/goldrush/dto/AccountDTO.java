@@ -1,23 +1,15 @@
 package com.goldrush.dto;
 
+import java.sql.Timestamp;
+
 public class AccountDTO {
 	private int accountsId;
 	private String action;
 	private int membersId;
 	private int amount;
 	private int balance;
+	private Timestamp timestamp;
 	
-	public AccountDTO() {
-		super();
-	}
-	public AccountDTO(int accountsId, String action, int membersId, int amount, int balance) {
-		super();
-		this.accountsId = accountsId;
-		this.action = action;
-		this.membersId = membersId;
-		this.amount = amount;
-		this.balance = balance;
-	}
 	public int getAccountsId() {
 		return accountsId;
 	}
@@ -48,10 +40,18 @@ public class AccountDTO {
 	public void setBalance(int balance) {
 		this.balance = balance;
 	}
-	
+	public Timestamp getTimestamp() {
+		return timestamp;
+	}
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
+	}
 	@Override
 	public String toString() {
 		return "AccountDTO [accountsId=" + accountsId + ", action=" + action + ", membersId=" + membersId + ", amount="
-				+ amount + ", balance=" + balance + "]";
+				+ amount + ", balance=" + balance + ", timestamp=" + timestamp + "]";
 	}
+	
+	
+	
 }

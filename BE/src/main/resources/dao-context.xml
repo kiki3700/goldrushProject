@@ -8,7 +8,7 @@
 
     <!-- DataSource 설정 -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-        <property name="url" value="jdbc:mysql://localhost/goldrush?useUnicode=true;characterEncoding=utf8;useJDBCCompliantTimezoneShift=true;useLegacyDatetimeCode=false;serverTimezone=UTC"/>
+        <property name="url" value="jdbc:mysql://localhost/goldrush_ipotest"/>
         <property name="username" value="lee" />
         <property name="password" value="kiki3700" />
         <property name="driverClass" value="com.mysql.jdbc.Driver" />
@@ -27,5 +27,19 @@
 	 <bean id="ItemDAO" class="com.goldrush.dao.ItemDAOImpl">
 	 	<property name="db" ref="DBHandler"/>
 	 </bean>
+	 
+	 	 <bean id="OfferDAO" class="com.goldrush.dao.OfferDAOImpl">
+	 	<property name="db" ref="DBHandler"/>
+	 </bean>
+	 
+ 	 <bean id="TradeDAO" class="com.goldrush.dao.TradeDAOImpl">
+	 	<property name="db" ref="DBHandler"/>
+	 </bean>
+
+ 	 <bean id="AccountDAO" class="com.goldrush.dao.AccountDAOImpl">
+	 	<property name="db" ref="DBHandler"/>
+	 </bean>
+	 
+
 
 </beans>

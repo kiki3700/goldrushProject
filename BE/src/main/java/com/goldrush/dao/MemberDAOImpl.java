@@ -59,7 +59,7 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 	@Override
 	public int insertNewMemeber(MemberDTO dto) {
-		String SQL = "INSERT INTO members(user_id, name, password) values(?, ?,?)";
+		String SQL = "INSERT INTO members(user_id, name, password) values(?, ?, ?)";
 		int result=0;
 		PreparedStatement pstmt= null;
 		Connection con= null;
@@ -94,8 +94,11 @@ public class MemberDAOImpl implements MemberDAO{
 			pstmt = con.prepareStatement(SQL);
 			pstmt.setString(1, password);
 			pstmt.setInt(2, membersId);
-			if(pstmt.execute()) result=1;
-			con.close();
+			if(pstmt.executeUpdate()==1) {
+				result=1;
+			}else {
+				result=0;
+			}
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -110,18 +113,20 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 
 	@Override
-	public int signOut(String userId) {
-		String SQL = "UPDATE members SET user_id = signoutMember WHERE user_id= ?";
+	public int signout(int membersId) {
+		String SQL = "UPDATE members SET user_id = signoutMember WHERE members_id= ?";
 		int result=0;
 		PreparedStatement pstmt= null;
 		Connection con= null;
 		try {
 			con = db.connect();
 			pstmt = con.prepareStatement(SQL);
-			pstmt.setString(1, userId);
-			if(pstmt.execute()) result=1;
-			con.close();
-			result=1;
+			pstmt.setInt(1, membersId);
+			if(pstmt.executeUpdate()==1) {
+				result=1;
+			}else {
+				result=0;
+			}
 		}catch (SQLException e) {
 			e.printStackTrace();
 			result=0;
