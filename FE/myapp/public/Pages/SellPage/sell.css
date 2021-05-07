@@ -1,6 +1,6 @@
 body {
   font-family: "Nanum Gothic", sans-serif;
-  padding: 50px 0px;
+  padding: 5vh 0px;
 }
 .navbar {
   background-color: #000;
@@ -38,11 +38,15 @@ section {
 .service h1 {
   margin: 5% 0;
 }
+.scroll {
+  display: flex;
+  justify-content: center;
+}
 .table {
   margin: 5% 0px;
   width: 60%;
 }
-.buy {
+.sell {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -54,7 +58,7 @@ section {
   flex-direction: column;
   justify-content: space-between;
 }
-.buy_offer {
+.sell_offer {
   display: flex;
   flex-direction: column;
 }

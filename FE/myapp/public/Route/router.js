@@ -25,8 +25,8 @@ export default class Router {
     console.log('아니 이름이 왜 이상하게 잡히냐!', route[0].name);
     console.log(typeof(route[0].name));
     const noAuthority = ['create', 'main', 'login'];
-    const userAuthority = ['catalogue', 'userInfo', 'qna', 'contact'];
-    const managerAuthority = ['manager', 'enroll', 'userManage'];
+    const userAuthority = ['catalogue', 'userInfo', 'qna', 'contact', 'buy', 'sell'];
+    const managerAuthority = ['manager', 'enroll', 'userManage', 'clear'];
     const user = JSON.parse(window.localStorage.getItem('userInfo'));
     
     if (noAuthority.includes(route[0].name)) {

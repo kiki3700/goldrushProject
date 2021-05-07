@@ -150,7 +150,7 @@ body {
   margin: 0px;
   margin-bottom: 10px;
   width: 45%;
-  height: 20%;
+  height: 18%;
   font-size: 20px;
   border: 1px #79955f solid;
   display: flex;
@@ -166,7 +166,7 @@ body {
   width: 40%;
 }
 
-.item_description {
+.item_info textarea {
   width: 90%;
   height: 80%;
 }

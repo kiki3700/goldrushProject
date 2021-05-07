@@ -12,12 +12,11 @@ export default class CatalogueModel {
       return itemList;
     })
     .catch((error) => {
-      alert('읽어오는 데 실패하였습니다.', error);
+      console.log(error);
     })
     
     return itemList;
   }
-
   GetItem(itemsId) {
     var item = fetch(`http://192.168.1.70:8080/item/detail/?itemsId=${itemsId}`, {
       method: 'GET',
@@ -29,7 +28,7 @@ export default class CatalogueModel {
       return item;
     })
     .catch((error) => {
-      alert('읽어오는 데 실패!', error);
+      console.log(error);
     })
     return item
   }

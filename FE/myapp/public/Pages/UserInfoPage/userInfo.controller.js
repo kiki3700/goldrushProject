@@ -7,12 +7,21 @@ export default class UserInfoController {
     this.model = new UserInfoModel();
   }
 
-  total = () => {
-    const user = JSON.parse(window.localStorage.getItem('userInfo'));
-    if ( !user ) {
-      alert('접근권한이 없습니다.');
-      location.href = '#main';
-    }
+  total = async() => {
+    const user = JSON.parse(localStorage.getItem('userInfo'));
+    console.log(user.membersId);
+    console.log(typeof(user.membersId));
+    const portfolio = await this.model.GetPortfolio(user.membersId);
+    // const tradeLog = await this.model.GetTradeLog(user.membersId);
+    const offerLog = await this.model.GetOfferLog(user.membersId);
+    const accountLog = await this.model.GetAccountLog(user.membersId);
+    
+    //console.log(tradeLog);
+    
+
+    this.view.BindPortfolio(portfolio);
+    this.view.BindOfferList(offerLog);
+    this.view.BindAccountList(accountLog);
     this.view.BindChargeButton(this.clickChargeBtn);
     this.view.BindDischargeButton(this.clickDisChargeBtn);
     this.view.BindMailForm(this.keyupMail);

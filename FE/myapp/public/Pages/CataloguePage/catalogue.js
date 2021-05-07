@@ -25,48 +25,43 @@ const catalogue = `
         <div class="row">
           <div class="menu col-lg-2 col-xs-2">
             <div class="row">
-                <div class="col">
-                  <a href="#userInfo"><p>My Info</p></a>
-                  <p>item</p>
-                  <ul class="nav flex-column">
-                    <li>
-                      <a href="#catalogue" class="selected total_list">Total</a>
-                    </li>
-                    <li>
-                      <a href="#catalogue/IPO" class="IPO_list">IPO Stage</a>
-                    </li>
-                    <li>
-                      <a href="#catalogue/Trading" class="Trading_list">Trading Stage</a>
-                    </li>
-                    <li>
-                      <a href="#catalogue/Clearing" class="Clearing_list">Clearing Stage</a>
-                    </li>
-                  </ul>
-                  <a href="#qna"><p>QNA</p></a>
-                  <a href="#contact"><p>Contact</p></a>
-                </div>
+              <div class="col">
+                <a href="#userInfo"><p>My Info</p></a>
+                <p>item</p>
+                <ul class="nav flex-column">
+                  <li>
+                    <a href="#catalogue" class="selected total_list">Total</a>
+                  </li>
+                  <li>
+                    <a href="#catalogue/open" class="IPO_list">Open Stage</a>
+                  </li>
+                  <li>
+                    <a href="#catalogue/trade" class="Trading_list">Trade Stage</a>
+                  </li>
+                  <li>
+                    <a href="#catalogue/clear" class="Clearing_list">Clear Stage</a>
+                  </li>
+                </ul>
+                <a href="#qna"><p>QNA</p></a>
+                <a href="#contact"><p>Contact</p></a>
               </div>
             </div>
+          </div>
           <div class="item_list col-lg-3 col-xs-3">
             <div style="overflow:auto; width:100%; height:79vh;">
               <ul class="item_ul text-center">
-              
+
               </ul>
             </div>
           </div>
           <div class="item_detail col-lg-7 col-xs-7">
-            <div class="row contract">
-              <button class="btn btn-lg col-lg-4 col-xs-4 pull-left buy_btn"> 청약 / 매수 </button> : 사는 가격 : $100
-              <button class="btn btn-lg col-lg-4 col-xs-4 pull-right sell_btn"> 청약취소 / 매도 </button> : 파는 가격 : $120
-            </div>
-            <div style="overflow:auto; width:100%; height: 69vh;">
-              
-              </div>
+            <div class="basic">
+               <p><span class="glyphicon glyphicon-search" aria-hidden="true"> 보물을 찾아보세요!</span></p>
+               
             </div>
           </div>
         </div>
       </div>
-      
     </div>
   </section>
   

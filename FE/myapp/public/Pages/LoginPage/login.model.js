@@ -33,7 +33,7 @@ export default class LoginModel {
             
           });
         } else {
-          response.json().then(json => alert('실패', json.message));
+          response.json().then(json => alert('실패', json));
         }
       }
     )

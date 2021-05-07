@@ -28,6 +28,7 @@ const userManage = `
               <div class="col">
                 <a href="#manager"><p>상품 관리</p></a>
                 <a href="#enroll"><p>상품 등록</p></a>
+                <a href="#clear"><p>상품 청산</p></a>
                 <a href="#userManage" class="selected"><p>회원 관리</p></a>
               </div>
             </div>
