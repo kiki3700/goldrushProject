@@ -33,13 +33,13 @@ const userInfo = `
                     <a href="#catalogue" class="total_list">Total</a>
                   </li>
                   <li>
-                    <a href="#catalogue/IPO" class="IPO_list">IPO Stage</a>
+                    <a href="#catalogue/open" class="IPO_list">Open Stage</a>
                   </li>
                   <li>
-                    <a href="#catalogue/Trading" class="Trading_list">Trading Stage</a>
+                    <a href="#catalogue/trade" class="Trading_list">Trade Stage</a>
                   </li>
                   <li>
-                    <a href="#catalogue/Clearing" class="Clearing_list">Clearing Stage</a>
+                    <a href="#catalogue/clear" class="Clearing_list">Clear Stage</a>
                   </li>
                 </ul>
                 <a href="#qna"><p>QNA</p></a>
@@ -59,51 +59,37 @@ const userInfo = `
                 <button class="btn">계좌 등록</button> <= 계좌 있냐 없냐에 따라서 위나 아래가 나옴.
               </div>
               <div class="portfolio">
-                <h1>Portfolio</h1>
+                <h1>포트폴리오</h1>
                 <table class="table portfolio_table">
                   <thead>
                     <tr>
-                      <th scope="col">아이템 ID</th>
-                      <th scope="col">구매 가격</th>
+                      <th scope="col">상품 이름</th>
+                      <th scope="col">평균 단가</th>
                       <th scope="col">현재 가격</th>
                       <th scope="col">수량</th>
                       <th scope="col">수익률</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th scope="row">스폰지밥</th>
-                      <td>10000원</td>
-                      <td>20000원</td>
-                      <td>1</td>
-                      <td>100%</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Total</th>
-                      <td>10000원</td>
-                      <td>20000원</td>
-                      <td>1</td>
-                      <td>100%</td>
-                    </tr>
+                    
                   </tbody>
+                  <tfoot>  
+                    
+                  <tfoot>
                 </table>
               </div>
               <div class="check_log">
-                <h1>account_log</h1>
+                <h1>계좌 내역</h1>
                 <table id="collapseTableOne" class="table check_log_table">
                   <thead>
                     <tr>
                       <th scope="col">날짜</th>
-                      <th scope="col">입 / 출</th>
+                      <th scope="col">구매/판매 | 충전/환전 </th>
                       <th scope="col">금액</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th scope="row">2021.03.12</th>
-                      <td>입금</td>
-                      <td>10000원</td>
-                    </tr>
+                    
                   </tbody>
                 </table>
                 <p class="pull-right account">잔액 : 0원</p> 
@@ -126,6 +112,22 @@ const userInfo = `
                       <td>1</td>
                       <td>매수</td>
                     </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="offer_log">
+                <h1>호가 내역</h1>
+                <table class="table offer_log_table">
+                  <thead>
+                    <tr>
+                      <th scope="col">상품 이름</th>
+                      <th scope="col">호가 가격</th>
+                      <th scope="col">수량</th>
+                      <th scope="col">등록시간</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
                   </tbody>
                 </table>
               </div>

@@ -1,8 +1,8 @@
-import manager from './manager.js'
+import clear from './clear.js'
 
-export default class ManagerView{
+export default class ClearView{
   constructor() {
-    this.view = manager;
+    this.view = clear;
     this.body = document.querySelector('body');
     this.css = document.querySelector('.css_part');
   }
@@ -13,7 +13,7 @@ export default class ManagerView{
     const newRoot = document.createElement('div');
     newRoot.setAttribute('id', 'root');
     this.body.appendChild(newRoot);
-    this.css.setAttribute('href', 'Pages/ManagerPage/manager.css');
+    this.css.setAttribute('href', 'Pages/ClearPage/clear.css');
     newRoot.insertAdjacentHTML('afterbegin', this.view);
 
     
@@ -23,7 +23,7 @@ export default class ManagerView{
     let itemUl = document.querySelector('.item_ul');
     
     for (var item of list) {
-      
+      //리스트 중에서 stage가 clear인 것만 고릅시다.
       let li = document.createElement('li');
       li.className = 'item_li';
       let textNode = `
@@ -43,6 +43,7 @@ export default class ManagerView{
   }
 
   updateItemDetail = (item) => {
+    // 적절히 수정필요 => 청산시 청산 금액만 추가하도록
     let itemContent = document.querySelector('.item_detail');
     itemContent.remove();
 
@@ -90,10 +91,10 @@ export default class ManagerView{
           <p class="stage">stage</p>
           <select name="stage">
             <option value="${item.stage}">${item.stage}</option>
-            <option value="unopen">UNOPEN</option>
-            <option value="open">OPEN</option>
-            <option value="trade">TRADE</option>
-            <option value="clear">CLEAR</option>
+            <option value="UNOPEN">UNOPEN</option>
+            <option value="OPEN">OPEN</option>
+            <option value="TRADE">TRADE</option>
+            <option value="CLEAR">CLEAR</option>
           </select>
         </div>
         <div class="row item_info">
@@ -130,23 +131,6 @@ export default class ManagerView{
     row.appendChild(div);
   }
 
-  BindUpdateItem = (callback) => {
-    this.updateItem = document.querySelector('.update_item');
-    
-    this.formData = document.querySelector('.enroll_form')
-    this.updateItem.addEventListener('click', callback);
-  } 
-  BindDeleteItem = (callback) => {
-    this.deleteItem = document.querySelector('.delete_item');
-    this.deleteItem.addEventListener('click', callback);
-  }
-
-  BindInputButton = (callback) => {
-    this.inputBtn = document.querySelector('#image_uploads');
-    this.previewImage = document.querySelector('.preview');
-    this.inputBtn.addEventListener('change', callback);
-  }
-  
   BindLogoutButton = (callback) => {
     this.logout = document.querySelector('.logout');
     this.logout.addEventListener('click', callback);

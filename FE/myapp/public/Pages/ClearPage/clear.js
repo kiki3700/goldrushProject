@@ -1,4 +1,4 @@
-const manager = `
+const clear = `
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
@@ -26,9 +26,9 @@ const manager = `
           <div class="menu col-lg-2 col-xs-2">
             <div class="row">
                 <div class="col">
-                  <a href="#manager" class="selected"><p>상품 관리</p></a>
+                  <a href="#manager"><p>상품 관리</p></a>
                   <a href="#enroll"><p>상품 등록</p></a>
-                  <a href="#clear"><p>상품 청산</p></a>
+                  <a href="#clear" class="selected"><p>상품 청산</p></a>
                   <a href="#userManage"><p>회원 관리</p></a>
                 </div>
               </div>
@@ -57,4 +57,4 @@ const manager = `
     </div>
   </footer>
 `
-export default manager;
+export default clear;

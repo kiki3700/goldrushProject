@@ -28,6 +28,7 @@ const enroll = `
               <div class="col">
                 <a href="#manager"><p>상품 관리</p></a>
                 <a href="#enroll" class="selected"><p>상품 등록</p></a>
+                <a href="#clear"><p>상품 청산</p></a>
                 <a href="#userManage"><p>회원 관리</p></a>
               </div>
             </div>
@@ -72,10 +73,6 @@ const enroll = `
                     <input type="date" name='ipoDate'>
                   </div>
                   <div class="item_info">
-                    <p class="trading">Trading Stage</p>
-                    <input type="date" name='tradingDate'>
-                  </div>
-                  <div class="item_info">
                     <p class="clearing">Clearing Stage</p>
                     <input type="date" name='clearingDate'>
                   </div>
@@ -86,11 +83,10 @@ const enroll = `
                   <div class="item_info">
                     <textarea name="description"></textarea>
                   </div>
+                  <div class="item_info">
+                    <input type="submit" class="btn enroll_button"></input>
+                  </div>
                 </div>  
-                
-                <div class="button-group">
-                  <input type="submit" class="btn enroll_button"></input>
-                </div>
               </div>
             </form>   
           </div>

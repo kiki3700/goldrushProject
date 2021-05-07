@@ -1,5 +1,5 @@
-
-  <nav class="navbar navbar-inverse navbar-fixed-top">
+const sell = `
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -8,12 +8,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-        <a class="navbar-brand" href="#"><p class="logo">Gold Rush</p></a>
+        <a class="navbar-brand" href="#catalogue"><p class="logo">Gold Rush</p></a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">환영합니다! 이름님!</a></li>
-          <li><a href="#">로그아웃</a></li>
+          <li><a href="#userInfo" class="welcome">환영합니다! 이름님!</a></li>
+          <li><a href="#main" class="logout">로그아웃</a></li>
         </ul>
       </div> 
     </div>
@@ -23,42 +23,25 @@
     <div class="container service">
       <h1 class="text-center">스폰지밥 : 매도 & 오퍼</h1>
       <hr class="style-five">
-      <table class="table text-center">
-        <thead>
-          <tr>
-            <th scope="col" class="text-center">가격</th>
-            <th scope="col" class="text-center">수량</th>
-          </tr>
-        </thead>  
-        <tbody>
-          <tr>
-            <td>17000원</td>
-            <td>100</td>
-          </tr>
-          <tr>
-            <td>15000원</td>
-            <td>100</td>
-          </tr>
-          <tr>
-            <td>13000원</td>
-            <td>100</td>
-          </tr>
-          <tr>
-            <td>12000원</td>
-            <td>100</td>
-          </tr>
-          <tr>
-            <td>10000원</td>
-            <td>100</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="scroll" style="overflow:auto; width:100%; height:32vh;">
+        <table class="table text-center">
+          <thead>
+            <tr>
+              <th scope="col" class="text-center">가격</th>
+              <th scope="col" class="text-center">수량</th>
+            </tr>
+          </thead>  
+          <tbody>
+            
+          </tbody>
+        </table>
+      </div>
       <hr class="style-five">
       <div class="sell">
-        <div class="sell_item">  
+        <div class="buy_item">  
           <input type="number" class="form-control" placeholder="수량을 입력하세요.">
           
-          <button type="submit" class="btn-lg">매도</button>
+          <button type="submit" class="btn-lg">확보</button>
         </div>
         <div class="sell_offer">
           <input type="number" class="form-control" placeholder="가격을 입력하세요.">
@@ -70,7 +53,10 @@
   </section>
 
   <footer>
-    <div class="col-lg-12 text-center footer_content">
+    <div class="col-lg-12 col-xs-12 text-center footer_content">
       4주 프로젝트
     </div>
   </footer>
+`
+
+export default sell;

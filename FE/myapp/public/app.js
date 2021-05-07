@@ -8,6 +8,9 @@ import QnaController from './Pages/QnaPage/qna.controller.js'
 import ContactController from './Pages/ContactPage/contact.controller.js'
 import EnrollController from './Pages/EnrollPage/enroll.controller.js'
 import UserManageController from './Pages/UserManagePage/userManage.controller.js'
+import BuyController from './Pages/BuyPage/buy.controller.js'
+import SellController from './Pages/SellPage/sell.controller.js'
+import ClearController from './Pages/ClearPage/clear.controller.js'
 
 import Router from './Route/router.js'
 
@@ -23,8 +26,6 @@ router.addRoute('qna', new QnaController());
 router.addRoute('contact', new ContactController());
 router.addRoute('enroll', new EnrollController());
 router.addRoute('userManage', new UserManageController());
-
-
-
-
-
+router.addRoute(`buy`, new BuyController());
+router.addRoute(`sell`, new SellController());
+router.addRoute('clear', new ClearController());

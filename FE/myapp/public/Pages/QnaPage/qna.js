@@ -33,13 +33,13 @@ const qna = `
                     <a href="#catalogue" class="total_list">Total</a>
                   </li>
                   <li>
-                    <a href="#catalogue/IPO" class="IPO_list">IPO Stage</a>
+                    <a href="#catalogue/open" class="IPO_list">Open Stage</a>
                   </li>
                   <li>
-                    <a href="#catalogue/Trading" class="Trading_list">Trading Stage</a>
+                    <a href="#catalogue/trade" class="Trading_list">Trade Stage</a>
                   </li>
                   <li>
-                    <a href="#catalogue/Clearing" class="Clearing_list">Clearing Stage</a>
+                    <a href="#catalogue/clear" class="Clearing_list">Clear Stage</a>
                   </li>
                 </ul>
                 <a class="selected" href="#qna"><p>QNA</p></a>

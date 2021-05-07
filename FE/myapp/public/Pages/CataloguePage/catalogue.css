@@ -91,14 +91,24 @@ body {
   align-items: center;
 }
 .contract .btn {
-  height: fit-content;
-  width: fit-content;
+  height: 70%;
+  width: 30%;
   background-color: #79955f;
   color: #fff;
 }
 .contract .btn:hover,
 .contract .btn:focus {
   color: #fff;
+}
+.basic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.glyphicon {
+  font-size: 50px;
 }
 .item_detail .item_image {
   height: 30%;
