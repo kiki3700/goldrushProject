@@ -22,7 +22,7 @@ public class DBHandler implements DB {
 			GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:dao-context.xml");
 			SimpleDriverDataSource ds = (SimpleDriverDataSource) ctx.getBean("dataSource");
 			conn = ds.getConnection();
-			System.out.println("정상적으로 연결되었습니다.");
+//			System.out.println("정상적으로 연결되었습니다.");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

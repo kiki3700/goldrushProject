@@ -54,7 +54,7 @@ public class MemberController {
 	public @ResponseBody  ResponseEntity<ResponseDTO> signup(@RequestBody MemberDTO dto) {
 		logger.info(dto.getUserId()+"is trying to signup");
 		ResponseDTO result=memberService.signup(dto);
-		System.out.println(result);
+//		System.out.println(result);
 		if(result.getResult()==1) {
 			logger.info("success to signup");
 			return new ResponseEntity<ResponseDTO>(result,HttpStatus.ACCEPTED);

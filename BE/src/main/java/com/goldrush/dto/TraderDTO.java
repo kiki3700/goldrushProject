@@ -6,19 +6,8 @@ public class TraderDTO {
 	private int quantity;
 	private int itemsId;
 	private boolean buy;
-	
-	public TraderDTO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public TraderDTO(int membersId, int price, int quantity, int itemsId, boolean buy) {
-		super();
-		this.membersId = membersId;
-		this.price = price;
-		this.quantity = quantity;
-		this.itemsId = itemsId;
-		this.buy = buy;
-	}
+	private int partnersId;
+	private int offersId;
 	
 	public int getMembersId() {
 		return membersId;
@@ -50,10 +39,23 @@ public class TraderDTO {
 	public void setBuy(boolean buy) {
 		this.buy = buy;
 	}
+	public int getPartnersId() {
+		return partnersId;
+	}
+	public void setPartnersId(int partnersId) {
+		this.partnersId = partnersId;
+	}
+	public int getOffersId() {
+		return offersId;
+	}
+	public void setOffersId(int offersId) {
+		this.offersId = offersId;
+	}
 	@Override
 	public String toString() {
 		return "TraderDTO [membersId=" + membersId + ", price=" + price + ", quantity=" + quantity + ", itemsId="
-				+ itemsId + ", buy=" + buy + "]";
+				+ itemsId + ", buy=" + buy + ", partnersId=" + partnersId + ", offersId=" + offersId + "]";
 	}
+	
 	
 }

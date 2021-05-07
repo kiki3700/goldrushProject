@@ -39,7 +39,6 @@ public class ItemController {
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public @ResponseBody List<ItemListDTO> getItemList(){
 		logger.info("아이템 리스트 출력");
-		System.out.println("아이템 리스트 출력");
 		return ser.getItemList();
 	}
 	
