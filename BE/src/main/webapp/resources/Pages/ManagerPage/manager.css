@@ -1,0 +1,208 @@
+body {
+  font-family: "Nanum Gothic", sans-serif;
+  padding: 5vh 0px;
+}
+.navbar {
+  background-color: #000;
+}
+.navbar-brand {
+  padding: 0px;
+}
+.logo {
+  height: 50px;
+  font-size: 23px;
+  margin: 15px;
+  color: rgb(240, 204, 0);
+  font-family: "Snell Roundhand";
+  font-weight: 700;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.merchandise_list {
+  width: 100vw;
+  height: 90vh;
+  padding-top: 6vh;
+  background-color: #d3b8993d;
+}
+.menu {
+  background-color: #fff;
+  border: 1px solid #79955f;
+  border-right: none;
+  height: 80vh;
+  display: flex;
+  padding: 30px;
+  font-size: 20px;
+}
+.item_list {
+  background-color: #fff;
+  padding: 0px 0px;
+  height: 80vh;
+  color: #000;
+  border: 1px solid #79955f;
+}
+.item_ul {
+  padding-left: 0px;
+  list-style: none;
+  margin-bottom: 0px;
+}
+.item_ul li {
+  border-bottom: 1px solid #79955f;
+  padding: 0px 15px;
+}
+.item_ul li:last-child {
+  border-bottom: none;
+}
+.item_small {
+  margin: 0px;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image_box {
+  width: 7vh;
+  height: auto;
+  padding: 0px;
+}
+.image_box img {
+  width: 100%;
+  height: 100%;
+}
+.preview img {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
+
+#image_uploads {
+  opacity: 0;
+}
+.item_small p {
+  margin-bottom: 0px;
+}
+.item_detail {
+  height: 80vh;
+  padding: 0px;
+  border: 1px solid #79955f;
+  border-left: none;
+  background-color: #fff;
+}
+.contract {
+  background-color: #fff;
+  height: 10vh;
+  width: 100%;
+  margin-left: 0.5px;
+  border-bottom: 1px solid #79955f;
+  position: sticky;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.contract .btn {
+  height: fit-content;
+  width: fit-content;
+  background-color: #79955f;
+  color: #fff;
+}
+.contract .btn:hover,
+.contract .btn:focus {
+  color: #fff;
+}
+.enroll_form {
+  height: 100%;
+}
+.item_image {
+  height: 30%;
+  border-bottom: 1px solid #79955f;
+  text-align: center;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: cneter;
+  align-items: center;
+}
+
+.item_image input {
+  width: 20%;
+}
+.item_container {
+  background-color: #fff;
+  color: #000;
+  width: 100%;
+  height: 70%;
+  padding: 30px;
+  border-top: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.item_info {
+  margin: 0px;
+  margin-bottom: 1%;
+  width: 45%;
+  height: 15%;
+  font-size: 15px;
+  border: 1px #79955f solid;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.item_info p {
+  width: 45%;
+}
+.item_info input {
+  width: 45%;
+}
+
+.item_info select {
+  width: 45%;
+}
+
+.item_Description {
+  width: 90%;
+  height: 80%;
+}
+
+.btn {
+  height: fit-content;
+  width: fit-content;
+  background-color: #79955f;
+  color: #fff;
+}
+
+.btn:hover,
+.btn:focus {
+  color: #fff;
+}
+
+.footer_content {
+  background-color: #000;
+  color: #fff;
+  height: 5vh;
+  font-size: 30px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+a {
+  color: #000;
+}
+a:hover,
+a:focus {
+  text-decoration: none;
+  color: #79955f;
+}
+
+.selected {
+  color: #79955f;
+}
+
+ul {
+  list-style: none;
+  margin-bottom: 0px;
+  padding-left: 0px;
+}
