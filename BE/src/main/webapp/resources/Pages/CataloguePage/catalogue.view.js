@@ -32,14 +32,14 @@ export default class CatalogueView{
   
   makeList = (list) => {
     let itemUl = document.querySelector('.item_ul');
-    let li = document.createElement('li');
-    let textNode = '';
+    
     if ( !window.location.hash.match(/\/[a-zA-z]+/) ) {
       for (var item of list) {
         console.log('item : ', item);
         if (item.stage !== 'unopen') {
+          let li = document.createElement('li');
           li.className = 'item_li';
-          textNode += `
+          let textNode = `
             <a href = '#catalogue/${item.itemsId}'>
               <div class="row item_small">
               <div class="image_box col-lg-4 col-xs-4">
@@ -50,6 +50,8 @@ export default class CatalogueView{
               </div>
             </a>
           `
+          li.insertAdjacentHTML('afterbegin', textNode);
+          itemUl.appendChild(li);
         }
       }
     } else {
@@ -57,8 +59,9 @@ export default class CatalogueView{
       for (const item of list) {
         if (item.stage === condition) {
           console.log('조건을 봐요!', condition);
+          let li = document.createElement('li');
           li.className = 'item_li';
-          textNode += `
+          let textNode = `
             <a href = '#catalogue/${condition}/${item.itemsId}'>
               <div class="row item_small">
               <div class="image_box col-lg-4 col-xs-4">
@@ -69,11 +72,12 @@ export default class CatalogueView{
               </div>
             </a>
           `
+          li.insertAdjacentHTML('afterbegin',textNode);
+          itemUl.appendChild(li);
         }
       }
     }
-    li.insertAdjacentHTML('afterbegin',textNode);
-    itemUl.appendChild(li);
+    
   }
   
   makeMainContent = (item) => {
