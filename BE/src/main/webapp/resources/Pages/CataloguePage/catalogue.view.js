@@ -31,12 +31,7 @@ export default class CatalogueView{
   }
   
   makeList = (list) => {
-    let itemUl = document.querySelector('.item_ul');
-<<<<<<< HEAD
-    let li = document.createElement('li');
-=======
->>>>>>> c33507d9e6eac6f3c3911e6e0231cacfcb958d72
-    
+    let itemUl = document.querySelector('.item_ul');    
     if ( !window.location.hash.match(/\/[a-zA-z]+/) ) {
       for (var item of list) {
         console.log('item : ', item);
@@ -54,12 +49,8 @@ export default class CatalogueView{
               </div>
             </a>
           `
-<<<<<<< HEAD
-          li.insertAdjacentHTML('afterbegin',textNode);
-=======
-          li.insertAdjacentHTML('afterbegin', textNode);
->>>>>>> c33507d9e6eac6f3c3911e6e0231cacfcb958d72
-          itemUl.appendChild(li);
+		  li.insertAdjacentHTML('afterbegin', textNode);
+		  itemUl.appendChild(li);
         }
       }
     } else {
@@ -85,10 +76,7 @@ export default class CatalogueView{
         }
       }
     }
-<<<<<<< HEAD
-=======
-    
->>>>>>> c33507d9e6eac6f3c3911e6e0231cacfcb958d72
+
   }
   
   makeMainContent = (item) => {
