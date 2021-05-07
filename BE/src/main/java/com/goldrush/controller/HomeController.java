@@ -62,7 +62,7 @@ public class HomeController {
 
 		System.out.println(pathSet);	
 		
-		return "fff";
+		return "index";
 	}
 	
 
