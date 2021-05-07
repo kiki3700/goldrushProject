@@ -41,6 +41,7 @@ public class TradeController {
 	
 	@RequestMapping(value = "/offer", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<ResponseDTO> makeOffer(@RequestBody OfferDTO offerDTO ) {
+		logger.info(offerDTO.getMembersId()+"is offering to "+offerDTO.getItemsId());
 		ResponseDTO response = tradeService.makeOffer(offerDTO);
 		if(response.getResult()==1) {
 			return new ResponseEntity<ResponseDTO>(response, HttpStatus.ACCEPTED);
@@ -50,6 +51,7 @@ public class TradeController {
 	}
 	@RequestMapping(value="/offer", method=RequestMethod.DELETE)
 	public @ResponseBody ResponseEntity<ResponseDTO> deleteOffer(@RequestParam("offersId") int offersId){
+		logger.info(offersId+"th offer is deleted");
 		OfferDTO dto = new OfferDTO();
 		dto.setOffersId(offersId);
 		ResponseDTO response = tradeService.cancelOffer(dto);
@@ -61,6 +63,7 @@ public class TradeController {
 	}
 	@RequestMapping(value="/offer", method=RequestMethod.GET)
 	public @ResponseBody List<OffersListDTO> getOfferList(@RequestParam("itemsId") int itemsId, @RequestParam("buy") boolean buy){
+		logger.info(itemsId+"th items offer list is looeked up");
 		OfferDTO dto = new OfferDTO();
 		dto.setBuy(buy);
 		dto.setItemsId(itemsId);
@@ -69,6 +72,7 @@ public class TradeController {
 	
 	@RequestMapping(value="/trade", method=RequestMethod.POST)
 	public @ResponseBody ResponseEntity<ResponseDTO> trade(@RequestBody TraderDTO traderDTO){
+		logger.info(traderDTO.getMembersId()+" is try to trade "+traderDTO.getItemsId()+"th item");
 		ResponseDTO response = tradeService.trade(traderDTO);
 		if(response.getResult()==1) {
 			return new ResponseEntity<ResponseDTO>(response, HttpStatus.ACCEPTED);
@@ -87,7 +91,7 @@ public class TradeController {
 	}
 	@Scheduled(cron="0 0 9 * * *")
 	public void time() {
-		System.out.println("print every in 9h");
+		tradeService.changeStage();
 	}
 	
 }

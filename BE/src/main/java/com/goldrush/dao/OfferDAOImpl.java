@@ -145,7 +145,7 @@ public class OfferDAOImpl implements OfferDAO {
 	
 	@Override
 	public List<OfferDTO> selectOffersForIpo(int itemsId) {
-		String SQL = "SELECT * FROM offers WHERE itemsId = ? AND buy = true";
+		String SQL = "SELECT * FROM offers WHERE items_Id = ? AND buy = true";
 		PreparedStatement pstmt= null;
 		Connection con= null;
 		ResultSet rs = null;
@@ -713,7 +713,7 @@ public class OfferDAOImpl implements OfferDAO {
 
 	@Override
 	public int checkQuantityBalance(int itemsId) {
-		String SQL = "SELECT * FROM offers WHERE is_complete=false AND buy=false AND items_id = ?";
+		String SQL = "SELECT * FROM offers WHERE is_complete=false AND buy=true AND items_id = ?";
 		PreparedStatement pstmt= null;
 		Connection con= null;
 		ResultSet rs = null;

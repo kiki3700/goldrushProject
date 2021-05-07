@@ -80,6 +80,7 @@ public class TradeService {
 		ItemDTO itemDTO = new ItemDTO();
 		itemDTO = itemDAO.selectItem(offerDTO.getItemsId());
 		int ipoQuantity = itemDTO.getQuantity();
+		System.out.println("물량 : "+ipoQuantity+ " 소진된 물량 : "+subscriptedQuantity + "이번에 소진할 물량 : "+offerDTO.getQuantity());
 		if(!(ipoQuantity-subscriptedQuantity-offerDTO.getQuantity()>=0)) return new ResponseDTO(0,"청약 물량이 소진되었습니다.");
 		int price = itemDTO.getCost()/itemDTO.getQuantity();
 		offerDTO.setOfferPrice(price);
@@ -196,17 +197,20 @@ public class TradeService {
 		int quantity = itemDTO.getQuantity();
 		int price = itemDTO.getCost()/quantity;
 		for(OfferDTO dto : offers) {
+			int i =1;
+			System.out.println(i+"th ipo");
+			System.out.println(dto);
 			TradeDTO tradeDTO = new TradeDTO();
 			tradeDTO.setOffersId(dto.getOffersId());
 			tradeDTO.setMembersId(1);
-			tradeDAO.insertTrade(tradeDTO);
-			accountDAO.insertIpoResult(dto.getItemsId(), -dto.getQuantity()*dto.getOfferPrice());
+			System.out.println(tradeDAO.insertTrade(tradeDTO));
+			System.out.println(accountDAO.insertIpoResult(dto.getItemsId(), -dto.getQuantity()*dto.getOfferPrice()));
 			InventoryDTO inventoryDTO = new InventoryDTO();
 			inventoryDTO.setItemsId(itemsId);
 			inventoryDTO.setPrice(dto.getOfferPrice());
 			inventoryDTO.setQuantity(dto.getQuantity());
 			inventoryDTO.setMembersId(dto.getMembersId());
-			inventoryDAO.insertInventory(inventoryDTO);
+			System.out.println(inventoryDAO.insertInventory(inventoryDTO));
 			quantity -= dto.getQuantity();
 		}
 
@@ -258,25 +262,27 @@ public class TradeService {
 		List<ItemDTO> listDTO = itemDAO.selectItemList();
 		LocalDate currentDate = LocalDate.now();
 		for(ItemDTO item : listDTO) {
+			System.out.println("before"+item);
 			switch(item.getStage()) {
 			case "unopen":
 				if(item.getOpeningDate().toLocalDateTime().toLocalDate().compareTo(currentDate)>=0) {
 					itemDAO.updateStage("open", item.getItemsId());
 				}
 				break;
-			case "opening":
+			case "open":
 				if(item.getIpoDate().toLocalDateTime().toLocalDate().compareTo(currentDate)>=0) {
-					itemDAO.updateStage("ipo", item.getItemsId());
+					itemDAO.updateStage("trade", item.getItemsId());
+					System.out.println("ipo start");
 					initialPublicOffering(item.getItemsId());
 				}
 				break;
-			case "trading":
+			case "trade":
 				if(item.getClearingDate().toLocalDateTime().toLocalDate().compareTo(currentDate)>=0) {
 					itemDAO.updateStage("clear", item.getItemsId());
 				}
 				break;
 			default: System.out.println("머야 이거"+item); 
-
+		System.out.println("after : "+item);
 			}
 		}
 	}

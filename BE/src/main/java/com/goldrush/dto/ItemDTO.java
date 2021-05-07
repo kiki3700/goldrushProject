@@ -160,4 +160,12 @@ public class ItemDTO {
 		this.imgAddress = imgAddress;
 	}
 
+
+	@Override
+	public String toString() {
+		return "ItemDTO [itemsId=" + itemsId + ", code=" + code + ", name=" + name + ", category=" + category
+				+ ", stage=" + stage + ", cost=" + cost + ", quantity=" + quantity + ", openingDate=" + openingDate
+				+ ", ipoDate=" + ipoDate + ", clearingDate=" + clearingDate + ", description=" + description
+				+ ", imgAddress=" + imgAddress + "]";
+	}	
 }
