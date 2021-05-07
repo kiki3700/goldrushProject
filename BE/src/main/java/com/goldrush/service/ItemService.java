@@ -42,8 +42,8 @@ public class ItemService {
 	
 
 	public String postPicture(String code, MultipartHttpServletRequest request) {
-		String path = "eclipse-workspace/Goldrush/BE/src/main/webapp/WEB-INF/views/resources/img/item";
-		String address = "/WEB-INF/views/resources/img/item/";
+		String path = "eclipse-workspace/Goldrush/BE/src/main/webapp/resources/img/item";
+		String address = "/img/item/";
 		MultipartFile mf = request.getFile("img");
 		String ext = mf.getOriginalFilename().substring(mf.getOriginalFilename().indexOf("."));
 		try {
@@ -61,7 +61,7 @@ public class ItemService {
 	}
 	
 	public ResponseDTO postThumnail(String code, String ext ,File file) {
-		String path = "eclipse-workspace/Goldrush/BE/src/main/webapp/WEB-INF/views/resources/img/item/thumnail/";
+		String path = "eclipse-workspace/Goldrush/BE/src/main/webapp/resources/img/item/thumnail/";
 		File thFile = new File(path,code+ext);
 		try {
 			BufferedImage Image = ImageIO.read(file);
@@ -72,7 +72,7 @@ public class ItemService {
 			Image image = Image.getScaledInstance(tWidth, tHeight, Image.SCALE_SMOOTH);
 			graphic.drawImage(image,0,0,tWidth, tHeight, null);
 			graphic.dispose();
-			ImageIO.write(tImage, "jpg", thFile);
+			ImageIO.write(tImage, ext.substring(1), thFile);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -8,11 +8,11 @@ public class OfferLogDTO {
 	private int membersId;
 	private int itemsId;
 	private String code;
+	private String name;
 	private boolean buy;
 	private int offerPrice;
 	private boolean isComplete;
 	private int quantity;
-	private int quantityBalance;
 	private Timestamp timeStamp;
 	
 	
@@ -56,6 +56,16 @@ public class OfferLogDTO {
 	}
 
 
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
 	public boolean isBuy() {
 		return buy;
 	}
@@ -96,16 +106,6 @@ public class OfferLogDTO {
 	}
 
 
-	public int getQuantityBalance() {
-		return quantityBalance;
-	}
-
-
-	public void setQuantityBalance(int quantityBalance) {
-		this.quantityBalance = quantityBalance;
-	}
-
-
 	public Timestamp getTimeStamp() {
 		return timeStamp;
 	}
@@ -119,7 +119,9 @@ public class OfferLogDTO {
 	@Override
 	public String toString() {
 		return "OfferLogDTO [offersId=" + offersId + ", membersId=" + membersId + ", itemsId=" + itemsId + ", code="
-				+ code + ", buy=" + buy + ", offerPrice=" + offerPrice + ", isComplete=" + isComplete + ", quantity="
-				+ quantity + ", quantityBalance=" + quantityBalance + ", timeStamp=" + timeStamp + "]";
+				+ code + ", name=" + name + ", buy=" + buy + ", offerPrice=" + offerPrice + ", isComplete=" + isComplete
+				+ ", quantity=" + quantity + ", timeStamp=" + timeStamp + "]";
 	}
+	
+	
 }

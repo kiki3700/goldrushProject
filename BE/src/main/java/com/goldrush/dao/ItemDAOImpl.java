@@ -50,11 +50,10 @@ public class ItemDAOImpl implements ItemDAO {
 				int quantity = rs.getInt("quantity");
 				Timestamp openingDate = rs.getTimestamp("opening_date");
 				Timestamp ipoDate = rs.getTimestamp("ipo_date");
-				Timestamp tradingDate = rs.getTimestamp("trading_date");
 				Timestamp clearingDate =rs.getTimestamp("clearing_date");
 				String description = rs.getString("description");
 				String imgAddress = rs.getString("img_address");
-				listDTO.add(new ItemDTO(itemsId, code, name, category, stage, cost, quantity, openingDate, ipoDate, tradingDate, clearingDate, description, imgAddress));
+				listDTO.add(new ItemDTO(itemsId, code, name, category, stage, cost, quantity, openingDate, ipoDate, clearingDate, description, imgAddress));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -92,11 +91,10 @@ public class ItemDAOImpl implements ItemDAO {
 				int quantity = rs.getInt("quantity");
 				Timestamp openingDate = rs.getTimestamp("opening_date");
 				Timestamp ipoDate = rs.getTimestamp("ipo_date");
-				Timestamp tradingDate = rs.getTimestamp("trading_date");
 				Timestamp clearingDate =rs.getTimestamp("clearing_date");
 				String description = rs.getString("description");
 				String imgAddress = rs.getString("img_address");
-				listDTO.add(new ItemDTO(itemsId, code, name, category, stage, cost, quantity, openingDate, ipoDate, tradingDate, clearingDate, description, imgAddress));
+				listDTO.add(new ItemDTO(itemsId, code, name, category, stage, cost, quantity, openingDate, ipoDate, clearingDate, description, imgAddress));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -131,11 +129,10 @@ public class ItemDAOImpl implements ItemDAO {
 				int quantity = rs.getInt("quantity");
 				Timestamp openingDate = rs.getTimestamp("opening_date");
 				Timestamp ipoDate = rs.getTimestamp("ipo_date");
-				Timestamp tradingDate = rs.getTimestamp("trading_date");
 				Timestamp clearingDate =rs.getTimestamp("clearing_date");
 				String description = rs.getString("description");
 				String imgAddress = rs.getString("img_address");
-				dto = new ItemDTO(itemsId, code, name, category, stage, cost, quantity, openingDate, ipoDate, tradingDate, clearingDate, description, imgAddress);
+				dto = new ItemDTO(itemsId, code, name, category, stage, cost, quantity, openingDate, ipoDate, clearingDate, description, imgAddress);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -180,7 +177,6 @@ public class ItemDAOImpl implements ItemDAO {
 				int quantity = rs.getInt("quantity");
 				Timestamp openingDate = rs.getTimestamp("opening_date");
 				Timestamp ipoDate = rs.getTimestamp("ipo_date");
-				Timestamp tradingDate = rs.getTimestamp("trading_date");
 				Timestamp clearingDate =rs.getTimestamp("clearing_date");
 				String description = rs.getString("description");
 				String imgAddress = rs.getString("img_address");
@@ -210,7 +206,7 @@ public class ItemDAOImpl implements ItemDAO {
 				}
 				
 					
-				dto = new ItemListDTO(itemsId, code, name, category, stage, cost, quantity, openingDate, ipoDate, tradingDate, clearingDate, description, imgAddress, price, buyOffer, sellOffer);
+				dto = new ItemListDTO(itemsId, code, name, category, stage, cost, quantity, openingDate, ipoDate, clearingDate, description, imgAddress, price, buyOffer, sellOffer);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -256,7 +252,6 @@ public class ItemDAOImpl implements ItemDAO {
 				int quantity = rs.getInt("quantity");
 				Timestamp openingDate = rs.getTimestamp("opening_date");
 				Timestamp ipoDate = rs.getTimestamp("ipo_date");
-				Timestamp tradingDate = rs.getTimestamp("trading_date");
 				Timestamp clearingDate =rs.getTimestamp("clearing_date");
 				String description = rs.getString("description");
 				String imgAddress = rs.getString("img_address");
@@ -286,7 +281,7 @@ public class ItemDAOImpl implements ItemDAO {
 				}
 				
 					
-				itemList.add(new ItemListDTO(itemsId, code, name, category, stage, cost, quantity, openingDate, ipoDate, tradingDate, clearingDate, description, imgAddress, price, buyOffer, sellOffer));
+				itemList.add(new ItemListDTO(itemsId, code, name, category, stage, cost, quantity, openingDate, ipoDate, clearingDate, description, imgAddress, price, buyOffer, sellOffer));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -331,7 +326,6 @@ public class ItemDAOImpl implements ItemDAO {
 				int quantity = rs.getInt("quantity");
 				Timestamp openingDate = rs.getTimestamp("opening_date");
 				Timestamp ipoDate = rs.getTimestamp("ipo_date");
-				Timestamp tradingDate = rs.getTimestamp("trading_date");
 				Timestamp clearingDate =rs.getTimestamp("clearing_date");
 				String description = rs.getString("description");
 				String imgAddress = rs.getString("img_address");
@@ -361,7 +355,7 @@ public class ItemDAOImpl implements ItemDAO {
 				}
 				
 					
-				itemList.add(new ItemListDTO(itemsId, code, name, category, stage, cost, quantity, openingDate, ipoDate, tradingDate, clearingDate, description, imgAddress, price, buyOffer, sellOffer));
+				itemList.add(new ItemListDTO(itemsId, code, name, category, stage, cost, quantity, openingDate, ipoDate, clearingDate, description, imgAddress, price, buyOffer, sellOffer));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -379,9 +373,8 @@ public class ItemDAOImpl implements ItemDAO {
 	@Override
 	public ResponseDTO insertNewItem(ItemDTO dto) {
 		String SQL = "INSERT INTO items("
-				+ "code, name, category, cost, quantity, opening_date, ipo_date, trading_date,"
-				+ " clearing_date, description, img_address) "
-				+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "code, name, category, cost, quantity, opening_date, ipo_date, clearing_date, description, img_address) "
+				+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement pstmt= null;
 		Connection con= null;
 		ResponseDTO  response =null;
@@ -395,10 +388,9 @@ public class ItemDAOImpl implements ItemDAO {
 			pstmt.setInt(5, dto.getQuantity());
 			pstmt.setTimestamp(6, dto.getOpeningDate());
 			pstmt.setTimestamp(7, dto.getIpoDate());
-			pstmt.setTimestamp(8, dto.getTradingDate());
-			pstmt.setTimestamp(9, dto.getClearingDate());
-			pstmt.setString(10, dto.getDescription());
-			pstmt.setString(11, dto.getImgAddress());
+			pstmt.setTimestamp(8, dto.getClearingDate());
+			pstmt.setString(9, dto.getDescription());
+			pstmt.setString(10, dto.getImgAddress());
 			if(pstmt.executeUpdate()==1) {
 				response = new ResponseDTO(1, "상품등록 완료");
 			}else {
@@ -406,6 +398,7 @@ public class ItemDAOImpl implements ItemDAO {
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
+			response = new ResponseDTO(0, "상품등록 실패");
 		}
 	     if (con != null) {
 	            try {
@@ -446,8 +439,7 @@ public class ItemDAOImpl implements ItemDAO {
 	}
 	@Override
 	public ResponseDTO updateItem(ItemDTO dto) {
-		String SQL = "UPDATE items SET code = ?, name = ?, category= ?, cost = ?, quantity = ?, opening_date = ?, ipo_date=?,"
-				+ "trading_date=?, clearing_date=?, description = ?, img_address = ?, stage = ? WHERE items_id = ?";
+		String SQL = "UPDATE items SET code = ?, name = ?, category= ?, cost = ?, quantity = ?, opening_date = ?, ipo_date=?, clearing_date=?, description = ?, img_address = ?, stage = ? WHERE items_id = ?";
 		Connection con= null;
 		ResponseDTO  response =null;
 		PreparedStatement pstmt=null;
@@ -461,12 +453,40 @@ public class ItemDAOImpl implements ItemDAO {
 			pstmt.setInt(5, dto.getQuantity());
 			pstmt.setTimestamp(6, dto.getOpeningDate());
 			pstmt.setTimestamp(7, dto.getIpoDate());
-			pstmt.setTimestamp(8, dto.getTradingDate());
-			pstmt.setTimestamp(9, dto.getClearingDate());
-			pstmt.setString(10, dto.getDescription());
-			pstmt.setString(11, dto.getImgAddress());
-			pstmt.setString(12, dto.getStage());
-			pstmt.setInt(13, dto.getItemsId());
+			pstmt.setTimestamp(8, dto.getClearingDate());
+			pstmt.setString(9, dto.getDescription());
+			pstmt.setString(10, dto.getImgAddress());
+			pstmt.setString(11, dto.getStage());
+			pstmt.setInt(12, dto.getItemsId());
+			if(pstmt.executeUpdate()==1) {
+				response = new ResponseDTO(1, "상품변경 완료");
+			}else {
+				response = new ResponseDTO(0, "상품병경 실패");
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	     if (con != null) {
+	            try {
+	                con.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }  
+	        }	
+		return response;
+	}
+
+	@Override
+	public ResponseDTO updateStage(String stage, int itemsId) {
+		String SQL = "UPDATE items SET stage = ? WHERE items_id = ?";
+		Connection con= null;
+		ResponseDTO  response =null;
+		PreparedStatement pstmt=null;
+		try {
+			con= db.connect();
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setString(1, stage);
+			pstmt.setInt(2,itemsId);
 			if(pstmt.executeUpdate()==1) {
 				response = new ResponseDTO(1, "상품변경 완료");
 			}else {

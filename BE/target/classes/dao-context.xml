@@ -8,7 +8,7 @@
 
     <!-- DataSource 설정 -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-        <property name="url" value="jdbc:mysql://localhost/goldrush"/>
+        <property name="url" value="jdbc:mysql://localhost/goldrush_ipotest"/>
         <property name="username" value="lee" />
         <property name="password" value="kiki3700" />
         <property name="driverClass" value="com.mysql.jdbc.Driver" />
@@ -39,5 +39,7 @@
  	 <bean id="AccountDAO" class="com.goldrush.dao.AccountDAOImpl">
 	 	<property name="db" ref="DBHandler"/>
 	 </bean>
+	 
+
 
 </beans>

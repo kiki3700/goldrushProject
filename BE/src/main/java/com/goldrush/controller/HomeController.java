@@ -4,20 +4,27 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.http.HttpHeaders;
 import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Set;
 
 import javax.imageio.ImageIO;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -49,12 +56,16 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	public String home(HttpServletRequest request) {
+		logger.info("Welcome home! The client locale is {}.");
+		Set pathSet = request.getSession().getServletContext().getResourcePaths("/");
+
+		System.out.println(pathSet);	
 		
-		
-		return "form";
+		return "fff";
 	}
+	
+
 //	@RequestMapping(value = "/", method = RequestMethod.POST)
 //	public String post(@RequestBody test test) {
 //		System.out.println(test);
@@ -80,5 +91,6 @@ public class HomeController {
 
 		return "form";
 	}
+	
 	
 }

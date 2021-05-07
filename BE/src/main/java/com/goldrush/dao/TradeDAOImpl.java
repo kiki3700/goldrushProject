@@ -48,7 +48,6 @@ public class TradeDAOImpl implements TradeDAO {
 				tradeDTO.setTradesId(rs.getInt("trades_id"));
 				tradeDTO.setMembersId(rs.getInt("members_id"));
 				tradeDTO.setOffersId(rs.getInt("offers_id"));
-				tradeDTO.setQuantity(rs.getInt("quantity"));
 				tradeDTO.setTimeStamp(rs.getTimestamp("time_stamp"));
 				listTrade.add(tradeDTO);
 			}
@@ -109,16 +108,15 @@ public class TradeDAOImpl implements TradeDAO {
 	}
 	@Override
 	public ResponseDTO insertTrade(TradeDTO dto) {
-		String SQL = "INSERT INTO trades(quantity, offers_id, members_id) value(?, ?, ?)";
+		String SQL = "INSERT INTO trades(offers_id, members_id) value(?, ?)";
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResponseDTO response=null;
 		try {
 			con = db.connect();
 			pstmt = con.prepareStatement(SQL);
-			pstmt.setInt(1, dto.getQuantity());
-			pstmt.setInt(2, dto.getOffersId());
-			pstmt.setInt(3, dto.getMembersId());
+			pstmt.setInt(1, dto.getOffersId());
+			pstmt.setInt(2, dto.getMembersId());
 			if(pstmt.executeUpdate()==1) {
 				response = new ResponseDTO(1, "거래에 성공했습니다.");
 			}else {

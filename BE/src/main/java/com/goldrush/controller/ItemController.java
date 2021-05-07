@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,25 +33,31 @@ import com.goldrush.service.ItemService;
 @CrossOrigin
 @RequestMapping(value="/item")
 public class ItemController {
+
 	private static final Logger logger = LoggerFactory.getLogger(ItemController.class);
 	ItemService ser = new ItemService();
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public @ResponseBody List<ItemListDTO> getItemList(){
+		logger.info("아이템 리스트 출력");
+		System.out.println("아이템 리스트 출력");
 		return ser.getItemList();
 	}
 	
 	@RequestMapping(value="/list", method = RequestMethod.GET)
 	public @ResponseBody List<ItemListDTO> getItemListByStage(@RequestParam("stage") String stage){
+		logger.info(stage+" 아이템 리스트 출력");
 		return ser.getItemListByStage(stage);
 	}
 	
 	@RequestMapping(value="/detail", method = RequestMethod.GET)
 	public @ResponseBody ItemListDTO getItem(@RequestParam("itemsId") int itemsId){
+		logger.info(itemsId+"번 아이탐 디테일 리스트 출력");
 		return ser.getItem(itemsId);
 	}
 	
 	@RequestMapping(value="/list", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<ResponseDTO> postNewItem(MultipartHttpServletRequest request){
+		logger.info("새로운 아이템 추가");
 		ItemDTO dto = new ItemDTO();
 		dto.setCode(request.getParameter("code"));
 		dto.setCategory(request.getParameter("category"));
@@ -59,21 +66,23 @@ public class ItemController {
 		dto.setQuantity(Integer.parseInt(request.getParameter("quantity")));
 		dto.setOpeningDate(Timestamp.valueOf(request.getParameter("openingDate")+" 09:00:00.0"));
 		dto.setIpoDate(Timestamp.valueOf(request.getParameter("ipoDate")+" 09:00:00.0"));
-		dto.setTradingDate(Timestamp.valueOf(request.getParameter("tradingDate")+" 09:00:00.0"));
 		dto.setClearingDate(Timestamp.valueOf(request.getParameter("clearingDate")+" 09:00:00.0"));
 		dto.setDescription(request.getParameter("description"));
 		String address = ser.postPicture(request.getParameter("code"), request);
 		dto.setImgAddress(address);
 		ResponseDTO response = ser.postNewItem(dto);
 		if(response.getResult()==1) {
+			logger.info("item post success");
 			return new ResponseEntity(response, HttpStatus.ACCEPTED);
 		}else {
+			logger.info("item post fail");
 			return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
 		}
 	}
 	
-	@RequestMapping(value="/list", method = RequestMethod.PUT)
+	@RequestMapping(value="/listEdit", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<ResponseDTO> putItem(MultipartHttpServletRequest request){
+		logger.info("아이템 수정...");
 		ItemDTO dto = new ItemDTO();
 		dto.setItemsId(Integer.parseInt(request.getParameter("itemsId")));
 		dto.setCode(request.getParameter("code"));
@@ -83,7 +92,6 @@ public class ItemController {
 		dto.setQuantity(Integer.parseInt(request.getParameter("quantity")));
 		dto.setOpeningDate(Timestamp.valueOf(request.getParameter("openingDate")+" 09:00:00.0"));
 		dto.setIpoDate(Timestamp.valueOf(request.getParameter("ipoDate")+" 09:00:00.0"));
-		dto.setTradingDate(Timestamp.valueOf(request.getParameter("tradingDate")+" 09:00:00.0"));
 		dto.setClearingDate(Timestamp.valueOf(request.getParameter("clearingDate")+" 09:00:00.0"));
 		dto.setStage(request.getParameter("stage"));
 		dto.setDescription(request.getParameter("description"));
@@ -91,20 +99,25 @@ public class ItemController {
 		dto.setImgAddress(address);
 		ResponseDTO response = ser.putItem(dto);
 		if(response.getResult()==1) {
+			logger.info("item edit success");
 			return new ResponseEntity(response, HttpStatus.ACCEPTED);
 		}else {
+			logger.info("item edit fail");
 			return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
 		}
 	}
 	
 	@RequestMapping(value="/list", method = RequestMethod.DELETE)
-	public @ResponseBody ResponseEntity<ResponseDTO> deleteItem(MultipartHttpServletRequest request){
+	public @ResponseBody ResponseEntity<ResponseDTO> deleteItem(@RequestParam("itemsId") int itemsId){
+		logger.info("try to item delete");
 		ItemDTO dto = new ItemDTO();
-		dto.setItemsId(Integer.parseInt(request.getParameter("itemsId")));
+		dto.setItemsId(itemsId);
 		ResponseDTO response = ser.deleteItem(dto);
 		if(response.getResult()==1) {
+			logger.info("item delete success");
 			return new ResponseEntity(response, HttpStatus.ACCEPTED);
 		}else {
+			logger.info("item delete fail");
 			return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
 		}
 	}

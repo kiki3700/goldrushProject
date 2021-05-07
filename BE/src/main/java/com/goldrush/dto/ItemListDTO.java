@@ -12,7 +12,6 @@ public class ItemListDTO {
 	private int quantity;
 	private Timestamp openingDate;
 	private Timestamp ipoDate;
-	private Timestamp tradingDate;
 	private Timestamp clearingDate;
 	private String description;
 	private String imgAddress;
@@ -20,13 +19,14 @@ public class ItemListDTO {
 	private int buyOffer;
 	private int sellOffer;
 	
+	
 	public ItemListDTO() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
-	
 	public ItemListDTO(int itemsId, String code, String name, String category, String stage, int cost, int quantity,
-			Timestamp openingDate, Timestamp ipoDate, Timestamp tradingDate, Timestamp clearingDate, String description,
-			String imgAddress, int price, int buyOffer, int sellOffer) {
+			Timestamp openingDate, Timestamp ipoDate, Timestamp clearingDate, String description, String imgAddress,
+			int price, int buyOffer, int sellOffer) {
 		super();
 		this.itemsId = itemsId;
 		this.code = code;
@@ -37,7 +37,6 @@ public class ItemListDTO {
 		this.quantity = quantity;
 		this.openingDate = openingDate;
 		this.ipoDate = ipoDate;
-		this.tradingDate = tradingDate;
 		this.clearingDate = clearingDate;
 		this.description = description;
 		this.imgAddress = imgAddress;
@@ -45,7 +44,6 @@ public class ItemListDTO {
 		this.buyOffer = buyOffer;
 		this.sellOffer = sellOffer;
 	}
-	
 	public int getItemsId() {
 		return itemsId;
 	}
@@ -100,12 +98,6 @@ public class ItemListDTO {
 	public void setIpoDate(Timestamp ipoDate) {
 		this.ipoDate = ipoDate;
 	}
-	public Timestamp getTradingDate() {
-		return tradingDate;
-	}
-	public void setTradingDate(Timestamp tradingDate) {
-		this.tradingDate = tradingDate;
-	}
 	public Timestamp getClearingDate() {
 		return clearingDate;
 	}
@@ -142,13 +134,13 @@ public class ItemListDTO {
 	public void setSellOffer(int sellOffer) {
 		this.sellOffer = sellOffer;
 	}
-	
 	@Override
 	public String toString() {
 		return "ItemListDTO [itemsId=" + itemsId + ", code=" + code + ", name=" + name + ", category=" + category
 				+ ", stage=" + stage + ", cost=" + cost + ", quantity=" + quantity + ", openingDate=" + openingDate
-				+ ", ipoDate=" + ipoDate + ", tradingDate=" + tradingDate + ", clearingDate=" + clearingDate
-				+ ", description=" + description + ", imgAddress=" + imgAddress + ", price=" + price + ", buyOffer="
-				+ buyOffer + ", sellOffer=" + sellOffer + "]";
+				+ ", ipoDate=" + ipoDate + ", clearingDate=" + clearingDate + ", description=" + description
+				+ ", imgAddress=" + imgAddress + ", price=" + price + ", buyOffer=" + buyOffer + ", sellOffer="
+				+ sellOffer + "]";
 	}
+	
 }

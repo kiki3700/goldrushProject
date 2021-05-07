@@ -59,7 +59,7 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 	@Override
 	public int insertNewMemeber(MemberDTO dto) {
-		String SQL = "INSERT INTO members(user_id, name, password) values(?, ?,?)";
+		String SQL = "INSERT INTO members(user_id, name, password) values(?, ?, ?)";
 		int result=0;
 		PreparedStatement pstmt= null;
 		Connection con= null;
