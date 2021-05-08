@@ -154,14 +154,18 @@ public class ItemDAOImpl implements ItemDAO {
 		String SQLForBuyOffer = "SELECT * FROM offers WHERE items_id = ? AND is_complete = false AND buy =true ORDER BY offer_price ASC LIMIT 1";
 		String SQLForSellOffer = "SELECT * FROM offers WHERE items_id = ? AND is_complete = false AND buy =false ORDER BY offer_price DESC LIMIT 1";
 		String SQLForPrice = "SELECT * FROM offers LEFT JOIN trades ON offers.offers_id = trades.offers_id where offers.items_id = ? ORDER BY trades.trades_id desc LIMIT 1";
+		String SQLForBalance="SELECT * FROM offers WHERE is_complete=false AND buy=true AND items_id = ?";
 		PreparedStatement pstmt= null;
 		PreparedStatement pstmtForBuyOffer= null;
 		PreparedStatement pstmtForSellOffer= null;
 		PreparedStatement pstmtForPrice= null;
+		
 		ResultSet rs = null;
 		ResultSet rsForBuyOffer = null;
 		ResultSet rsForSellOffer = null;
 		ResultSet rsForPrice = null;
+		ResultSet rsForBalance = null;
+		PreparedStatement pstmtForBalance=null;
 		Connection con= null;
 		try {
 			con = db.connect();
@@ -183,7 +187,9 @@ public class ItemDAOImpl implements ItemDAO {
 				pstmtForBuyOffer = con.prepareStatement(SQLForBuyOffer);
 				pstmtForBuyOffer.setInt(1, itemsId);
 				rsForBuyOffer=pstmtForBuyOffer.executeQuery();
-				
+				pstmtForBalance = con.prepareStatement(SQLForBalance);
+				pstmtForBalance.setInt(1, itemsId);
+				rsForBalance = pstmtForBalance.executeQuery();
 				int buyOffer = cost/quantity;
 				if(rsForBuyOffer.next()) {
 					buyOffer = rsForBuyOffer.getInt("offer_price"); 
@@ -204,9 +210,29 @@ public class ItemDAOImpl implements ItemDAO {
 				if(rsForPrice.next()) {
 					price = rsForPrice.getInt("offer_price");
 				}
+				int consumedAmount=0;
+				while(rsForBalance.next()) {
+					consumedAmount += rsForBalance.getInt("quantity");
+				}
 				
 					
-				dto = new ItemListDTO(itemsId, code, name, category, stage, cost, quantity, openingDate, ipoDate, clearingDate, description, imgAddress, price, buyOffer, sellOffer);
+				dto = new ItemListDTO();
+				dto.setItemsId(itemsId);
+				dto.setCode(code);
+				dto.setName(name);
+				dto.setCategory(category);
+				dto.setStage(stage);
+				dto.setCost(cost);
+				dto.setQuantity(quantity);
+				dto.setOpeningDate(openingDate);
+				dto.setIpoDate(ipoDate);
+				dto.setClearingDate(clearingDate);
+				dto.setDescription(description);
+				dto.setImgAddress(imgAddress);
+				dto.setPrice(price);
+				dto.setBuyOffer(buyOffer);
+				dto.setSellOffer(sellOffer);
+				dto.setRemainingAmount(quantity-consumedAmount);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -229,6 +255,7 @@ public class ItemDAOImpl implements ItemDAO {
 		String SQLForBuyOffer = "SELECT * FROM offers WHERE items_id = ? AND is_complete = false AND buy =true ORDER BY offer_price ASC LIMIT 1";
 		String SQLForSellOffer = "SELECT * FROM offers WHERE items_id = ? AND is_complete = false AND buy =false ORDER BY offer_price DESC LIMIT 1";
 		String SQLForPrice = "SELECT * FROM offers LEFT JOIN trades ON offers.offers_id = trades.offers_id where offers.items_id = ? ORDER BY trades.trades_id desc LIMIT 1";
+		String SQLForBalance="SELECT * FROM offers WHERE is_complete=false AND buy=true AND items_id = ?";
 		PreparedStatement pstmt= null;
 		PreparedStatement pstmtForBuyOffer= null;
 		PreparedStatement pstmtForSellOffer= null;
@@ -237,6 +264,8 @@ public class ItemDAOImpl implements ItemDAO {
 		ResultSet rsForBuyOffer = null;
 		ResultSet rsForSellOffer = null;
 		ResultSet rsForPrice = null;
+		ResultSet rsForBalance = null;
+		PreparedStatement pstmtForBalance=null;
 		Connection con= null;
 		try {
 			con = db.connect();
@@ -258,7 +287,10 @@ public class ItemDAOImpl implements ItemDAO {
 				pstmtForBuyOffer = con.prepareStatement(SQLForBuyOffer);
 				pstmtForBuyOffer.setInt(1, itemsId);
 				rsForBuyOffer=pstmtForBuyOffer.executeQuery();
-				
+				rsForBuyOffer=pstmtForBuyOffer.executeQuery();
+				pstmtForBalance = con.prepareStatement(SQLForBalance);
+				pstmtForBalance.setInt(1, itemsId);
+				rsForBalance = pstmtForBalance.executeQuery();
 				int buyOffer = cost/quantity;
 				if(rsForBuyOffer.next()) {
 					buyOffer = rsForBuyOffer.getInt("offer_price"); 
@@ -271,7 +303,10 @@ public class ItemDAOImpl implements ItemDAO {
 				if(rsForSellOffer.next()) {
 					sellOffer = rsForSellOffer.getInt("offer_price"); 
 				}
-				
+				int consumedAmount=0;
+				while(rsForBalance.next()) {
+					consumedAmount += rsForBalance.getInt("quantity");
+				}
 				pstmtForPrice = con.prepareStatement(SQLForPrice);
 				pstmtForPrice.setInt(1, itemsId);
 				rsForPrice = pstmtForPrice.executeQuery();
@@ -281,7 +316,24 @@ public class ItemDAOImpl implements ItemDAO {
 				}
 				
 					
-				itemList.add(new ItemListDTO(itemsId, code, name, category, stage, cost, quantity, openingDate, ipoDate, clearingDate, description, imgAddress, price, buyOffer, sellOffer));
+				ItemListDTO dto = new ItemListDTO();
+				dto.setItemsId(itemsId);
+				dto.setCode(code);
+				dto.setName(name);
+				dto.setCategory(category);
+				dto.setStage(stage);
+				dto.setCost(cost);
+				dto.setQuantity(quantity);
+				dto.setOpeningDate(openingDate);
+				dto.setIpoDate(ipoDate);
+				dto.setClearingDate(clearingDate);
+				dto.setDescription(description);
+				dto.setImgAddress(imgAddress);
+				dto.setPrice(price);
+				dto.setBuyOffer(buyOffer);
+				dto.setSellOffer(sellOffer);
+				dto.setRemainingAmount(quantity-consumedAmount);
+				itemList.add(dto);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -303,6 +355,7 @@ public class ItemDAOImpl implements ItemDAO {
 		String SQLForBuyOffer = "SELECT * FROM offers WHERE items_id = ? AND is_complete = false AND buy =true ORDER BY offer_price ASC LIMIT 1";
 		String SQLForSellOffer = "SELECT * FROM offers WHERE items_id = ? AND is_complete = false AND buy =false ORDER BY offer_price DESC LIMIT 1";
 		String SQLForPrice = "SELECT * FROM offers LEFT JOIN trades ON offers.offers_id = trades.offers_id where offers.items_id = ? ORDER BY trades.trades_id desc LIMIT 1";
+		String SQLForBalance="SELECT * FROM offers WHERE is_complete=false AND buy=true AND items_id = ?";
 		PreparedStatement pstmt= null;
 		PreparedStatement pstmtForBuyOffer= null;
 		PreparedStatement pstmtForSellOffer= null;
@@ -311,6 +364,8 @@ public class ItemDAOImpl implements ItemDAO {
 		ResultSet rsForBuyOffer = null;
 		ResultSet rsForSellOffer = null;
 		ResultSet rsForPrice = null;
+		ResultSet rsForBalance = null;
+		PreparedStatement pstmtForBalance=null;
 		Connection con= null;
 		try {
 			con = db.connect();
@@ -333,6 +388,10 @@ public class ItemDAOImpl implements ItemDAO {
 				pstmtForBuyOffer.setInt(1, itemsId);
 				rsForBuyOffer=pstmtForBuyOffer.executeQuery();
 				
+				rsForBuyOffer=pstmtForBuyOffer.executeQuery();
+				pstmtForBalance = con.prepareStatement(SQLForBalance);
+				pstmtForBalance.setInt(1, itemsId);
+				rsForBalance = pstmtForBalance.executeQuery();
 				int buyOffer = cost/quantity;
 				if(rsForBuyOffer.next()) {
 					buyOffer = rsForBuyOffer.getInt("offer_price"); 
@@ -345,7 +404,10 @@ public class ItemDAOImpl implements ItemDAO {
 				if(rsForSellOffer.next()) {
 					sellOffer = rsForSellOffer.getInt("offer_price"); 
 				}
-				
+				int consumedAmount=0;
+				while(rsForBalance.next()) {
+					consumedAmount += rsForBalance.getInt("quantity");
+				}
 				pstmtForPrice = con.prepareStatement(SQLForPrice);
 				pstmtForPrice.setInt(1, itemsId);
 				rsForPrice = pstmtForPrice.executeQuery();
@@ -355,7 +417,24 @@ public class ItemDAOImpl implements ItemDAO {
 				}
 				
 					
-				itemList.add(new ItemListDTO(itemsId, code, name, category, stage, cost, quantity, openingDate, ipoDate, clearingDate, description, imgAddress, price, buyOffer, sellOffer));
+				ItemListDTO dto = new ItemListDTO();
+				dto.setItemsId(itemsId);
+				dto.setCode(code);
+				dto.setName(name);
+				dto.setCategory(category);
+				dto.setStage(stage);
+				dto.setCost(cost);
+				dto.setQuantity(quantity);
+				dto.setOpeningDate(openingDate);
+				dto.setIpoDate(ipoDate);
+				dto.setClearingDate(clearingDate);
+				dto.setDescription(description);
+				dto.setImgAddress(imgAddress);
+				dto.setPrice(price);
+				dto.setBuyOffer(buyOffer);
+				dto.setSellOffer(sellOffer);
+				dto.setRemainingAmount(quantity-consumedAmount);
+				itemList.add(dto);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();

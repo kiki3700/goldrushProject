@@ -116,11 +116,10 @@ public class TradeService {
 	
 		//일단 트레이트만 기록 
 		while(quantityBalance>0) {
-			int totalAmount=0;
 			System.out.println("사야될 양"+quantityBalance);
 			OfferDTO offerDTO = offerDAO.selectOfferBytrade(traderDTO);
 			System.out.println(offerDTO);
-			if(offerDTO.getQuantity()==0) return new ResponseDTO(1, totalAmount+"주 거래에 성공했습니다.");
+			if(offerDTO.getQuantity()==0) return new ResponseDTO(1, quantityBalance+"주 거래에 성공했습니다.");
 			System.out.println("이번 거래 대상자"+offerDTO);
 			TradeDTO dto = new TradeDTO();
 			dto.setMembersId(traderDTO.getMembersId());
@@ -147,49 +146,66 @@ public class TradeService {
 					System.out.println(tradeDAO.insertTrade(dto));					
 					quantityBalance= quantityBalance-offerDTO.getQuantity();
 				}
-				totalAmount+=payToQuantity;
 				System.out.println("거래후 남은양: "+quantityBalance);
 				int amount = payToQuantity*offerDTO.getOfferPrice();
 				System.out.println("얼마 냐?"+amount);
-			if(traderDTO.isBuy()) {
-				accountDAO.insertSellResult(offerDTO.getMembersId(), amount);
-				System.out.println("입급완료");
-				accountDAO.insertBuyResult(dto.getMembersId(),-amount);
-				System.out.println("출금완료");
-				InventoryDTO buyerDTO = new InventoryDTO();
-				
-				buyerDTO.setMembersId(dto.getMembersId());
-				buyerDTO.setItemsId(offerDTO.getItemsId());
-				buyerDTO.setQuantity(payToQuantity);
-				buyerDTO.setPrice(offerDTO.getOfferPrice());
+				transferStock(dto, offerDTO, payToQuantity);
+				transferCash(dto, offerDTO, amount);
+		}
+		return new ResponseDTO(1," 거래에 성공했습니다.");
+	}
+	
+	public void transferStock(TradeDTO tradeDTO, OfferDTO offerDTO, int payToQuantity) {
+		if(!offerDTO.isBuy()) {
+			if(offerDTO.getMembersId()!=1) {
 				InventoryDTO sellerDTO = new InventoryDTO();
-				System.out.println(buyerDTO);
 				sellerDTO.setMembersId(offerDTO.getMembersId());
 				sellerDTO.setItemsId(offerDTO.getItemsId());
 				sellerDTO.setQuantity(-payToQuantity);
 				sellerDTO.setPrice(offerDTO.getOfferPrice());
 				System.out.println(sellerDTO);
-				inventoryDAO.insertInventory(buyerDTO);
-				inventoryDAO.insertInventory(sellerDTO);
-			}else {
-				accountDAO.insertSellResult(dto.getMembersId(), amount);
-				accountDAO.insertBuyResult(offerDTO.getMembersId(),-amount);
-				InventoryDTO buyerDTO = new InventoryDTO();
-				buyerDTO.setMembersId(offerDTO.getMembersId());
-				buyerDTO.setItemsId(offerDTO.getItemsId());
-				buyerDTO.setQuantity(payToQuantity);
-				buyerDTO.setPrice(offerDTO.getOfferPrice());
-				InventoryDTO sellerDTO = new InventoryDTO();
-				sellerDTO.setMembersId(dto.getMembersId());
-				sellerDTO.setItemsId(offerDTO.getItemsId());
-				sellerDTO.setQuantity(-payToQuantity);
-				sellerDTO.setPrice(offerDTO.getOfferPrice());
-				inventoryDAO.insertInventory(buyerDTO);
 				inventoryDAO.insertInventory(sellerDTO);
 			}
+			InventoryDTO buyerDTO = new InventoryDTO();
+			buyerDTO.setMembersId(tradeDTO.getMembersId());
+			buyerDTO.setItemsId(offerDTO.getItemsId());
+			buyerDTO.setQuantity(payToQuantity);
+			buyerDTO.setPrice(offerDTO.getOfferPrice());
+			System.out.println(buyerDTO);
+			inventoryDAO.insertInventory(buyerDTO);
+
+		}else {
+			InventoryDTO buyerDTO = new InventoryDTO();
+			buyerDTO.setMembersId(offerDTO.getMembersId());
+			buyerDTO.setItemsId(offerDTO.getItemsId());
+			buyerDTO.setQuantity(payToQuantity);
+			buyerDTO.setPrice(offerDTO.getOfferPrice());
+			InventoryDTO sellerDTO = new InventoryDTO();
+			sellerDTO.setMembersId(tradeDTO.getMembersId());
+			sellerDTO.setItemsId(offerDTO.getItemsId());
+			sellerDTO.setQuantity(-payToQuantity);
+			sellerDTO.setPrice(offerDTO.getOfferPrice());
+			inventoryDAO.insertInventory(buyerDTO);
+			inventoryDAO.insertInventory(sellerDTO);
 		}
-		return new ResponseDTO(1," 거래에 성공했습니다.");
 	}
+	public void transferCash(TradeDTO tradeDTO, OfferDTO offerDTO, int amount) {
+		if(!offerDTO.isBuy()) {
+			if(offerDTO.getMembersId()!=1) {
+			accountDAO.insertSellResult(offerDTO.getMembersId(), amount);
+			System.out.println("입급완료");
+			}
+			accountDAO.insertBuyResult(tradeDTO.getMembersId(),-amount);
+			System.out.println("출금완료");
+		}else {
+			accountDAO.insertSellResult(tradeDTO.getMembersId(), amount);
+			if(offerDTO.getMembersId()!=1) {
+			accountDAO.insertBuyResult(offerDTO.getMembersId(),-amount);
+			}
+		}
+	}
+	
+	
 	
 	public ResponseDTO initialPublicOffering(int itemsId) {
 		List<OfferDTO> offers =offerDAO.selectOffersForIpo(itemsId);
@@ -231,10 +247,14 @@ public class TradeService {
 		}
 		return new ResponseDTO(1, "IPO 완료");
 	}
-	public ResponseDTO clearing(int itemsId, int price) {
-		offerDAO.deleteOffersForClearing(itemsId);
+	public ResponseDTO clear(int itemsId, int price) {
 		List<InventoryDTO> listdto = inventoryDAO.selectItems(itemsId);
+		ItemDTO itemDTO = itemDAO.selectItem(itemsId);
+		int totalQuantity = itemDTO.getQuantity();
+		int returnForMember = price/totalQuantity;
 		for(InventoryDTO dto : listdto) {
+			int i = 1;
+			System.out.println(i+" 처리해야할 인벤토리 : "+dto);
 			OfferDTO offerDTO = new OfferDTO();
 			offerDTO.setBuy(false);
 			offerDTO.setItemsId(itemsId);
@@ -253,36 +273,36 @@ public class TradeService {
 			inventoryDTO.setMembersId(offerDTO.getMembersId());
 			inventoryDTO.setQuantity(-offerDTO.getQuantity());
 			inventoryDAO.insertInventory(inventoryDTO);
-			accountDAO.insertClearingResult(offerDTO.getItemsId(), offerDTO.getQuantity()*price);
+			accountDAO.insertClearingResult(offerDTO.getMembersId(), offerDTO.getQuantity()*returnForMember);
+			i++;
 		}
 		return new ResponseDTO(1,"청산 완료");
 	}
+	
 	
 	public void changeStage() {
 		List<ItemDTO> listDTO = itemDAO.selectItemList();
 		LocalDate currentDate = LocalDate.now();
 		for(ItemDTO item : listDTO) {
-			System.out.println("before"+item);
 			switch(item.getStage()) {
 			case "unopen":
-				if(item.getOpeningDate().toLocalDateTime().toLocalDate().compareTo(currentDate)>=0) {
+				if(item.getOpeningDate().toLocalDateTime().toLocalDate().compareTo(currentDate)<=0) {
 					itemDAO.updateStage("open", item.getItemsId());
+
 				}
 				break;
 			case "open":
-				if(item.getIpoDate().toLocalDateTime().toLocalDate().compareTo(currentDate)>=0) {
+				if(item.getIpoDate().toLocalDateTime().toLocalDate().compareTo(currentDate)<=0) {
 					itemDAO.updateStage("trade", item.getItemsId());
-					System.out.println("ipo start");
 					initialPublicOffering(item.getItemsId());
 				}
 				break;
 			case "trade":
-				if(item.getClearingDate().toLocalDateTime().toLocalDate().compareTo(currentDate)>=0) {
-					itemDAO.updateStage("clear", item.getItemsId());
+				if(item.getClearingDate().toLocalDateTime().toLocalDate().compareTo(currentDate)<=0) {
+					itemDAO.updateStage("clear", item.getItemsId());					
 				}
 				break;
 			default: System.out.println("머야 이거"+item); 
-		System.out.println("after : "+item);
 			}
 		}
 	}
