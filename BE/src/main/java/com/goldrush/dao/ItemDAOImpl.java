@@ -211,8 +211,8 @@ public class ItemDAOImpl implements ItemDAO {
 					price = rsForPrice.getInt("offer_price");
 				}
 				int consumedAmount=0;
-				if(rsForBalance.next()) {
-					consumedAmount = rsForBalance.getInt("quantity");
+				while(rsForBalance.next()) {
+					consumedAmount += rsForBalance.getInt("quantity");
 				}
 				
 					
@@ -304,8 +304,8 @@ public class ItemDAOImpl implements ItemDAO {
 					sellOffer = rsForSellOffer.getInt("offer_price"); 
 				}
 				int consumedAmount=0;
-				if(rsForBalance.next()) {
-					consumedAmount = rsForBalance.getInt("quantity");
+				while(rsForBalance.next()) {
+					consumedAmount += rsForBalance.getInt("quantity");
 				}
 				pstmtForPrice = con.prepareStatement(SQLForPrice);
 				pstmtForPrice.setInt(1, itemsId);
@@ -405,8 +405,8 @@ public class ItemDAOImpl implements ItemDAO {
 					sellOffer = rsForSellOffer.getInt("offer_price"); 
 				}
 				int consumedAmount=0;
-				if(rsForBalance.next()) {
-					consumedAmount = rsForBalance.getInt("quantity");
+				while(rsForBalance.next()) {
+					consumedAmount += rsForBalance.getInt("quantity");
 				}
 				pstmtForPrice = con.prepareStatement(SQLForPrice);
 				pstmtForPrice.setInt(1, itemsId);
