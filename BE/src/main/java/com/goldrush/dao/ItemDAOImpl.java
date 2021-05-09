@@ -11,7 +11,9 @@ import java.util.List;
 
 import com.goldrush.dto.ItemDTO;
 import com.goldrush.dto.ItemListDTO;
+import com.goldrush.dto.PriceGraph;
 import com.goldrush.dto.ResponseDTO;
+
 
 public class ItemDAOImpl implements ItemDAO {
 	DB db;
@@ -150,21 +152,26 @@ public class ItemDAOImpl implements ItemDAO {
 	@Override
 	public ItemListDTO selectItemForView(int itemsId) {
 		ItemListDTO dto=null;
+		List<PriceGraph> priceGraph = new ArrayList<PriceGraph>();
 		String SQL = "SELECT * FROM items WHERE items_id = ?";
 		String SQLForBuyOffer = "SELECT * FROM offers WHERE items_id = ? AND is_complete = false AND buy =true ORDER BY offer_price ASC LIMIT 1";
 		String SQLForSellOffer = "SELECT * FROM offers WHERE items_id = ? AND is_complete = false AND buy =false ORDER BY offer_price DESC LIMIT 1";
 		String SQLForPrice = "SELECT * FROM offers LEFT JOIN trades ON offers.offers_id = trades.offers_id where offers.items_id = ? ORDER BY trades.trades_id desc LIMIT 1";
 		String SQLForBalance="SELECT * FROM offers WHERE is_complete=false AND buy=true AND items_id = ?";
+		String SQLForGraph = "select DATE(trades.time_stamp) as date, avg(offer_price) as price  from trades left join offers on trades.offers_id = offers.offers_id where offers.items_id= ? Group BY date";
+		
 		PreparedStatement pstmt= null;
 		PreparedStatement pstmtForBuyOffer= null;
 		PreparedStatement pstmtForSellOffer= null;
 		PreparedStatement pstmtForPrice= null;
+		PreparedStatement pstmtForGraph = null;
 		
 		ResultSet rs = null;
 		ResultSet rsForBuyOffer = null;
 		ResultSet rsForSellOffer = null;
 		ResultSet rsForPrice = null;
 		ResultSet rsForBalance = null;
+		ResultSet rsForGraph= null;
 		PreparedStatement pstmtForBalance=null;
 		Connection con= null;
 		try {
@@ -214,6 +221,15 @@ public class ItemDAOImpl implements ItemDAO {
 				while(rsForBalance.next()) {
 					consumedAmount += rsForBalance.getInt("quantity");
 				}
+				pstmtForGraph = con.prepareStatement(SQLForGraph);
+				pstmtForGraph.setInt(1,itemsId);
+				rsForGraph = pstmtForGraph.executeQuery();
+				while(rsForGraph.next()) {
+					PriceGraph data = new PriceGraph();
+					data.setDate(rsForGraph.getTimestamp("data"));
+					data.setPrice(rs.getInt("price"));
+					priceGraph.add(data);					
+				}
 				
 					
 				dto = new ItemListDTO();
@@ -233,6 +249,7 @@ public class ItemDAOImpl implements ItemDAO {
 				dto.setBuyOffer(buyOffer);
 				dto.setSellOffer(sellOffer);
 				dto.setRemainingAmount(quantity-consumedAmount);
+				dto.setPriceGraph(priceGraph);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();

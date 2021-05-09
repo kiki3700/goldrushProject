@@ -66,6 +66,7 @@ public class HomeController {
 		if(session.getAttribute("responseToken2legger")==null) {
 			AccountService ser = new AccountService();
 			ResponseToken2legger dto = ser.getTokenOAuth2legger();
+			System.out.println(dto);
 			session.setAttribute("goldrush_openbanking", dto);
 			session.setMaxInactiveInterval(dto.getExpires_in());
 		}

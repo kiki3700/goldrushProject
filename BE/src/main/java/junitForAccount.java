@@ -14,6 +14,7 @@ public class junitForAccount {
 		
 		System.out.println(dao.selectBalacne(1));
 		System.out.println(dao.selectAccountLog(2));
+		System.out.println(dao.selectCount());
 	}
 
 }
