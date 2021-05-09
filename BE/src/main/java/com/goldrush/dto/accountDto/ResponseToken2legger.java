@@ -6,7 +6,8 @@ public class ResponseToken2legger {
 	private int expires_in;
 	private String scope = "oob";
 	private String client_use_code=	"F001234560";
-	
+
+
 	public String getAccess_token() {
 		return access_token;
 	}

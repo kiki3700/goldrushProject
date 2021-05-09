@@ -22,11 +22,6 @@ public class ItemListDTO {
 	private int sellOffer;
 	private int RemainingAmount;
 	private List<PriceGraph> priceGraph;
-	
-	class PriceGraph{
-		LocalDate date;
-		int price;
-	}
 
 	public int getItemsId() {
 		return itemsId;
@@ -172,7 +167,7 @@ public class ItemListDTO {
 				+ ", imgAddress=" + imgAddress + ", price=" + price + ", buyOffer=" + buyOffer + ", sellOffer="
 				+ sellOffer + ", RemainingAmount=" + RemainingAmount + ", priceGraph=" + priceGraph + "]";
 	}
-	
+
 	
 	
 
