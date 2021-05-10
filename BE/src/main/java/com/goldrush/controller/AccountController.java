@@ -1,6 +1,8 @@
 package com.goldrush.controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -36,12 +38,19 @@ import com.goldrush.service.accountService.AccountService;
 public class AccountController {
 	AccountService ser = new AccountService();
 	@RequestMapping(value="/oauth")
-	public String oauth1(@CookieValue(name="membersId") int membersId, @CookieValue(name="amount") int amount, @CookieValue(name="withdraw") boolean withdraw) {
-		ser.checkWithdrawCondition(withdraw, membersId, amount);
+	public String oauth1(@CookieValue(name="open-banking", defaultValue="null") String banking, @CookieValue(name="membersId", defaultValue="2") int membersId, @CookieValue(name="amount", defaultValue="100") int amount, @CookieValue(name="withdraw", defaultValue="false") boolean withdraw) {
+		if(ser.checkWithdrawCondition(withdraw, membersId, amount)) return "/bank/noEnoughMoney";
+		if(banking.equals("null")) return "redirect:"+ser.OAuth3legged();
 		return "redirect:"+ser.OAuth3legged();
 		}
+	
+	@RequestMapping(value="/noEnoughMoney")
+	public @ResponseBody ResponseEntity<ResponseDTO> noMoney() {
+		return new ResponseEntity<ResponseDTO>(new ResponseDTO(0,"잔액이 충분치 않습니다."),HttpStatus.BAD_REQUEST);
+		}
+	
 	@RequestMapping(value="/auth_second", method=RequestMethod.GET)
-	public String oauth2(@CookieValue(name="withdraw") boolean withdraw, HttpServletRequest request,@RequestParam("code") String code, @RequestParam("scope") String scope, HttpServletResponse response) {
+	public String oauth2(@CookieValue(name="withdraw", defaultValue="false") boolean withdraw, HttpServletRequest request,@RequestParam("code") String code, @RequestParam("scope") String scope, HttpServletResponse response) {
 
 		RequestToken3legger dto = new RequestToken3legger();
 		dto.setCode(code);
@@ -50,15 +59,19 @@ public class AccountController {
 		String cookieString;
 		try {
 			cookieString = ser.makeCookieString(token, information);
-			Cookie cookie = new Cookie("open-banking",cookieString);
+			System.out.println(cookieString);
+			Cookie cookie = new Cookie("open-banking",URLEncoder.encode(cookieString,"UTF-8"));
 			cookie.setMaxAge(token.getExpires_in());
 			response.addCookie(cookie);
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		if(withdraw) return "withdraw";
-		return "deposit";
+		if(withdraw) return "redirect/bank/withdraw";
+		return "redirect:/bank/deposit";
 	}
 	@RequestMapping(value="withdraw")
 	public @ResponseBody ResponseEntity<String> withdraw(@CookieValue(name="open-banking") String banking,
@@ -68,10 +81,22 @@ public class AccountController {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return new ResponseEntity("fase",HttpStatus.BAD_REQUEST);
+			return new ResponseEntity("false",HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity("success",HttpStatus.ACCEPTED);
 	}
-	
+	@RequestMapping(value="deposit")
+	public @ResponseBody ResponseEntity<String> deposit(HttpServletRequest request,@CookieValue(name="open-banking", defaultValue="null") String banking,
+			@CookieValue(name="amount", defaultValue="100") int amount, @CookieValue(name="membersId", defaultValue="2") int membersId){
+		try {
+			System.out.println(banking);
+			ser.deposit(request, banking, membersId, amount);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new ResponseEntity("fasle",HttpStatus.BAD_REQUEST);
+		}
+		return  new ResponseEntity("success",HttpStatus.ACCEPTED);
+	}
 }
 
