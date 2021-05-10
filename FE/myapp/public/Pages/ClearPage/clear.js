@@ -41,7 +41,10 @@ const clear = `
               </div>
             </div>
             <div class="item_detail col-lg-7 col-xs-7">
-            
+              <div class="basic">
+                <p><span class="glyphicon glyphicon-music" aria-hidden="true"> 상품 청산!</span></p>
+              
+              </div>
             </div>
           </div>
         </div>

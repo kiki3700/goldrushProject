@@ -56,7 +56,7 @@ const catalogue = `
           </div>
           <div class="item_detail col-lg-7 col-xs-7">
             <div class="basic">
-               <p><span class="glyphicon glyphicon-search" aria-hidden="true"> 보물을 찾아보세요!</span></p>
+               <p><span class="glyphicon glyphicon-search" aria-hidden="true"> Find Your Piece</span></p>
                
             </div>
           </div>

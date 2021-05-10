@@ -26,6 +26,12 @@ export default class sellView {
     this.itemName.innerHTML = `${item.name} : 매도 장터`;
   }
 
+  BindReserveItem = (count) => {
+    this.reserveCount = document.querySelector('.reserve_item');
+    console.log(this.reserveCount);
+    this.reserveCount.value = `보유량 : ${count}`;
+  }
+
   BindList = (offer) => {
     this.table = document.querySelector('.table tbody');
     

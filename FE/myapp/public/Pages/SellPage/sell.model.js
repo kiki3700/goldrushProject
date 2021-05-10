@@ -94,4 +94,22 @@ export default class SellModel {
 
       return offer;
   }
+
+  GetPortfolio(membersId) {
+    const portfolios = fetch(`http://192.168.1.70:8080/member/portfolio/?membersId=${membersId}`, {
+      method: 'GET',
+    })
+    .then(
+      response => response.json(),
+      error => error)
+    .then((portfolios) => {
+      console.log(portfolios);
+      return portfolios;
+    })
+    .catch((error) => {
+      alert('읽어오는 데 실패하였습니다.', error);
+    })
+    
+    return portfolios;
+  }
 }

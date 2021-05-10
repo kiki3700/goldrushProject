@@ -35,7 +35,7 @@ export default class CatalogueView{
     if ( !window.location.hash.match(/\/[a-zA-z]+/) ) {
       for (var item of list) {
         console.log('item : ', item);
-        if (item.stage !== 'unopen') {
+        if (item.stage !== 'unopen' && item.stage !== 'close') {
           let li = document.createElement('li');
           li.className = 'item_li';
           let textNode = `
@@ -49,8 +49,8 @@ export default class CatalogueView{
               </div>
             </a>
           `
-		  li.insertAdjacentHTML('afterbegin', textNode);
-		  itemUl.appendChild(li);
+        li.insertAdjacentHTML('afterbegin', textNode);
+        itemUl.appendChild(li);
         }
       }
     } else {
@@ -92,6 +92,7 @@ export default class CatalogueView{
       textNode = `
     <div style="overflow:auto; width:100%; height: 100%;">
       <div class="row contract">
+        <input class="contract_count form-control" type="number" placeholder="청약 개수"/>
         <button class="btn btn-lg col-lg-8 col-xs-8 pull-left contract_btn"> 청약 </button>
       </div>  
       <div style="overflow:auto; width:100%; height: 69vh;">
@@ -108,7 +109,11 @@ export default class CatalogueView{
             <p class="col-lg-6 col-xs-6">$${item.cost}</p>
           </div>
           <div class="row item_info item_piece text-center">
-            <p class="col-lg-6 col-xs-6">상품 조각</p>
+            <p class="col-lg-6 col-xs-6">상품 남은 조각</p>
+            <p class="col-lg-6 col-xs-6">${item.remainingAmount}</p>
+          </div>
+          <div class="row item_info item_piece text-center">
+            <p class="col-lg-6 col-xs-6">상품 전체 조각</p>
             <p class="col-lg-6 col-xs-6">${item.quantity}</p>
           </div>
           <div class="row item_info item_piece_price text-center" >
@@ -118,9 +123,6 @@ export default class CatalogueView{
           <div class="row item_info item_explain text-center">
             <p class="col-lg-12">
               ${item.description}
-          </div>
-          <div class="chart">
-            <h1>차트가 들어갈 공간입니다.</h1>
           </div>
         </div>
       </div>
@@ -197,17 +199,48 @@ export default class CatalogueView{
             <p class="col-lg-12">
               ${item.description}
           </div>
-          <div class="chart">
-            <h1>차트가 들어갈 공간입니다.</h1>
-          </div>
         </div>
       </div>
     </div>
     `
     }
-    
+    // 여기에 차트 관련 코드 작성 예정
     div.insertAdjacentHTML('afterbegin', textNode);
     row.appendChild(div);
+  }
+
+  MakeChart = () => {
+
+  }
+
+  BindContractButton = (callback) => {
+    this.contractButton = document.querySelector('.contract_btn');
+    this.contractInput = document.querySelector('.contract_count');
+    if ( !this.contractButton ) {
+      console.log('버튼이 없어요!');
+    } else {
+      this.contractButton.addEventListener('click', callback);
+    }
+  }
+
+  BindContractInput = (callback)=> {
+    this.eventContractInput = document.querySelector('.contract_count');
+    this.leftAmount = document.querySelector('.item_container div:nth-child(3) p:nth-child(2)');
+    console.log(this.leftAmount);
+    if ( !this.leftAmount ){
+      console.log('빈값입니다!');
+    } else {
+      this.leftAmount = Number(this.leftAmount.innerHTML);
+    }
+    
+    
+    if ( !this.eventContractInput ) {
+      console.log('인풋이 없어요!');
+    } else {
+      console.log(this.eventContractInput);
+      this.eventContractInput.addEventListener('keyup', callback);
+    }
+    
   }
 
   BindLogoutButton = (callback) => {
