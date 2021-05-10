@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -38,10 +39,11 @@ import com.goldrush.service.accountService.AccountService;
 public class AccountController {
 	AccountService ser = new AccountService();
 	@RequestMapping(value="/oauth")
-	public String oauth1(@CookieValue(name="open-banking", defaultValue="null") String banking, @CookieValue(name="membersId", defaultValue="2") int membersId, @CookieValue(name="amount", defaultValue="100") int amount, @CookieValue(name="withdraw", defaultValue="false") boolean withdraw) {
-		if(ser.checkWithdrawCondition(withdraw, membersId, amount)) return "/bank/noEnoughMoney";
-		if(banking.equals("null")) return "redirect:"+ser.OAuth3legged();
-		return "redirect:"+ser.OAuth3legged();
+	public RedirectView oauth1(@CookieValue(name="open-banking", defaultValue="null") String banking, @CookieValue(name="membersId", defaultValue="2") int membersId, @CookieValue(name="amount", defaultValue="100") int amount, @CookieValue(name="withdraw", defaultValue="true") boolean withdraw, RedirectAttributes attributes) {
+		if(ser.checkWithdrawCondition(withdraw, membersId, amount)) return new RedirectView("/bank/noEnoughMoney");
+//		if(banking.equals("null")) return "redirect:"+ser.OAuth3legged();
+	          attributes.addAttribute("Access-Control-Allow-Origin", "*");
+	          return new RedirectView(ser.OAuth3legged());
 		}
 	
 	@RequestMapping(value="/noEnoughMoney")
@@ -70,33 +72,33 @@ public class AccountController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(withdraw) return "redirect/bank/withdraw";
+		if(withdraw) return "redirect:/bank/withdraw";
 		return "redirect:/bank/deposit";
 	}
 	@RequestMapping(value="withdraw")
-	public @ResponseBody ResponseEntity<String> withdraw(@CookieValue(name="open-banking") String banking,
-			@CookieValue(name="amount") int amount, @CookieValue(name="membersId") int membersId) {
+	public String withdraw(@CookieValue(name="open-banking") String banking,
+			@CookieValue(name="amount", defaultValue="100") int amount, @CookieValue(name="membersId", defaultValue="2") int membersId) {
 		try {
 			ser.withdraw(banking, amount, membersId);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return new ResponseEntity("false",HttpStatus.BAD_REQUEST);
+			return "redirect:http://192.168.1.70:8080/#userInfo";
 		}
-		return new ResponseEntity("success",HttpStatus.ACCEPTED);
+		return "redirect:http://192.168.1.70:8080/#userInfo";
 	}
 	@RequestMapping(value="deposit")
-	public @ResponseBody ResponseEntity<String> deposit(HttpServletRequest request,@CookieValue(name="open-banking", defaultValue="null") String banking,
-			@CookieValue(name="amount", defaultValue="100") int amount, @CookieValue(name="membersId", defaultValue="2") int membersId){
+	public String deposit(HttpServletRequest request,@CookieValue(name="open-banking", defaultValue="null") String banking,
+			@CookieValue(name="amount") int amount, @CookieValue(name="membersId") int membersId){
 		try {
 			System.out.println(banking);
 			ser.deposit(request, banking, membersId, amount);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return new ResponseEntity("fasle",HttpStatus.BAD_REQUEST);
+			return "redirect:http://192.168.1.70:8080/#userInfo";
 		}
-		return  new ResponseEntity("success",HttpStatus.ACCEPTED);
+		return  "redirect:http://192.168.1.70:8080/#userInfo";
 	}
 }
 
