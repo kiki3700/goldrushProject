@@ -198,7 +198,6 @@ public class AccountService {
 		MultiValueMap<String, Object> postParameters = new LinkedMultiValueMap<>();
 		MultiValueMap<String, Object> parameters = new LinkedMultiValueMap<>();
 		BankingUtils utils = new BankingUtils();
-		DepositReqList reqList =new DepositReqList();
 		System.out.println(dto.getAccess_token());
 		parameters.add("tran_no", "1");
 		parameters.add("bank_tran_id", utils.getBank_tran_id());
@@ -209,18 +208,7 @@ public class AccountService {
 		parameters.add("req_client_num",String.valueOf(membersId));
 		parameters.add("req_client_fintech_use_num",map.get("fintech-num"));
 		parameters.add("transfer_purpose","TR");
-//		reqList.setBank_tran_id(utils.getBank_tran_id());
-//		reqList.setFintech_use_num(map.get("fintech-num"));
-//		reqList.setTran_amt(String.valueOf(amount));
-//		reqList.setReq_client_name(map.get("name"));
-//		reqList.setReq_client_fintech_use_num(map.get("fintech-num"));
-//		reqList.setReq_client_num(String.valueOf(membersId));
-		List<DepositReqList> reqList1= new ArrayList();
-		depo.setTran_dtime(BankingUtils.getTime());
-		reqList1.add(reqList);
-		depo.setReq_list(reqList1);
 
-		
 		postParameters.add("cntr_account_type","N");
 		postParameters.add("cntr_account_num",depo.getCntrt_account_num());
 		postParameters.add("wd_pass_phrase","NONE");
@@ -235,7 +223,8 @@ public class AccountService {
 		HttpEntity<String> r = new HttpEntity<>(json.replace("[\"", "\"").replace("\"]","\""),httpHeaders);
 		ResponseDeposit depositResult=restTemplate.postForObject(url, r, ResponseDeposit.class);
 		depositResult.getRes_list();
-		accountDAO.insertDepositResult(membersId, amount);
+		
+		System.out.println(accountDAO.insertDepositResult(membersId, amount));
 		System.out.println(depositResult);
 		return depositResult;
 	}

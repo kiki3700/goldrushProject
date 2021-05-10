@@ -73,6 +73,7 @@ export default class UserInfoController {
     setCookie('withdraw', false);
     
     //this.model.GetCharge();
+    location.href = "http://192.168.1.70:8080/bank/oauth";
   }
   clickDisChargeBtn = () => {
     var setCookie = function(name, value, day) {
@@ -116,7 +117,7 @@ export default class UserInfoController {
     setCookie('amount', Number(this.view.chargeAmount.value));
     setCookie('withdraw', true);
 
-    
+    location.href = "http://192.168.1.70:8080/bank/oauth";
     console.log('출금버튼이 눌렸다.');
   }
 
