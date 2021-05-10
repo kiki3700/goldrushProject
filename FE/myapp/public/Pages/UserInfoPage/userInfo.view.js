@@ -47,13 +47,13 @@ export default class UserInfoView{
       <tr>
         <th scope="row">${item.name}</th>
         <td>$${item.averagePrice}</td>
-        <td>$${item.price}</td>
+        <td>$${item.price * item.quantity}</td>
         <td>${item.quantity}조각</td>
         <td>${item.rateOfReturn.toFixed(2)}%</td>
       </tr>
       `
       totalAverage += item.averagePrice;
-      totalPrice += item.price;
+      totalPrice += (item.price * item.quantity);
       totalAmount += item.quantity;
       totalRateOfReturn += item.rateOfReturn;
       count++;
@@ -71,8 +71,6 @@ export default class UserInfoView{
     
     this.portfolioBody.insertAdjacentHTML('afterbegin', tableNode);  
     this.portfolioFoot.insertAdjacentHTML('afterbegin', tableFootNode);
-
-
   }
 
   BindOfferList = (offer) => {
@@ -89,13 +87,16 @@ export default class UserInfoView{
       return year + "-" + month.substr(-2) + "-" + day.substr(-2) + " " + hour.substr(-2) + ":" + minute.substr(-2); 
     }
     let tableNode = ``;
+    console.log('오퍼가 궁금해!', offer);
     for(const item of offer) {
       tableNode += `
       <tr>
-        <th scope="row">${item.name}</th>
+        <th class="offerId" scope="row">${item.offersId}</th>
+        <td>${item.name}</td>
         <td>${item.offerPrice}</td>
         <td>${item.quantity}</td>
         <td>${UnixTimestamp(item.timeStamp)}</td>
+        <td><button class="btn">취소</button></td>
       </tr>
       `
     }
@@ -155,14 +156,29 @@ export default class UserInfoView{
   }
 
   BindChargeButton = (callback) => {
+    this.chargeAmount = document.querySelector('.amount');
+    
     this.chargeButton.addEventListener('click', callback);
+    
   }
   BindDischargeButton = (callback) => {
+    this.chargeAmount = document.querySelector('.amount');
     this.dischargeButton.addEventListener('click', callback);
   }
-  BindMailForm = (callback) => {
-    this.mailForm.addEventListener('keyup', callback);
+
+  BindCancelOffer = (callback) => {
+    this.cancelOffer = document.querySelectorAll('.offer_log_table .btn')
+    if ( !this.cancelOffer ) {
+      console.log('캔슬오퍼할 것이 없어오.')
+    } else {
+      this.cancelOffer.forEach(btn => {
+        this.offersId = document.querySelectorAll('.offerId')
+        btn.addEventListener('click', callback)
+      });
+    }
+    
   }
+
   BindfirstPwdForm = (callback) => {
     this.firstPwdForm.addEventListener('keyup', callback);
   }

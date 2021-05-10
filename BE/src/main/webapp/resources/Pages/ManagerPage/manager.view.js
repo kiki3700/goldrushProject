@@ -23,22 +23,23 @@ export default class ManagerView{
     let itemUl = document.querySelector('.item_ul');
     
     for (var item of list) {
-      
-      let li = document.createElement('li');
-      li.className = 'item_li';
-      let textNode = `
+      if (item.stage !== "close"){
+        let li = document.createElement('li');
+        li.className = 'item_li';
+        let textNode = `
         <a href = '#manager/${item.itemsId}'>
-          <div class="row item_small">
-          <div class="image_box col-lg-4 col-xs-4">
-          <img src="/css/img/item_small_noback.png" alt="item_image_small">
+            <div class="row item_small">
+            <div class="image_box col-lg-4 col-xs-4">
+            <img src="/css/img/item_small_noback.png" alt="item_image_small">
+              </div>
+              <p class="col-lg-4 col-xs-5 text-center">${item.name} <br> ${item.stage}</p>
+              <p class="col-lg-4 col-xs-5 text-center">수익률  ${Math.round((item.price - (item.cost/item.quantity))/(item.cost/item.quantity))}% <br> 현재가 ${item.price}</p>
             </div>
-            <p class="col-lg-4 col-xs-5 text-center">${item.name} <br> ${item.stage}</p>
-            <p class="col-lg-4 col-xs-5 text-center">수익률  ${Math.round((item.price - (item.cost/item.quantity))/(item.cost/item.quantity))}% <br> 현재가 ${item.price}</p>
-          </div>
-        </a>
-      `
-      li.insertAdjacentHTML('afterbegin',textNode);
-      itemUl.appendChild(li);
+          </a>
+        `
+        li.insertAdjacentHTML('afterbegin',textNode);
+        itemUl.appendChild(li);
+      }
     }
   }
 
@@ -132,19 +133,33 @@ export default class ManagerView{
 
   BindUpdateItem = (callback) => {
     this.updateItem = document.querySelector('.update_item');
+    if ( !this.updateItem ) {
+      console.log('없데이트!')
+    } else {
+      this.formData = document.querySelector('.enroll_form')
+      this.updateItem.addEventListener('click', callback);
+    }
     
-    this.formData = document.querySelector('.enroll_form')
-    this.updateItem.addEventListener('click', callback);
   } 
   BindDeleteItem = (callback) => {
     this.deleteItem = document.querySelector('.delete_item');
-    this.deleteItem.addEventListener('click', callback);
+    if ( !this.deleteItem ) {
+      console.log('삭제버튼없워오!');
+    } else {
+      this.deleteItem.addEventListener('click', callback);
+    }
+    
   }
 
   BindInputButton = (callback) => {
     this.inputBtn = document.querySelector('#image_uploads');
-    this.previewImage = document.querySelector('.preview');
-    this.inputBtn.addEventListener('change', callback);
+    if( !this.inputBtn ) {
+      console.log('요소가 없을땐, 몬달아오! 없워오!')
+    } else {
+      this.previewImage = document.querySelector('.preview');
+      this.inputBtn.addEventListener('change', callback);
+    }
+    
   }
   
   BindLogoutButton = (callback) => {

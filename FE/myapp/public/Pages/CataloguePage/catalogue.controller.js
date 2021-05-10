@@ -51,13 +51,38 @@ export default class CatalogueController{
     
     await this.getlist(this.model.GetItemList);
     await this.getItem(this.model.GetItem);
-
+    this.view.BindContractInput(this.inputNumber);
+    this.view.BindContractButton(this.clickContract);
     this.view.BindLogoutButton(this.clickLogout);
+    
   }
 
   clickLogout = () => {
     console.log('작동이 왜 앙대?')
     window.localStorage.removeItem('userInfo');
   }
+
+  inputNumber = () => {
+    let amount = Number(this.view.eventContractInput.value);
+    const left = this.view.leftAmount
+    if (amount > left) {
+      this.view.eventContractInput.value = '';
+      alert(`${left} 이상은 구입할 수 없습니다.`);
+    }
+  }
+
+  clickContract = async() => {
+    
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    const itemid = location.hash.match(/[0-9]*$/)[0];
+    const quantity = Number(this.view.contractInput.value);
+    
+    console.log(userInfo.membersId)
+    console.log(itemid);
+    console.log(quantity);
+    await this.model.PostMakeSubscription(userInfo.membersId, itemid, quantity);
+    location.reload();
+  }
+
 
 }

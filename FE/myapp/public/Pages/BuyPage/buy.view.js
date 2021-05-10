@@ -26,6 +26,12 @@ export default class BuyView {
     this.itemName.innerHTML = `${item.name} : 매수 장터`;
   }
 
+  BindReserveItem = (count) => {
+    this.reserveCount = document.querySelector('.reserve_item');
+    console.log(this.reserveCount);
+    this.reserveCount.value = `보유량 : ${count}`;
+  }
+
   BindLogoutButton = (callback) => {
     this.logout = document.querySelector('.logout');
     this.logout.addEventListener('click', callback);
@@ -59,8 +65,12 @@ export default class BuyView {
     this.count = document.querySelector('.sell_item input');
     this.buyButton = document.querySelector('.sell_item button');
     this.sellPrice = document.querySelector('tbody tr:first-child td:nth-child(1)');
-    console.log(this.sellPrice.innerHTML);
-    this.buyButton.addEventListener('click', callback);
+    if ( !this.sellPrice ) {
+      console.log('없을 수도 있워오!');
+    } else {
+      console.log(this.sellPrice.innerHTML);
+      this.buyButton.addEventListener('click', callback);
+    }
   }
 
   BindOfferButton = (callback) => {

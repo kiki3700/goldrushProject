@@ -16,8 +16,14 @@ export default class ManagerController{
 
   getItem = async(callback) => {
     console.log('item 생성');
-    this.item = await callback(window.location.hash.match(/[0-9]*$/)[0] || 1);
-    this.view.updateItemDetail(this.item);
+    this.hash = window.location.hash.match(/[0-9]*$/)[0];
+    if ( !this.hash ){
+      return '시작페이지'  
+    } else {
+      this.item = await callback(window.location.hash.match(/[0-9]*$/)[0]);
+      console.log(this.item);
+      this.view.updateItemDetail(this.item);
+    }
   }
   
   total = async() => {
@@ -109,5 +115,6 @@ export default class ManagerController{
 
   clickLogout = () => {
     window.localStorage.removeItem('userInfo');
+    
   }
 }

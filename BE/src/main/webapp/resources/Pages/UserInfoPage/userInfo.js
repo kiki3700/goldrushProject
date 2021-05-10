@@ -50,13 +50,13 @@ const userInfo = `
           <div class="follow_menu col-lg-10 col-xs-10">
             <div style="overflow:auto; width:100%; height:79vh;">
               <div class="account_info">
-                <h1>계좌 정보</h1>
+                <h1>충전 • 환전</h1>
                 <div class="account_transfer">
-                  잔액 : <b>300000</b>
-                  <button class="btn btn-sm charge_money">입금</button>
-                  <button class="btn btn-sm discharge_money">출금</button>
+                  <input type="number" class="form-control amount" placeholder="충전, 환전하실 금액을 입력해주세요."/>
+                  <br>
+                  <button class="btn btn-sm charge_money">충전</button>
+                  <button class="btn btn-sm discharge_money">환전</button>
                 </div> 
-                <button class="btn">계좌 등록</button> <= 계좌 있냐 없냐에 따라서 위나 아래가 나옴.
               </div>
               <div class="portfolio">
                 <h1>포트폴리오</h1>
@@ -120,29 +120,24 @@ const userInfo = `
                 <table class="table offer_log_table">
                   <thead>
                     <tr>
+                      <th scope="col">호가 번호</th>
                       <th scope="col">상품 이름</th>
                       <th scope="col">호가 가격</th>
                       <th scope="col">수량</th>
                       <th scope="col">등록시간</th>
+                      <th scope="col">호가 취소</th>
                     </tr>
                   </thead>
                   <tbody>
-                    
+                    <tr>
+                      
+                    </tr>
                   </tbody>
                 </table>
               </div>
               <div class="change_id_pwd">
                 <h1>회원정보수정</h1>
                 <div class="form-group">
-                  <label for="emailcheck">회원님의 이메일</label>
-                  <input type="email" class="form-control" id="emailcheck" placeholder="변경하실 이메일을 적어주세요.">
-                  <small>
-                    <div class="check_email">
-                      이미 있는 이메일입니다.
-                    </div>
-                  </small>
-                  <br>
-                  <br>
                   <label for="pwdcheck">회원님의 비밀번호</label>
                   <input type="password" class="form-control" id="pwdcheck" placeholder="변경하실 비밀번호를 적어주세요.">
                   <input type="password" class="form-control" id="pwd_double_check" placeholder="다시 한번 적어주세요">
@@ -158,7 +153,7 @@ const userInfo = `
                   <button class="btn delete_user">
                     회원 탈퇴
                   </button>
-                </div>
+                
               </div>
             </div>
           </div>

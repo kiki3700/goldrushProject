@@ -40,7 +40,7 @@ const sell = `
       <div class="sell">
         <div class="buy_item">  
           <input type="number" class="form-control" placeholder="수량을 입력하세요.">
-          
+          <input type="text" class="form-control reserve_item" disabled>
           <button type="submit" class="btn-lg">확보</button>
         </div>
         <div class="sell_offer">
