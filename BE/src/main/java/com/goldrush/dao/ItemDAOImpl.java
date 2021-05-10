@@ -226,8 +226,8 @@ public class ItemDAOImpl implements ItemDAO {
 				rsForGraph = pstmtForGraph.executeQuery();
 				while(rsForGraph.next()) {
 					PriceGraph data = new PriceGraph();
-					data.setDate(rsForGraph.getTimestamp("data"));
-					data.setPrice(rs.getInt("price"));
+					data.setDate(rsForGraph.getTimestamp("date"));
+					data.setPrice(rsForGraph.getInt("price"));
 					priceGraph.add(data);					
 				}
 				

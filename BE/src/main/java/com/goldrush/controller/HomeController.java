@@ -28,6 +28,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -65,10 +66,10 @@ public class HomeController {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("responseToken2legger")==null) {
 			AccountService ser = new AccountService();
-			ResponseToken2legger dto = ser.getTokenOAuth2legger();
-			System.out.println(dto);
-			session.setAttribute("goldrush_openbanking", dto);
-			session.setMaxInactiveInterval(dto.getExpires_in());
+//			ResponseToken2legger dto = ser.getTokenOAuth2legger();
+//			System.out.println(dto);
+//			session.setAttribute("goldrush_openbanking", dto);
+//			session.setMaxInactiveInterval(dto.getExpires_in());
 		}
 		
 
