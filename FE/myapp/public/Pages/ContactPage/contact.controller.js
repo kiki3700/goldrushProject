@@ -15,7 +15,7 @@ export default class QnaController {
   } 
   submitButton = (e) => {
     e.preventDefault();
-    console.log('제출버튼이 눌렸다.');
+    
     alert("제출되었습니다.");
   }
   clickLogout = () => {

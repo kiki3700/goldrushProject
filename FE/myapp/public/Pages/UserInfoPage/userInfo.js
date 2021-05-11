@@ -26,24 +26,23 @@ const userInfo = `
           <div class="menu col-lg-2 col-xs-2">
             <div class="row">
               <div class="col">
-                <a class="selected" href="#userInfo"><p>My Info</p></a>
-                <a><p>item</p></a>
-                <ul class="nav flex-column collapse in">
+                <ul class="list flex-column">
                   <li>
-                    <a href="#catalogue" class="total_list">Total</a>
+                    <a href="#catalogue" class="total_list"><span class="glyphicon glyphicon-list" aria-hidden="true"> TotalStage</span></a>
                   </li>
                   <li>
-                    <a href="#catalogue/open" class="IPO_list">Open Stage</a>
+                    <a href="#catalogue/open" class="IPO_list"><span class="glyphicon glyphicon-star" aria-hidden="true"> OpenStage</span></a>
                   </li>
                   <li>
-                    <a href="#catalogue/trade" class="Trading_list">Trade Stage</a>
+                    <a href="#catalogue/trade" class="Trading_list"><span class="glyphicon glyphicon-usd" aria-hidden="true"> TradeStage</span></a>
                   </li>
                   <li>
-                    <a href="#catalogue/clear" class="Clearing_list">Clear Stage</a>
+                    <a href="#catalogue/clear" class="Clearing_list"><span class="glyphicon glyphicon-saved" aria-hidden="true"> ClearStage</span></a>
                   </li>
                 </ul>
-                <a href="#qna"><p>QNA</p></a>
-                <a href="#contact"><p>Contact</p></a>
+                <p><a href="#userInfo" class="selected"><span class="glyphicon glyphicon-cog" aria-hidden="true"> MyInfo</span></a></p>
+                <p><a href="#qna"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"> QNA</span></a></p>
+                <p><a href="#contact"><span class="glyphicon glyphicon-envelope" aria-hidden="true"> Contact</span></a></p>
               </div>
             </div>
           </div>
@@ -92,7 +91,7 @@ const userInfo = `
                     
                   </tbody>
                 </table>
-                <p class="pull-right account">잔액 : 0원</p> 
+                <p class="pull-right account"></p> 
               </div>
               <div class="trade_log">
                 <h1>거래내역</h1>

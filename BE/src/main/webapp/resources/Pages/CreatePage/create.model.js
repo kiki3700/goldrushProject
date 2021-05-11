@@ -21,15 +21,14 @@ export default class CreateModel {
       .then((res) => {
         console.log(res.status);
         if (res.status === 202) {
-          res.text().then(text => console.log('뭐가 나오는 거야?', text.message));
           location.href = '#login';
           alert('회원가입이 완료되었습니다.');
         } else {
-          res.text().then(text => alert(text.message));
+          res.text().then(text => alert('이미 있는 메일주소입니다.'));
         }
       })
       .catch((error) => {
-        alert('회원가입에 실패하였습니다.', error);
+        alert('이미 있는 메일주소입니다.', error);
       }
     )
   

@@ -3,7 +3,7 @@ import CatalogueModel from './catalogue.model.js'
 
 export default class CatalogueController{
   constructor() {
-    console.log('컨트롤러 생성자');
+    
     this.model = new CatalogueModel();
     this.view = new CatalogueView();
 
@@ -11,20 +11,19 @@ export default class CatalogueController{
   }
 
   getlist = async(callback) => {
-    // console.log(await callback());
-    console.log('list 생성');
+    
+    
     this.list = await callback();
     this.view.makeList(this.list);
   }
 
   getItem = async(callback) => {
-    console.log('item 생성');
+    
     this.hash = window.location.hash.match(/[0-9]*$/)[0];
     if ( !this.hash ){
       return '시작페이지'  
     } else {
       this.item = await callback(window.location.hash.match(/[0-9]*$/)[0]);
-      console.log(this.item);
       this.view.makeMainContent(this.item);
     }
     
@@ -46,7 +45,6 @@ export default class CatalogueController{
       
     } else {
       this.view.totalButton.classList.add('selected');
-      
     }
     
     await this.getlist(this.model.GetItemList);
@@ -54,11 +52,9 @@ export default class CatalogueController{
     this.view.BindContractInput(this.inputNumber);
     this.view.BindContractButton(this.clickContract);
     this.view.BindLogoutButton(this.clickLogout);
-    
   }
 
   clickLogout = () => {
-    console.log('작동이 왜 앙대?')
     window.localStorage.removeItem('userInfo');
   }
 
@@ -77,9 +73,6 @@ export default class CatalogueController{
     const itemid = location.hash.match(/[0-9]*$/)[0];
     const quantity = Number(this.view.contractInput.value);
     
-    console.log(userInfo.membersId)
-    console.log(itemid);
-    console.log(quantity);
     await this.model.PostMakeSubscription(userInfo.membersId, itemid, quantity);
     location.reload();
   }

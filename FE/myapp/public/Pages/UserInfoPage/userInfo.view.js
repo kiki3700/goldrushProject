@@ -87,7 +87,7 @@ export default class UserInfoView{
       return year + "-" + month.substr(-2) + "-" + day.substr(-2) + " " + hour.substr(-2) + ":" + minute.substr(-2); 
     }
     let tableNode = ``;
-    console.log('오퍼가 궁금해!', offer);
+    
     for(const item of offer) {
       tableNode += `
       <tr>
@@ -146,7 +146,7 @@ export default class UserInfoView{
         `
         
         this.account = document.querySelector('.account');
-        this.account.innerHTML = `잔액 : ${item.balance}원`
+        this.account.innerHTML = `잔액 : <b class="amountAccount">${item.balance}</b>원`
       }
       
     }
@@ -163,6 +163,7 @@ export default class UserInfoView{
   }
   BindDischargeButton = (callback) => {
     this.chargeAmount = document.querySelector('.amount');
+    this.limitAmount = document.querySelector('.amountAccount');
     this.dischargeButton.addEventListener('click', callback);
   }
 

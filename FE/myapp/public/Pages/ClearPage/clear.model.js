@@ -13,7 +13,7 @@ export default class ClearModel {
       return itemList;
     })
     .catch((error) => {
-      console.log(error);
+      alert(error);
     })
     
     return itemList;
@@ -29,9 +29,32 @@ export default class ClearModel {
       return item;
     })
     .catch((error) => {
-      console.log(error);
+      alert(error);
     })
     return item
+  }
+
+  GetClear(itemid, sellPrice) {
+    const clear = fetch(`http://192.168.1.70:8080/trade/clear/?itemsId=${itemid}&price=${sellPrice}`, {
+      method: 'GET',
+    })
+    .then(
+      res => res.json(),
+      err => err,
+    )
+    .then(
+      response => {
+        if (response.result === 1) {
+          location.href = '#clear';
+        } else {
+          alert('클리어실패!', response);
+        }
+      }
+    )
+    .catch((err) => {
+      console.log('클리어 에러!', err);
+    })
+    return clear;
   }
 
   

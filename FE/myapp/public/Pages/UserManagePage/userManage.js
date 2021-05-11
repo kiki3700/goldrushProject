@@ -43,27 +43,21 @@ const userManage = `
                 <thead>
                   <th scope="col">회원ID</th>
                   <th scope="col">회원이름</th>
-                  <th scope="col">입금내역</th>
-                  <th scope="col">출금내역</th>
-                  <th scope="col">구매내역</th>
-                  <th scope="col">판매내역</th>
+                  <th scope="col">잔액</th>
+                  
                 </thead>
                 <tbody>
                   <tr>
                     <th scope="row">cjftn@naver.com</th>
                     <td>김철수</td>
                     <td>30000</td>
-                    <td>10000</td>
-                    <td>스폰지밥 : 1000</td>
-                    <td>스폰지밥 : 3000</td>
+                    
                   </tr>
                   <tr>
                     <th scope="row">yongFE@google.com</th>
                     <td>곽철용</td>
                     <td>20000</td>
-                    <td>20000</td>
-                    <td>스폰지밥 : 2000</td>
-                    <td>스폰지밥 : 2500</td>
+                    
                   </tr>
                 </tbody>
               </table>
