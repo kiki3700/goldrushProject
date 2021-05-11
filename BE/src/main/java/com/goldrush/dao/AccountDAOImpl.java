@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,25 @@ public class AccountDAOImpl implements AccountDAO{
 	public void setDb(DB db) {
 		this.db = db;
 	}
+	//
+	@Override
+	public int selectCount() {
+		String SQL = "select COUNT(*) as count FROM accounts WHERE time_stamp>=CURDATE() AND action='deposit' OR action='withdraw'";
+		Statement stmt=null;
+		ResultSet rs = null;
+		Connection con =db.connect();
+		int count=0;
+		try {
+			stmt=con.createStatement();
+			rs= stmt.executeQuery(SQL);
+			if(rs.next()) count=rs.getInt(1);
+		}catch(SQLException e) {
+			e.printStackTrace();
+			
+		}
+		return count;
+	}
+	
 	//잔액 조회
 	@Override
 	public int selectBalacne(int members_id) {
