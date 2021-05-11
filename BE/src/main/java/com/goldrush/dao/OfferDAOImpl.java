@@ -185,7 +185,6 @@ public class OfferDAOImpl implements OfferDAO {
 		PreparedStatement pstmt= null;
 		Connection con= null;
 		int rs = 0;
-		List<OfferDTO> listOffer = new ArrayList<OfferDTO>();
 		ResponseDTO response=null;
 		try {
 			con = db.connect();

@@ -44,8 +44,10 @@ public class TradeController {
 		logger.info(offerDTO.getMembersId()+"is offering to "+offerDTO.getItemsId());
 		ResponseDTO response = tradeService.makeOffer(offerDTO);
 		if(response.getResult()==1) {
+			logger.info("offer is sucess");
 			return new ResponseEntity<ResponseDTO>(response, HttpStatus.ACCEPTED);
 		}else {
+			logger.info("offer is failed");
 			return new ResponseEntity<ResponseDTO>(response, HttpStatus.BAD_REQUEST);
 		}	
 	}
@@ -56,8 +58,10 @@ public class TradeController {
 		dto.setOffersId(offersId);
 		ResponseDTO response = tradeService.cancelOffer(dto);
 		if(response.getResult()==1) {
+			logger.info("offer delete is sucess");
 			return new ResponseEntity<ResponseDTO>(response, HttpStatus.ACCEPTED);
 		}else {
+			logger.info("offer delete is failed");
 			return new ResponseEntity<ResponseDTO>(response, HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -82,24 +86,31 @@ public class TradeController {
 	}
 	@RequestMapping(value="/subscription", method=RequestMethod.POST)
 	public @ResponseBody ResponseEntity<ResponseDTO> subscription(@RequestBody OfferDTO offerDTO){
+		logger.info(offerDTO.getMembersId()+"th member is trying to subs "+offerDTO.getItemsId()+"th item");
 		ResponseDTO response =tradeService.makeSubscription(offerDTO);
 		if(response.getResult()==1) {
+			logger.info("subs is suscess");
 			return new ResponseEntity<ResponseDTO>(response, HttpStatus.ACCEPTED);
 		}else {
+			logger.info("subc is failed");
 			return new ResponseEntity<ResponseDTO>(response, HttpStatus.BAD_REQUEST);
 		}
 	}
 	@Scheduled(cron="0 0 9 * * *")
 	public void time() {
+		logger.info("changeStage");
 		tradeService.changeStage();
+	
 	}
 	@RequestMapping(value="/clear", method=RequestMethod.GET)
 	public @ResponseBody ResponseEntity<ResponseDTO> clear(@RequestParam("itemsId") int itemsId, @RequestParam("price") int price){
-		System.out.println("clear start");
+		logger.info(itemsId+"th item is cleared at "+price);
 		ResponseDTO response =tradeService.clear(itemsId, price);
 		if(response.getResult()==1) {
+			logger.info("clear is success");
 			return new ResponseEntity<ResponseDTO>(response, HttpStatus.ACCEPTED);
 		}else {
+			logger.info("clear is failed");
 			return new ResponseEntity<ResponseDTO>(response, HttpStatus.BAD_REQUEST);
 		}
 	}

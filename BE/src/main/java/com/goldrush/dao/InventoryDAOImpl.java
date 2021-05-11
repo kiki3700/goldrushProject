@@ -91,7 +91,6 @@ public class InventoryDAOImpl implements InventoryDAO{
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				InventoryDTO dto = new InventoryDTO();
-				System.out.println(dto.getInventoriesId());
 				dto.setMembersId(rs.getInt("members_id"));
 				dto.setItemsId(rs.getInt("items_id"));
 				dto.setQuantity(rs.getInt("quantity"));
@@ -256,7 +255,6 @@ public class InventoryDAOImpl implements InventoryDAO{
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 			int itemsId = rs.getInt("items_id");
-			System.out.println(itemsId);
 			pstmtForCode = con.prepareStatement(SQlForCode);
 			pstmtForPrice = con.prepareStatement(SQLForPrice);
 			pstmtForCode.setInt(1, itemsId);

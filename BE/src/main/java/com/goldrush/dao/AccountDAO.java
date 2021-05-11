@@ -8,7 +8,6 @@ public interface AccountDAO {
 
 	int selectBalacne(int members_id);
 	List<AccountDTO> selectAccountLog(int membersId);
-	int insertFeeResult(int membersId, int amount, int balance);
 	int insertSellResult(int membersId, int amount);
 	int insertBuyResult(int membersId, int amount);
 	int insertIpoResult(int membersId, int amount);
@@ -18,4 +17,5 @@ public interface AccountDAO {
 	int selectCount();
 	int selectTranId();
 	void insertTranIds();
+	int insertFeeResult(int membersId, int amount);
 }
