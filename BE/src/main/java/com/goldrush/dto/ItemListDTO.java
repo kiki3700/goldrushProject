@@ -22,6 +22,16 @@ public class ItemListDTO {
 	private int sellOffer;
 	private int RemainingAmount;
 	private List<PriceGraph> priceGraph;
+	private int outstanding;
+
+	public int getOutstanding() {
+		return outstanding;
+	}
+
+	public void setOutstanding(int outstanding) {
+		this.outstanding = outstanding;
+	}
+
 
 	public int getItemsId() {
 		return itemsId;
@@ -165,8 +175,10 @@ public class ItemListDTO {
 				+ ", stage=" + stage + ", cost=" + cost + ", quantity=" + quantity + ", openingDate=" + openingDate
 				+ ", ipoDate=" + ipoDate + ", clearingDate=" + clearingDate + ", description=" + description
 				+ ", imgAddress=" + imgAddress + ", price=" + price + ", buyOffer=" + buyOffer + ", sellOffer="
-				+ sellOffer + ", RemainingAmount=" + RemainingAmount + ", priceGraph=" + priceGraph + "]";
+				+ sellOffer + ", RemainingAmount=" + RemainingAmount + ", priceGraph=" + priceGraph + ", outstanding="
+				+ outstanding + "]";
 	}
+
 
 	
 	

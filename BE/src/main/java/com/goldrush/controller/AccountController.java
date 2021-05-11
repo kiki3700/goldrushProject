@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -31,29 +33,32 @@ import com.goldrush.dto.accountDto.ResponseLookupInfo;
 import com.goldrush.dto.accountDto.ResponseOAuth3legger;
 import com.goldrush.dto.accountDto.ResponseToken3legger;
 import com.goldrush.dto.accountDto.ResponseWithdraw;
-import com.goldrush.service.accountService.AccountService;
+import com.goldrush.service.AccountService;
 
 @Controller
 @CrossOrigin
 @RequestMapping(value="/bank")
 public class AccountController {
 	AccountService ser = new AccountService();
+	private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
+	
 	@RequestMapping(value="/oauth")
-	public RedirectView oauth1(@CookieValue(name="open-banking", defaultValue="null") String banking, @CookieValue(name="membersId", defaultValue="2") int membersId, @CookieValue(name="amount", defaultValue="100") int amount, @CookieValue(name="withdraw", defaultValue="true") boolean withdraw, RedirectAttributes attributes) {
+	public RedirectView oauth1(@CookieValue(name="open-banking") String banking, @CookieValue(name="membersId") int membersId, @CookieValue(name="amount") int amount, @CookieValue(name="withdraw") boolean withdraw, RedirectAttributes attributes) {
+		logger.info(membersId+"th is trying to Oaut");
 		if(ser.checkWithdrawCondition(withdraw, membersId, amount)) return new RedirectView("/bank/noEnoughMoney");
-//		if(banking.equals("null")) return "redirect:"+ser.OAuth3legged();
 	          attributes.addAttribute("Access-Control-Allow-Origin", "*");
 	          return new RedirectView(ser.OAuth3legged());
 		}
 	
 	@RequestMapping(value="/noEnoughMoney")
-	public @ResponseBody ResponseEntity<ResponseDTO> noMoney() {
-		return new ResponseEntity<ResponseDTO>(new ResponseDTO(0,"잔액이 충분치 않습니다."),HttpStatus.BAD_REQUEST);
+	public String noMoney() {
+		logger.info("OAuth is fail because of account balance");
+		return "redirect:http://192.168.1.70:8080/#userInfo?result=false";
 		}
 	
 	@RequestMapping(value="/auth_second", method=RequestMethod.GET)
-	public String oauth2(@CookieValue(name="withdraw", defaultValue="false") boolean withdraw, HttpServletRequest request,@RequestParam("code") String code, @RequestParam("scope") String scope, HttpServletResponse response) {
-
+	public String oauth2(@CookieValue(name="withdraw") boolean withdraw, HttpServletRequest request,@RequestParam("code") String code, @RequestParam("scope") String scope, HttpServletResponse response) {
+		logger.info("token is try to release");
 		RequestToken3legger dto = new RequestToken3legger();
 		dto.setCode(code);
 		ResponseToken3legger token = ser.getToken3legger(dto);
@@ -77,28 +82,34 @@ public class AccountController {
 	}
 	@RequestMapping(value="withdraw")
 	public String withdraw(@CookieValue(name="open-banking") String banking,
-			@CookieValue(name="amount", defaultValue="100") int amount, @CookieValue(name="membersId", defaultValue="2") int membersId) {
+			@CookieValue(name="amount") int amount, @CookieValue(name="membersId") int membersId) {
+		logger.info(membersId+"th member trying to withdraw");
 		try {
 			ser.withdraw(banking, amount, membersId);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "redirect:http://192.168.1.70:8080/#userInfo";
+			logger.info("withdraw is failed");
+			return "redirect:http://192.168.1.70:8080/#userInfo?result=false";
 		}
-		return "redirect:http://192.168.1.70:8080/#userInfo";
+		logger.info("withdraw is success");
+		return "redirect:http://192.168.1.70:8080/#userInfo?result=true";
 	}
 	@RequestMapping(value="deposit")
-	public String deposit(HttpServletRequest request,@CookieValue(name="open-banking", defaultValue="null") String banking,
+	public String deposit(HttpServletRequest request,@CookieValue(name="open-banking") String banking,
 			@CookieValue(name="amount") int amount, @CookieValue(name="membersId") int membersId){
+		logger.info(membersId+"th member is trying to deposit");
 		try {
 			System.out.println(banking);
 			ser.deposit(request, banking, membersId, amount);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "redirect:http://192.168.1.70:8080/#userInfo";
+			logger.info("deposit is failed");
+			return "redirect:http://192.168.1.70:8080/#userInfo?result=false";
 		}
-		return  "redirect:http://192.168.1.70:8080/#userInfo";
+		logger.info("deposit is success");
+		return  "redirect:http://192.168.1.70:8080/#userInfo?result=true";
 	}
 }
 

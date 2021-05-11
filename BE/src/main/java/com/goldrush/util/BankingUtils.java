@@ -13,7 +13,7 @@ public class BankingUtils {
 	AccountDAO dao;
 	public BankingUtils(){
 		dao = new AccountDAOImpl(new DBHandler());
-		this.bank_tran_id = getUser_id()+"U"+String.format("%09d", dao.selectCount()+1);
+		this.bank_tran_id = getUser_id()+"U"+String.format("%09d", dao.selectTranId()+1);
 
 	}
 	

@@ -159,19 +159,20 @@ public class ItemDAOImpl implements ItemDAO {
 		String SQLForPrice = "SELECT * FROM offers LEFT JOIN trades ON offers.offers_id = trades.offers_id where offers.items_id = ? ORDER BY trades.trades_id desc LIMIT 1";
 		String SQLForBalance="SELECT * FROM offers WHERE is_complete=false AND buy=true AND items_id = ?";
 		String SQLForGraph = "select DATE(trades.time_stamp) as date, avg(offer_price) as price  from trades left join offers on trades.offers_id = offers.offers_id where offers.items_id= ? Group BY date";
-		
+		String SQLForOutstanding ="select SUM(quantity) as sum FROM inventories WHERE items_id = ? AND members_id != 1";
 		PreparedStatement pstmt= null;
 		PreparedStatement pstmtForBuyOffer= null;
 		PreparedStatement pstmtForSellOffer= null;
 		PreparedStatement pstmtForPrice= null;
 		PreparedStatement pstmtForGraph = null;
-		
+		PreparedStatement pstmtForOutstanding = null;
 		ResultSet rs = null;
 		ResultSet rsForBuyOffer = null;
 		ResultSet rsForSellOffer = null;
 		ResultSet rsForPrice = null;
 		ResultSet rsForBalance = null;
 		ResultSet rsForGraph= null;
+		ResultSet rsForOutstanding= null;
 		PreparedStatement pstmtForBalance=null;
 		Connection con= null;
 		try {
@@ -230,6 +231,13 @@ public class ItemDAOImpl implements ItemDAO {
 					data.setPrice(rsForGraph.getInt("price"));
 					priceGraph.add(data);					
 				}
+				pstmtForOutstanding = con.prepareStatement(SQLForOutstanding);
+				pstmtForOutstanding.setInt(1,itemsId);
+				rsForOutstanding=pstmtForOutstanding.executeQuery();
+				int outstanding=0;
+				if(rsForOutstanding.next()) {
+					outstanding=rsForOutstanding.getInt("sum");
+				}
 				
 					
 				dto = new ItemListDTO();
@@ -250,6 +258,7 @@ public class ItemDAOImpl implements ItemDAO {
 				dto.setSellOffer(sellOffer);
 				dto.setRemainingAmount(quantity-consumedAmount);
 				dto.setPriceGraph(priceGraph);
+				dto.setOutstanding(outstanding);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();

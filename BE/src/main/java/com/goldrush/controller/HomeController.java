@@ -41,12 +41,11 @@ import org.springframework.util.FileCopyUtils;
 import com.goldrush.dto.ItemDTO;
 import com.goldrush.dto.MemberDTO;
 import com.goldrush.dto.ResponseDTO;
-import com.goldrush.dto.test;
 import com.goldrush.dto.accountDto.ResponseToken2legger;
+import com.goldrush.service.AccountService;
 import com.goldrush.service.ItemService;
 import com.goldrush.service.MemberService;
-import com.goldrush.service.accountService.AccountService;
-import com.goldrush.util.ImgUtils;
+
 
 
 /**
@@ -76,7 +75,7 @@ public class HomeController {
 	
 		return "index";
 	}
-	
+		
 
 //	@RequestMapping(value = "/", method = RequestMethod.POST)
 //	public String post(@RequestBody test test) {
