@@ -274,10 +274,11 @@ public class TradeService {
 			inventoryDTO.setQuantity(-offerDTO.getQuantity());
 			inventoryDAO.insertInventory(inventoryDTO);
 			accountDAO.insertClearingResult(offerDTO.getMembersId(), offerDTO.getQuantity()*returnForMember);
-			itemDAO.updateStage("close", itemsId);
+			
 			i++;
 			
 		}
+		itemDAO.updateStage("close", itemsId);
 		return new ResponseDTO(1,"청산 완료");
 	}
 	

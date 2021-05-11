@@ -290,5 +290,51 @@ public class AccountDAOImpl implements AccountDAO{
         }	
 		return result;
 	}
+	@Override
+	public int selectTranId() {
+		String SQL = "select count(*) as count from tran_ids WHERE time_stamp>=CURDATE()";
+		Statement stmt = null;
+		ResultSet rs =null;
+		Connection con = db.connect();
+		int count=0;
+		try {
+			stmt=con.createStatement();
+			rs=stmt.executeQuery(SQL);
+			if(rs.next()) {
+				count = rs.getInt("count");
+			}
+	}catch(SQLException e) {
+		e.printStackTrace();
+	}
+		if (con != null) {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+	
+	}
+		return count;	
+	}
+	@Override
+	public void insertTranIds() {
+		String SQL ="INSERT tran_ids() values()";
+		Statement stmt = null;
+		ResultSet rs = null;
+		Connection con = db.connect();
+		try {
+			stmt=con.createStatement();
+			rs=stmt.executeQuery(SQL);
+	}catch(SQLException e) {
+		e.printStackTrace();
+	}
+		if (con != null) {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+		}	
+	}
 
 }

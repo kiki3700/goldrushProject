@@ -16,4 +16,6 @@ public interface AccountDAO {
 	int insertWithdrawResult(int membersId, int amount);
 	int insertDepositResult(int membersId, int amount);
 	int selectCount();
+	int selectTranId();
+	void insertTranIds();
 }

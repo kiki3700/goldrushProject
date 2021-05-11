@@ -175,6 +175,7 @@ public class AccountService {
 		String json = mapper.writeValueAsString(postParameters).replace("[\"", "\"").replace("]\"", "\"");
 		HttpEntity<String> r = new HttpEntity<>(json,httpHeaders);
 		ResponseWithdraw withdrawResult=restTemplate.postForObject(url, r, ResponseWithdraw.class);
+		accountDAO.insertTranIds();
 		accountDAO.insertWithdrawResult(membersId, -amount);
 		return withdrawResult;
 	}
@@ -223,7 +224,7 @@ public class AccountService {
 		HttpEntity<String> r = new HttpEntity<>(json.replace("[\"", "\"").replace("\"]","\""),httpHeaders);
 		ResponseDeposit depositResult=restTemplate.postForObject(url, r, ResponseDeposit.class);
 		depositResult.getRes_list();
-		
+		accountDAO.insertTranIds();
 		System.out.println(accountDAO.insertDepositResult(membersId, amount));
 		System.out.println(depositResult);
 		return depositResult;

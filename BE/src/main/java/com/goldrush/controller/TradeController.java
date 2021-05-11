@@ -93,5 +93,14 @@ public class TradeController {
 	public void time() {
 		tradeService.changeStage();
 	}
-	
+	@RequestMapping(value="/clear", method=RequestMethod.GET)
+	public @ResponseBody ResponseEntity<ResponseDTO> clear(@RequestParam("itemsId") int itemsId, @RequestParam("price") int price){
+		System.out.println("clear start");
+		ResponseDTO response =tradeService.clear(itemsId, price);
+		if(response.getResult()==1) {
+			return new ResponseEntity<ResponseDTO>(response, HttpStatus.ACCEPTED);
+		}else {
+			return new ResponseEntity<ResponseDTO>(response, HttpStatus.BAD_REQUEST);
+		}
+	}
 }

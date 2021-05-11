@@ -45,6 +45,7 @@ import com.goldrush.dto.test;
 import com.goldrush.dto.accountDto.ResponseToken2legger;
 import com.goldrush.service.ItemService;
 import com.goldrush.service.MemberService;
+import com.goldrush.service.img;
 import com.goldrush.service.accountService.AccountService;
 import com.goldrush.util.ImgUtils;
 
@@ -75,6 +76,12 @@ public class HomeController {
 
 	
 		return "index";
+	}
+	
+	@RequestMapping(value="img")
+	public void img(HttpServletRequest request) {
+		img m = new img();
+		m.printPath(request);
 	}
 	
 

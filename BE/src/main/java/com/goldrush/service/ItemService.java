@@ -43,6 +43,8 @@ public class ItemService {
 
 	public String postPicture(String code, MultipartHttpServletRequest request) {
 		String path = "eclipse-workspace/Goldrush/BE/src/main/webapp/resources/img/item";
+		
+		//request.getSession().getServletContext().getRealPath("/resources/")+
 		String address = "/img/item/";
 		MultipartFile mf = request.getFile("img");
 		String ext = mf.getOriginalFilename().substring(mf.getOriginalFilename().indexOf("."));
@@ -51,7 +53,7 @@ public class ItemService {
 			File file = new File(path, code+ext);
 			FileCopyUtils.copy(byteImg, file);
 			ItemService it = new ItemService();
-			it.postThumnail(code, ext, file);
+			it.postThumnail(request,code, ext, file);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -59,9 +61,13 @@ public class ItemService {
 		}
 		return address+code+ext;
 	}
-	
-	public ResponseDTO postThumnail(String code, String ext ,File file) {
+	public String wanntToSee() {
+		
+		return null;
+	}
+	public ResponseDTO postThumnail(MultipartHttpServletRequest request, String code, String ext ,File file) {
 		String path = "eclipse-workspace/Goldrush/BE/src/main/webapp/resources/img/item/thumnail/";
+		//
 		File thFile = new File(path,code+ext);
 		try {
 			BufferedImage Image = ImageIO.read(file);
