@@ -134,7 +134,7 @@ export default class ManagerView{
   BindUpdateItem = (callback) => {
     this.updateItem = document.querySelector('.update_item');
     if ( !this.updateItem ) {
-      console.log('없데이트!')
+      
     } else {
       this.formData = document.querySelector('.enroll_form')
       this.updateItem.addEventListener('click', callback);
@@ -144,7 +144,7 @@ export default class ManagerView{
   BindDeleteItem = (callback) => {
     this.deleteItem = document.querySelector('.delete_item');
     if ( !this.deleteItem ) {
-      console.log('삭제버튼없워오!');
+      
     } else {
       this.deleteItem.addEventListener('click', callback);
     }
@@ -154,7 +154,7 @@ export default class ManagerView{
   BindInputButton = (callback) => {
     this.inputBtn = document.querySelector('#image_uploads');
     if( !this.inputBtn ) {
-      console.log('요소가 없을땐, 몬달아오! 없워오!')
+      
     } else {
       this.previewImage = document.querySelector('.preview');
       this.inputBtn.addEventListener('change', callback);

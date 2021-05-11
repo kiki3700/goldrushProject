@@ -9,8 +9,7 @@ export default class UserInfoController {
 
   total = async() => {
     const user = JSON.parse(localStorage.getItem('userInfo'));
-    console.log(user.membersId);
-    console.log(typeof(user.membersId));
+    
     const portfolio = await this.model.GetPortfolio(user.membersId);
     // const tradeLog = await this.model.GetTradeLog(user.membersId);
     const offerLog = await this.model.GetOfferLog(user.membersId);
@@ -49,30 +48,29 @@ export default class UserInfoController {
     if ( getCookie('membersId') ) {
       deleteCookie('membersId');
     } else {
-      console.log('쿠키업따');
+      
     }
 
     if ( getCookie('amount') ) {
       deleteCookie('amount');
     } else {
-      console.log('쿠키업따');
+      
     }
 
     if ( getCookie('withdraw') ) {
       deleteCookie('withdraw');
     } else {
-      console.log('쿠키업따');
+      
     }
-
-
-    console.log(this.view.chargeAmount.value);
+    
+  
     const user = JSON.parse(localStorage.getItem('userInfo'));
-
+    
     setCookie('membersId', user.membersId);
     setCookie('amount', Number(this.view.chargeAmount.value));
     setCookie('withdraw', false);
     
-    //this.model.GetCharge();
+    location.href = 'http://192.168.1.70:8080/bank/oauth';
   }
   clickDisChargeBtn = () => {
     var setCookie = function(name, value, day) {
@@ -92,32 +90,34 @@ export default class UserInfoController {
     if ( getCookie('membersId') ) {
       deleteCookie('membersId');
     } else {
-      console.log('쿠키업따');
+      
     }
 
     if ( getCookie('amount') ) {
       deleteCookie('amount');
     } else {
-      console.log('쿠키업따');
+      
     }
     
     if ( getCookie('withdraw') ) {
       deleteCookie('withdraw');
     } else {
-      console.log('쿠키업따');
+      
     }
 
     
-
-    console.log(this.view.chargeAmount.value);
-    const user = JSON.parse(localStorage.getItem('userInfo'));
-
-    setCookie('membersId', user.membersId);
-    setCookie('amount', Number(this.view.chargeAmount.value));
-    setCookie('withdraw', true);
-
+    const limit = Number(this.view.limitAmount.innerHTML);
+    const amount = Number(this.view.chargeAmount.value);
     
-    console.log('출금버튼이 눌렸다.');
+    if ( amount > limit ) {
+      return alert('잔고보다 많은 돈을 출금할 수는 없습니다.')
+    } else {
+      const user = JSON.parse(localStorage.getItem('userInfo'));
+      setCookie('membersId', user.membersId);
+      setCookie('amount', Number(this.view.chargeAmount.value));
+      setCookie('withdraw', true);
+      location.href = 'http://192.168.1.70:8080/bank/oauth';
+    }
   }
 
   cancel = async() => {
@@ -143,9 +143,7 @@ export default class UserInfoController {
       this.view.updateUser.setAttribute('disabled', true);
     }
   }
-  update = () => {
-    console.log('수정버튼이 눌렸다.');
-  }
+  
   clickLogout = () => {
     window.localStorage.removeItem('userInfo');
   }

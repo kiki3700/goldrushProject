@@ -103,7 +103,7 @@ export default class SellModel {
       response => response.json(),
       error => error)
     .then((portfolios) => {
-      console.log(portfolios);
+      
       return portfolios;
     })
     .catch((error) => {

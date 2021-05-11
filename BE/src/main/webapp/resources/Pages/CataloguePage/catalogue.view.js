@@ -8,6 +8,26 @@ export default class CatalogueView{
     this.css = document.querySelector('.css_part');
   }
 
+  // loading = () => {
+    
+  //   const loadingpage = document.createElement('div');
+    
+  //   loadingpage.setAttribute('id', 'loading');
+  //   const loading = document.createElement('img');
+  //   loading.setAttribute('src', '/css/img/KakaoTalk_Image_2021-05-11-11-13-49.gif');
+  //   console.log(root);
+  //   console.log(loadingpage);
+  //   console.log(loading);
+  //   loadingpage.appendChild(loading);
+    
+  //   this.body.appendChild(loadingpage);
+  // }
+
+  // loaded = () => {
+  //   const root = document.querySelector('#loading');
+  //   root.style.display = 'none';
+  // }
+
   render = () => {
     const root = document.querySelector('#root');
     root.remove();
@@ -31,21 +51,33 @@ export default class CatalogueView{
   }
   
   makeList = (list) => {
-    let itemUl = document.querySelector('.item_ul');    
+    let itemUl = document.querySelector('.item_ul');   
+    
+    const UnixTimestamp = (t) => {
+      const date = new Date(t);
+      const year = date.getFullYear();
+      const month = "0" + (date.getMonth() + 1);
+      const day = "0" + date.getDate();
+      return year + "-" + month.substr(-2) + "-" + day.substr(-2); 
+    }
+
     if ( !window.location.hash.match(/\/[a-zA-z]+/) ) {
       for (var item of list) {
-        console.log('item : ', item);
+        
         if (item.stage !== 'unopen' && item.stage !== 'close') {
           let li = document.createElement('li');
           li.className = 'item_li';
           let textNode = `
             <a href = '#catalogue/${item.itemsId}'>
               <div class="row item_small">
-              <div class="image_box col-lg-4 col-xs-4">
-              <img src="/css/img/item_small_noback.png" alt="item_image_small">
+                <div class="image_box col-lg-4 col-xs-4">
+                  <img src="/css/img/item_small_noback.png" alt="item_image_small">
                 </div>
-                <p class="col-lg-4 col-xs-5 text-center">${item.name} <br> ${item.stage}</p>
-                <p class="col-lg-4 col-xs-5 text-center">수익률  ${Math.round((item.price - (item.cost/item.quantity))/(item.cost/item.quantity))}% <br> 현재가 ${item.price}</p>
+                <div class="content_box">
+                  <p class="list_item_price">현재가 : ${item.price}</p>  
+                  <p class="list_item_name">${item.name}</p>
+                  <small class="list_item_stage">${item.stage}: ~${item.stage === 'open' ? UnixTimestamp(item.openingDate) : UnixTimestamp(item.ipoDate)}</small>
+                </div>
               </div>
             </a>
           `
@@ -57,17 +89,20 @@ export default class CatalogueView{
       let condition = window.location.hash.match(/\/\w+/)[0].substr(1);
       for (const item of list) {
         if (item.stage === condition) {
-          console.log('조건을 봐요!', condition);
+          
           let li = document.createElement('li');
           li.className = 'item_li';
           let textNode = `
             <a href = '#catalogue/${condition}/${item.itemsId}'>
               <div class="row item_small">
-              <div class="image_box col-lg-4 col-xs-4">
-              <img src="/css/img/item_small_noback.png" alt="item_image_small">
+                <div class="image_box col-lg-4 col-xs-4">
+                  <img src="/css/img/item_small_noback.png" alt="item_image_small">
                 </div>
-                <p class="col-lg-4 col-xs-5 text-center">${item.name} <br> ${item.stage}</p>
-                <p class="col-lg-4 col-xs-5 text-center">수익률  ${Math.round((item.price - (item.cost/item.quantity))/(item.cost/item.quantity))}% <br> 현재가 ${item.price}</p>
+                <div class="content_box">
+                  <p class="list_item_price">현재가 : ${item.price}</p>  
+                  <p class="list_item_name">${item.name}</p>
+                  <small class="list_item_stage">${item.stage}: ~${item.stage === 'open' ? UnixTimestamp(item.openingDate) : UnixTimestamp(item.ipoDate)}</small>
+                </div>
               </div>
             </a>
           `
@@ -86,8 +121,7 @@ export default class CatalogueView{
     const div = document.createElement('div');
     let textNode = ``;
     div.className = 'item_detail col-lg-7 col-xs-7';
-    //if로 스테이지 쪼갤거임.
-    console.log(item);
+    
     if (item.stage === "open") {
       textNode = `
     <div style="overflow:auto; width:100%; height: 100%;">
@@ -160,9 +194,9 @@ export default class CatalogueView{
             <p class="col-lg-12">
               ${item.description}
           </div>
-          <div class="chart">
-            <h1>차트가 들어갈 공간입니다.</h1>
-          </div>
+        </div>
+        <div class="chart">
+            <canvas id="canvas"></canvas>
         </div>
       </div>
     </div>
@@ -205,19 +239,55 @@ export default class CatalogueView{
     `
     }
     // 여기에 차트 관련 코드 작성 예정
+    
+    const UnixTimestamp = (t) => {
+      const date = new Date(t);
+      const month = "0" + (date.getMonth() + 1);
+      const day = "0" + date.getDate();
+      
+      return month.substr(-2) + "-" + day.substr(-2);
+    }
+    
+    const day = [];
+    const price = [];
+    item.priceGraph.forEach(item => {
+      day.push(UnixTimestamp(item.date));
+      price.push(item.price);
+    })
+    
     div.insertAdjacentHTML('afterbegin', textNode);
     row.appendChild(div);
+    this.chart = document.querySelector('#canvas');
+    
+    const ctx = this.chart.getContext('2d');
+    const data = {
+        // The type of chart we want to create
+        type: 'line',
+        // The data for our dataset
+        data: {
+            labels: day,
+            datasets: [{
+                label: "일일 가격변동",
+                backgroundColor: 'rgb(255, 99, 132)',
+                fill:false, // line의 아래쪽을 색칠할 것인가? 
+                borderColor: 'rgb(255, 99, 132)',
+                lineTension:0.1, // 값을 높이면, line의 장력이 커짐.
+                data: price,
+            }]
+        },
+        // Configuration options go here
+        options: {}
+    }
+    const chart = new Chart(ctx, data);
   }
 
-  MakeChart = () => {
-
-  }
+  
 
   BindContractButton = (callback) => {
     this.contractButton = document.querySelector('.contract_btn');
     this.contractInput = document.querySelector('.contract_count');
     if ( !this.contractButton ) {
-      console.log('버튼이 없어요!');
+      
     } else {
       this.contractButton.addEventListener('click', callback);
     }
@@ -226,18 +296,18 @@ export default class CatalogueView{
   BindContractInput = (callback)=> {
     this.eventContractInput = document.querySelector('.contract_count');
     this.leftAmount = document.querySelector('.item_container div:nth-child(3) p:nth-child(2)');
-    console.log(this.leftAmount);
+    
     if ( !this.leftAmount ){
-      console.log('빈값입니다!');
+      
     } else {
       this.leftAmount = Number(this.leftAmount.innerHTML);
     }
     
     
     if ( !this.eventContractInput ) {
-      console.log('인풋이 없어요!');
+      
     } else {
-      console.log(this.eventContractInput);
+      
       this.eventContractInput.addEventListener('keyup', callback);
     }
     

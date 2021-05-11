@@ -20,7 +20,6 @@ export default class LoginModel {
       ( response ) => {
         if (response.status === 202) {
           response.json().then(json => {
-            console.log(json.result, json.message, json.obj);
             window.localStorage.setItem('userInfo', JSON.stringify(json.obj));
             let getUser = window.localStorage.getItem('userInfo');
             const usingUser = JSON.parse(getUser);
@@ -33,7 +32,7 @@ export default class LoginModel {
             
           });
         } else {
-          response.json().then(json => alert('실패', json));
+          response.json().then(json => alert('없는 ID이거나 잘못된 비밀번호입니다.', json));
         }
       }
     )

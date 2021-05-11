@@ -46,7 +46,7 @@ export default class ManagerModel {
       res => console.log(res)
     )
     .catch((error) => {
-      console.log('수정하는 데 실패!' ,error);
+      alert('수정하는 데 실패!' ,error);
     })
     return this.PutUpdateItem;
   }

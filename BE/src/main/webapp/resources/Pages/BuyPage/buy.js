@@ -46,7 +46,7 @@ const buy = `
       <div class="buy_offer">
         <input type="number" class="form-control" placeholder="가격을 입력하세요.">
         <input type="number" class="form-control" placeholder="수량을 입력하세요.">
-        <button type="submit" class="btn-lg">오퍼</button>
+        <button type="submit" class="btn-lg">매수 오퍼</button>
       </div>  
     </div>
   </div>

@@ -80,10 +80,6 @@ export default class ClearView{
           <input type="text" name="cost" value="${item.cost}" disabled>
         </div>
         <div class="row item_info">
-          <p class="piece">유통 중 조각</p>
-          <input type="text" name="quantity" value="${item.quantity - item.remainingAmount}" disabled>
-        </div>
-        <div class="row item_info">
           <p class="code">code</p>
           <input type="text" name="code" value="${item.code}" disabled>
         </div>
@@ -108,7 +104,7 @@ export default class ClearView{
     this.clearBtn = document.querySelector('.btn');
     this.nowPrice = document.querySelector('.clear_price');
     if ( !this.clearBtn ) {
-      console.log('클리어버튼없어오!');
+      
     } else {
       this.clearBtn.addEventListener('click', callback);
     }

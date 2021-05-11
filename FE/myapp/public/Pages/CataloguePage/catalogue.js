@@ -26,24 +26,23 @@ const catalogue = `
           <div class="menu col-lg-2 col-xs-2">
             <div class="row">
               <div class="col">
-                <a href="#userInfo"><p>My Info</p></a>
-                <p>item</p>
-                <ul class="nav flex-column">
+                <ul class="list flex-column">
                   <li>
-                    <a href="#catalogue" class="selected total_list">Total</a>
+                    <a href="#catalogue" class="selected total_list"><span class="glyphicon glyphicon-list" aria-hidden="true"> TotalStage</span></a>
                   </li>
                   <li>
-                    <a href="#catalogue/open" class="IPO_list">Open Stage</a>
+                    <a href="#catalogue/open" class="IPO_list"><span class="glyphicon glyphicon-star" aria-hidden="true"> OpenStage</span></a>
                   </li>
                   <li>
-                    <a href="#catalogue/trade" class="Trading_list">Trade Stage</a>
+                    <a href="#catalogue/trade" class="Trading_list"><span class="glyphicon glyphicon-usd" aria-hidden="true"> TradeStage</span></a>
                   </li>
                   <li>
-                    <a href="#catalogue/clear" class="Clearing_list">Clear Stage</a>
+                    <a href="#catalogue/clear" class="Clearing_list"><span class="glyphicon glyphicon-saved" aria-hidden="true"> ClearStage</span></a>
                   </li>
                 </ul>
-                <a href="#qna"><p>QNA</p></a>
-                <a href="#contact"><p>Contact</p></a>
+                <p><a href="#userInfo"><span class="glyphicon glyphicon-cog" aria-hidden="true"> MyInfo</span></a></p>
+                <p><a href="#qna"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"> QNA</span></a></p>
+                <p><a href="#contact"><span class="glyphicon glyphicon-envelope" aria-hidden="true"> Contact</span></a></p>
               </div>
             </div>
           </div>
@@ -56,8 +55,8 @@ const catalogue = `
           </div>
           <div class="item_detail col-lg-7 col-xs-7">
             <div class="basic">
-               <p><span class="glyphicon glyphicon-search" aria-hidden="true"> Find Your Piece</span></p>
-               
+              <!--<p><span class="glyphicon glyphicon-search" aria-hidden="true"> Find Your Piece</span></p> -->
+              <img src="/css/img/KakaoTalk_Image_2021-05-11-11-13-49.gif">
             </div>
           </div>
         </div>

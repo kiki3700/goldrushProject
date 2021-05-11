@@ -3,28 +3,6 @@ export default class UserInfoModel {
     
   }
 
-  GetCharge = () => {
-    const charge = fetch(`http://192.168.1.70:8080/bank/oauth`, {
-      method: "GET",
-      headers: {
-        'Content-Type': 'application/json;charset=UTF-8',
-        'Access-Control-Allow-Origin': '*',
-        'Accept': 'application/json'
-      },
-    })
-    .then(
-      response => response.json(),
-      err => err
-    )
-    .then(
-      res => console.log(res),
-    )
-    .catch((error) => {
-      console.log('충전상황에 문제가 있어요', error);
-    })
-    return charge;
-  }
-
   GetPortfolio(membersId) {
     const portfolios = fetch(`http://192.168.1.70:8080/member/portfolio/?membersId=${membersId}`, {
       method: 'GET',
@@ -33,7 +11,6 @@ export default class UserInfoModel {
       response => response.json(),
       error => error)
     .then((portfolios) => {
-      console.log(portfolios);
       return portfolios;
     })
     .catch((error) => {

@@ -15,7 +15,6 @@ export default class BuyModel {
     .catch((error) => {
       alert('오퍼리스트 읽는 것에 실패', error);
     })
-
     return offerList;
   }
 
@@ -86,7 +85,8 @@ export default class BuyModel {
         err => err
       )
       .then(
-        res => console.log(res)
+        res => console.log(res),
+        location.reload()
       )
       .catch((err) => {
         alert('매수 오퍼 실패!', err);
@@ -103,7 +103,7 @@ export default class BuyModel {
       response => response.json(),
       error => error)
     .then((portfolios) => {
-      console.log(portfolios);
+      
       return portfolios;
     })
     .catch((error) => {

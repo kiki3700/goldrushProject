@@ -28,7 +28,7 @@ export default class sellView {
 
   BindReserveItem = (count) => {
     this.reserveCount = document.querySelector('.reserve_item');
-    console.log(this.reserveCount);
+    
     this.reserveCount.value = `보유량 : ${count}`;
   }
 
@@ -67,7 +67,7 @@ export default class sellView {
     this.quantity = document.querySelector('.sell_offer input:nth-child(2)');
     this.offerButton = document.querySelector('.sell_offer button');
     this.offerButton.addEventListener('click', callback);
-    console.log(this.offerPrice, this.quantity);
+    
   }
 
   BindLogoutButton = (callback) => {
