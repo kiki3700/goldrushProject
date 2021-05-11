@@ -228,6 +228,7 @@ public class TradeService {
 			inventoryDTO.setQuantity(dto.getQuantity());
 			inventoryDTO.setMembersId(dto.getMembersId());
 			inventoryDAO.insertInventory(inventoryDTO);
+			accountDAO.insertIpoResult(dto.getItemsId(), -dto.getQuantity()*price);
 			quantity -= dto.getQuantity();
 			logger.info(dto.getMembersId()+"th members offer is satisfied by ipo");
 		}

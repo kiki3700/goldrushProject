@@ -70,10 +70,7 @@ export default class UserInfoController {
     setCookie('amount', Number(this.view.chargeAmount.value));
     setCookie('withdraw', false);
     
-
-    //this.model.GetCharge();
-    location.href = "http://192.168.1.70:8080/bank/oauth";
-
+    location.href = 'http://192.168.1.70:8080/bank/oauth';
   }
   clickDisChargeBtn = () => {
     var setCookie = function(name, value, day) {
@@ -109,7 +106,6 @@ export default class UserInfoController {
     }
 
     
-
     const limit = Number(this.view.limitAmount.innerHTML);
     const amount = Number(this.view.chargeAmount.value);
     

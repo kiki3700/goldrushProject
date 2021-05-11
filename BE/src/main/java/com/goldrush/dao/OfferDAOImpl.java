@@ -145,7 +145,7 @@ public class OfferDAOImpl implements OfferDAO {
 	
 	@Override
 	public List<OfferDTO> selectOffersForIpo(int itemsId) {
-		String SQL = "SELECT * FROM offers WHERE items_Id = ? AND buy = true";
+		String SQL = "SELECT * FROM offers WHERE items_Id = ? AND buy = true AND is_complete=false";
 		PreparedStatement pstmt= null;
 		Connection con= null;
 		ResultSet rs = null;
