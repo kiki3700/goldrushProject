@@ -125,7 +125,7 @@ public class AccountService {
 	public String makeCookieString(ResponseToken3legger token, ResponseLookupInfo information) throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
 		String json ="";
-		LookupResList resList = information.getRes_list().get(1);
+		LookupResList resList = information.getRes_list().get(0);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("access-token", token.getAccess_token());
 		map.put("refresh-token", token.getRefresh_token());
