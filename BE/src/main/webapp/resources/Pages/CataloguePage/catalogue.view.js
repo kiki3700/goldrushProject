@@ -71,7 +71,7 @@ export default class CatalogueView{
             <a href = '#catalogue/${item.itemsId}'>
               <div class="row item_small">
                 <div class="image_box col-lg-4 col-xs-4">
-                  <img src="/css/img/item_small_noback.png" alt="item_image_small">
+                  <img src= "${item.imgAddress}" alt="item_image_small">
                 </div>
                 <div class="content_box">
                   <p class="list_item_price">현재가 : ${item.price}</p>  

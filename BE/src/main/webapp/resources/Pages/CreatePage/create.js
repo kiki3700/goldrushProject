@@ -10,7 +10,7 @@ const create = `
             <input class="input_name" type="text" placeholder="user_name"> 
             <input class="input_id" type="text" placeholder="user_mail"> 
             <input class="input_password" type="password" placeholder="user_password">
-            <button class="form_login">회원가입</button>
+            <button type="button" class="form_login">회원가입</button>
           </form>
         </div>
         
