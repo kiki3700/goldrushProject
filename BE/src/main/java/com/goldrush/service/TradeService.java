@@ -166,7 +166,7 @@ public class TradeService {
 				sellerDTO.setMembersId(offerDTO.getMembersId());
 				sellerDTO.setItemsId(offerDTO.getItemsId());
 				sellerDTO.setQuantity(-payToQuantity);
-				sellerDTO.setPrice(offerDTO.getOfferPrice());
+				sellerDTO.setPrice(inventoryDAO.selectAvgPrice(offerDTO.getMembersId(), offerDTO.getItemsId()));
 				inventoryDAO.insertInventory(sellerDTO);
 			}
 			InventoryDTO buyerDTO = new InventoryDTO();
@@ -186,7 +186,7 @@ public class TradeService {
 			sellerDTO.setMembersId(tradeDTO.getMembersId());
 			sellerDTO.setItemsId(offerDTO.getItemsId());
 			sellerDTO.setQuantity(-payToQuantity);
-			sellerDTO.setPrice(offerDTO.getOfferPrice());
+			sellerDTO.setPrice(inventoryDAO.selectAvgPrice(offerDTO.getMembersId(), offerDTO.getItemsId()));
 			inventoryDAO.insertInventory(buyerDTO);
 			inventoryDAO.insertInventory(sellerDTO);
 		}
@@ -276,6 +276,7 @@ public class TradeService {
 			inventoryDTO.setItemsId(offerDTO.getItemsId());
 			inventoryDTO.setMembersId(offerDTO.getMembersId());
 			inventoryDTO.setQuantity(-offerDTO.getQuantity());
+			inventoryDTO.setPrice(inventoryDAO.selectAvgPrice(offerDTO.getMembersId(), offerDTO.getItemsId()));
 			inventoryDAO.insertInventory(inventoryDTO);
 			accountDAO.insertClearingResult(offerDTO.getMembersId(), offerDTO.getQuantity()*returnForMember);
 			logger.info("process complete");
