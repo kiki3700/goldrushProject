@@ -26,7 +26,7 @@ body {
 }
 .menu {
   background-color: #fff;
-  border: 1px solid #79955f;
+  border: 1px solid #808080;
   border-right: none;
   height: 80vh;
   display: flex;
@@ -38,7 +38,7 @@ body {
   padding: 0px 0px;
   height: 80vh;
   color: #000;
-  border: 1px solid #79955f;
+  border: 1px solid #808080;
 }
 .item_ul {
   padding-left: 0px;
@@ -46,7 +46,7 @@ body {
   margin-bottom: 0px;
 }
 .item_ul li {
-  border-bottom: 1px solid #79955f;
+  border-bottom: 1px solid #808080;
   padding: 0px 15px;
 }
 .item_ul li:last-child {
@@ -77,7 +77,7 @@ body {
 .item_detail {
   height: 80vh;
   padding: 0px;
-  border: 1px solid #79955f;
+  border: 1px solid #808080;
   border-left: none;
   background-color: #fff;
 }
@@ -86,7 +86,7 @@ body {
   height: 10vh;
   width: 100%;
   margin-left: 0.5px;
-  border-bottom: 1px solid #79955f;
+  border-bottom: 1px solid #808080;
   position: sticky;
   display: flex;
   justify-content: space-between;
@@ -104,7 +104,7 @@ body {
 }
 .item_image {
   height: 30%;
-  border-bottom: 1px solid #79955f;
+  border-bottom: 1px solid #808080;
   text-align: center;
   background-color: #fff;
   display: flex;
@@ -152,7 +152,7 @@ body {
   width: 45%;
   height: 18%;
   font-size: 20px;
-  border: 1px #79955f solid;
+  border: 1px #808080 solid;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -215,7 +215,7 @@ a:active {
 .follow_menu {
   height: 80vh;
   background-color: #fff;
-  border: 1px solid #79955f;
+  border: 1px solid #808080;
   display: flex;
   flex-direction: column;
 }
