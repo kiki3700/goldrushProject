@@ -47,13 +47,13 @@ export default class UserInfoView{
       <tr>
         <th scope="row">${item.name}</th>
         <td>$${item.averagePrice}</td>
-        <td>$${item.price * item.quantity}</td>
+        <td>$${item.price}</td>
         <td>${item.quantity}조각</td>
         <td>${item.rateOfReturn.toFixed(2)}%</td>
       </tr>
       `
       totalAverage += item.averagePrice;
-      totalPrice += (item.price * item.quantity);
+      totalPrice += item.price;
       totalAmount += item.quantity;
       totalRateOfReturn += item.rateOfReturn;
       count++;

@@ -24,11 +24,11 @@ export default class CreateModel {
           location.href = '#login';
           alert('회원가입이 완료되었습니다.');
         } else {
-          res.text().then(text => alert('이미 있는 메일주소입니다.'));
+          res.text().then(text => alert('이미 있는 메일주소입니다. status', text));
         }
       })
       .catch((error) => {
-        alert('이미 있는 메일주소입니다.', error);
+        alert('이미 있는 메일주소입니다. 캐치로옴', error);
       }
     )
   
