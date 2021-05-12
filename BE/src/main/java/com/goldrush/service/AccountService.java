@@ -1,4 +1,4 @@
-package com.goldrush.service.accountService;
+package com.goldrush.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -173,8 +173,11 @@ public class AccountService {
 		postParameters.add("recv_client_bank_code",req.getRecv_client_bank_code());
 		postParameters.add("recv_client_account_num",req.getRecv_client_account_num());
 		String json = mapper.writeValueAsString(postParameters).replace("[\"", "\"").replace("]\"", "\"");
+		
+		
 		HttpEntity<String> r = new HttpEntity<>(json,httpHeaders);
 		ResponseWithdraw withdrawResult=restTemplate.postForObject(url, r, ResponseWithdraw.class);
+		accountDAO.insertTranIds();
 		accountDAO.insertWithdrawResult(membersId, -amount);
 		return withdrawResult;
 	}
@@ -223,7 +226,7 @@ public class AccountService {
 		HttpEntity<String> r = new HttpEntity<>(json.replace("[\"", "\"").replace("\"]","\""),httpHeaders);
 		ResponseDeposit depositResult=restTemplate.postForObject(url, r, ResponseDeposit.class);
 		depositResult.getRes_list();
-		
+		accountDAO.insertTranIds();
 		System.out.println(accountDAO.insertDepositResult(membersId, amount));
 		System.out.println(depositResult);
 		return depositResult;

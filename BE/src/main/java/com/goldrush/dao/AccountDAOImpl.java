@@ -5,15 +5,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
+
 import java.util.ArrayList;
 import java.util.List;
+
 
 import com.goldrush.dto.AccountDTO;
 
 public class AccountDAOImpl implements AccountDAO{
 	DB db;
-	
+
 	public AccountDAOImpl() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -169,12 +170,16 @@ public class AccountDAOImpl implements AccountDAO{
 	public int insertIpoResult(int membersId, int amount) {
 		String SQL = "INSERT accounts(action, members_id, amount) values('IPO', ?, ?)";
 		int result=0;
+		int rs=0;
 		Connection con = db.connect();
 		try{
 			PreparedStatement pstmt = con.prepareStatement(SQL);
 			pstmt.setInt(1, membersId);
 			pstmt.setInt(2, amount);
-			if(pstmt.execute()) result=1;
+			rs= pstmt.executeUpdate();
+			if(rs==1) {
+			result=1;
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -215,16 +220,16 @@ public class AccountDAOImpl implements AccountDAO{
 	}
 	
 	//수수료부과
+
 	@Override
-	public int insertFeeResult(int membersId, int amount, int balance) {
-		String SQL = "INSERT accounts(action, members_id, amount) values('fee', ?, ?, ?)";
+	public int insertFeeResult(int membersId, int amount) {
+		String SQL = "INSERT accounts(action, members_id, amount) values('fee', ?, ?)";
 		int result=0;
 		Connection con = db.connect();
 		try{
 			PreparedStatement pstmt = con.prepareStatement(SQL);
 			pstmt.setInt(1, membersId);
 			pstmt.setInt(2, amount);
-			pstmt.setInt(3, balance);
 			if(pstmt.execute()) result=1;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -289,6 +294,52 @@ public class AccountDAOImpl implements AccountDAO{
             }
         }	
 		return result;
+	}
+	@Override
+	public int selectTranId() {
+		String SQL = "select count(*) as count from tran_ids WHERE time_stamp>=CURDATE()";
+		Statement stmt = null;
+		ResultSet rs =null;
+		Connection con = db.connect();
+		int count=0;
+		try {
+			stmt=con.createStatement();
+			rs=stmt.executeQuery(SQL);
+			if(rs.next()) {
+				count = rs.getInt("count");
+			}
+	}catch(SQLException e) {
+		e.printStackTrace();
+	}
+		if (con != null) {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+	
+	}
+		return count;	
+	}
+	@Override
+	public void insertTranIds() {
+		String SQL ="INSERT tran_ids() values()";
+		Statement stmt = null;
+		int rs = 0;
+		Connection con = db.connect();
+		try {
+			stmt=con.createStatement();
+			rs=stmt.executeUpdate(SQL);
+	}catch(SQLException e) {
+		e.printStackTrace();
+	}
+		if (con != null) {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+		}	
 	}
 
 }

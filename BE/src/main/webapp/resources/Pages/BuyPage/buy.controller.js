@@ -44,16 +44,21 @@ export default class CatalogueController{
       return alert(`${limit}조각 이상은 처분할 수 없습니다!`);
     }
   }
-  //대기 대기 매도 & 오퍼 만들고 갑니다.
+  
   sellButton = async() => {
     const amount = Number(this.view.count.value);
     const user = JSON.parse(localStorage.getItem('userInfo'));
     const price = Number(this.view.sellPrice.innerHTML)
-    //const price = Number(this.view.price);
+    
     const itemsId = Number(location.hash.match(/[0-9]*$/)[0])
     
+    if ( amount < 1) {
+      return alert('최소 판매단위는 1입니다.');
+    } 
+    
     await this.model.PostTradeItem(user.membersId, price, amount, itemsId);
-    //location.reload();
+    
+    location.reload();
   }
 
   offerButton = async() => {
@@ -62,7 +67,10 @@ export default class CatalogueController{
     const itemsId = Number(location.hash.match(/[0-9]*$/)[0]);
     const user = JSON.parse(localStorage.getItem('userInfo'));
 
-    
+    if ( quantity < 1 || price < 1 ) {
+      return alert("가격과 수량의 최소단위는 1입니다.");
+    }
+
     await this.model.PostMakeOffer(user.membersId, itemsId, price, quantity);
     
   }

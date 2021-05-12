@@ -98,8 +98,10 @@ public class MemberController {
 		ResponseDTO response = memberService.changePassword(membersId, newPassword);
 		
 		if(response.getResult()==1) {
+			logger.info("password change is sucess");
 			return new ResponseEntity<ResponseDTO>(response,HttpStatus.ACCEPTED);
 		}else {
+			logger.info("password change is fail");
 			return new ResponseEntity<ResponseDTO>(response,HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -111,7 +113,7 @@ public class MemberController {
 	}
 	@RequestMapping(value = "/offer", method = RequestMethod.GET)
 	public @ResponseBody List<OfferLogDTO> getOfferLog(@RequestParam("membersId") int membersId ){
-		logger.info(membersId+"looks up offerLog");
+		logger.info(membersId+"th member looks up offerLog");
 		return memberService.getOfferLog(membersId);
 	}
 	@RequestMapping(value = "/account", method = RequestMethod.GET)

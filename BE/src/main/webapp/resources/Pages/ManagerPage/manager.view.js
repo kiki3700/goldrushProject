@@ -23,14 +23,32 @@ export default class ManagerView{
     let itemUl = document.querySelector('.item_ul');
     
     for (var item of list) {
-      if (item.stage !== "close"){
+      console.log(item);
+      item.imgAddress = item.imgAddress.slice(0,9) + '/thumbnail' + item.imgAddress.slice(9);
+      if ( item.stage === 'open' || item.stage === 'unopen' ) {
         let li = document.createElement('li');
         li.className = 'item_li';
         let textNode = `
         <a href = '#manager/${item.itemsId}'>
             <div class="row item_small">
             <div class="image_box col-lg-4 col-xs-4">
-            <img src="/css/img/item_small_noback.png" alt="item_image_small">
+            <img src="${item.imgAddress}" alt="item_image_small">
+              </div>
+              <p class="col-lg-4 col-xs-5 text-center">${item.name} <br> ${item.stage}</p>
+              <p class="col-lg-4 col-xs-5 text-center">현재가 ${item.price}</p>
+            </div>
+          </a>
+        `
+        li.insertAdjacentHTML('afterbegin',textNode);
+        itemUl.appendChild(li);
+      } else if ( item.stage !== "close" ){
+        let li = document.createElement('li');
+        li.className = 'item_li';
+        let textNode = `
+        <a href = '#manager/${item.itemsId}'>
+            <div class="row item_small">
+            <div class="image_box col-lg-4 col-xs-4">
+            <img src="${item.imgAddress}" alt="item_image_small">
               </div>
               <p class="col-lg-4 col-xs-5 text-center">${item.name} <br> ${item.stage}</p>
               <p class="col-lg-4 col-xs-5 text-center">수익률  ${Math.round((item.price - (item.cost/item.quantity))/(item.cost/item.quantity))}% <br> 현재가 ${item.price}</p>
@@ -70,7 +88,7 @@ export default class ManagerView{
             <input type="file" id="image_uploads" name="img" accept=".jpg, .jpeg, .png" multiple>
           </div>
           <div class="preview">
-            <p>100*100px의 크기로 들어가요!</p>
+            <img src="${item.imgAddress}" alt="detail_image">
           </div>
         </div>
       </div>

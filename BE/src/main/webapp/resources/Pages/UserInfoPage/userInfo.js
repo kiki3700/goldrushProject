@@ -83,7 +83,7 @@ const userInfo = `
                   <thead>
                     <tr>
                       <th scope="col">날짜</th>
-                      <th scope="col">구매/판매 | 충전/환전 </th>
+                      <th scope="col">구매/판매 | 충전/환전 | 청약 | 청산</th>
                       <th scope="col">금액</th>
                     </tr>
                   </thead>
@@ -100,6 +100,7 @@ const userInfo = `
                   <thead>
                     <tr>
                       <th scope="col">호가 번호</th>
+                      <th scope="col">호가 유형</th>
                       <th scope="col">상품 이름</th>
                       <th scope="col">호가 가격</th>
                       <th scope="col">수량</th>

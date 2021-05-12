@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.goldrush.dto.accountDto.RequestToken3legger;
-import com.goldrush.service.accountService.AccountService;
+import com.goldrush.service.AccountService;
 
 public class junitForOAuth {
 

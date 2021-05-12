@@ -145,7 +145,7 @@ public class OfferDAOImpl implements OfferDAO {
 	
 	@Override
 	public List<OfferDTO> selectOffersForIpo(int itemsId) {
-		String SQL = "SELECT * FROM offers WHERE items_Id = ? AND buy = true";
+		String SQL = "SELECT * FROM offers WHERE items_Id = ? AND buy = true AND is_complete=false";
 		PreparedStatement pstmt= null;
 		Connection con= null;
 		ResultSet rs = null;
@@ -185,7 +185,6 @@ public class OfferDAOImpl implements OfferDAO {
 		PreparedStatement pstmt= null;
 		Connection con= null;
 		int rs = 0;
-		List<OfferDTO> listOffer = new ArrayList<OfferDTO>();
 		ResponseDTO response=null;
 		try {
 			con = db.connect();
