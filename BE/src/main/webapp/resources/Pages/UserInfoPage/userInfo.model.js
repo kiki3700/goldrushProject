@@ -63,7 +63,7 @@ export default class UserInfoModel {
       error => error
     )
     .then(
-      json => console.log(json)
+      json => alert('오퍼를 취소하셨습니다.', json)
     )
     .catch((error) => {
       alert('삭제하는 데 실패!', error)

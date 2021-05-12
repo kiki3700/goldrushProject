@@ -49,6 +49,10 @@ export default class CatalogueController{
     const price = Number(this.view.buyPrice.innerHTML);
     const itemsId = Number(location.hash.match(/[0-9]*$/)[0])
     
+    if ( amount < 1 ) {
+      return alert("최소 구입단위는 1입니다.")
+    }
+
     await this.model.PostTradeItem(user.membersId, price, amount, itemsId);
     location.reload()
   }
@@ -59,7 +63,10 @@ export default class CatalogueController{
     const itemsId = Number(location.hash.match(/[0-9]*$/)[0]);
     const user = JSON.parse(localStorage.getItem('userInfo'));
 
-    
+    if ( quantity < 1 || price < 1 ) {
+      return alert("가격과 수량의 최소단위는 1입니다.");
+    }
+
     await this.model.PostMakeOffer(user.membersId, itemsId, price, quantity);
     location.reload();
   }

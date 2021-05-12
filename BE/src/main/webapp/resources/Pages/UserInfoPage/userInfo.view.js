@@ -89,9 +89,15 @@ export default class UserInfoView{
     let tableNode = ``;
     
     for(const item of offer) {
+      if ( item.buy ) {
+        item.buy = '판매'
+      } else {
+        item.buy = '구입'
+      }
       tableNode += `
       <tr>
         <th class="offerId" scope="row">${item.offersId}</th>
+        <td>${item.buy}</td>
         <td>${item.name}</td>
         <td>${item.offerPrice}</td>
         <td>${item.quantity}</td>
@@ -122,9 +128,15 @@ export default class UserInfoView{
         item.action = '판매';
       } else if (item.action === 'buy'){
         item.action = '구매';
-      } else {
+      } else if (item.action === 'withdraw'){
         item.action = '환전';
+      } else if (item.action === 'IPO') {
+        item.action = '청약';
+      } else if (item.action === 'clearing') {
+        item.action = '청산'
       }
+        
+      
     }
     
     for(const item of account) {

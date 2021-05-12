@@ -63,14 +63,20 @@ export default class UserInfoController {
       
     }
     
+    const amount = Number(this.view.chargeAmount.value);
+    if ( amount < 1000) {
+      return alert("최소 충전 단위는 1000원입니다.");
+    } else {
+      const user = JSON.parse(localStorage.getItem('userInfo'));
+    
+      setCookie('membersId', user.membersId);
+      setCookie('amount', Number(this.view.chargeAmount.value));
+      setCookie('withdraw', false);
+      
+      location.href = 'http://192.168.1.70:8080/bank/oauth';
+    }
   
-    const user = JSON.parse(localStorage.getItem('userInfo'));
     
-    setCookie('membersId', user.membersId);
-    setCookie('amount', Number(this.view.chargeAmount.value));
-    setCookie('withdraw', false);
-    
-    location.href = 'http://192.168.1.70:8080/bank/oauth';
   }
   clickDisChargeBtn = () => {
     var setCookie = function(name, value, day) {
@@ -110,13 +116,15 @@ export default class UserInfoController {
     const amount = Number(this.view.chargeAmount.value);
     
     if ( amount > limit ) {
-      return alert('잔고보다 많은 돈을 출금할 수는 없습니다.')
+      return alert('잔고보다 많은 돈을 출금할 수는 없습니다.');
+    } else if (amount < 1000) {
+      return alert('최소 환전 단위는 1000원입니다.');
     } else {
-      const user = JSON.parse(localStorage.getItem('userInfo'));
-      setCookie('membersId', user.membersId);
-      setCookie('amount', Number(this.view.chargeAmount.value));
-      setCookie('withdraw', true);
-      location.href = 'http://192.168.1.70:8080/bank/oauth';
+        const user = JSON.parse(localStorage.getItem('userInfo'));
+        setCookie('membersId', user.membersId);
+        setCookie('amount', Number(this.view.chargeAmount.value));
+        setCookie('withdraw', true);
+        location.href = 'http://192.168.1.70:8080/bank/oauth';
     }
   }
 
