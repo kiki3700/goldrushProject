@@ -58,7 +58,7 @@ export default class CatalogueController{
     
     await this.model.PostTradeItem(user.membersId, price, amount, itemsId);
     
-    location.reload();
+    
   }
 
   offerButton = async() => {

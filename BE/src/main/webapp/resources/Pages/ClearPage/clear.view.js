@@ -24,6 +24,7 @@ export default class ClearView{
     
     for (var item of list) {
       //리스트 중에서 stage가 clear인 것만 고릅시다.
+      item.imgAddress = item.imgAddress.slice(0,9) + '/thumbnail' + item.imgAddress.slice(9);
       if (item.stage === 'clear') {
         let li = document.createElement('li');
         li.className = 'item_li';
@@ -31,7 +32,7 @@ export default class ClearView{
           <a href = '#clear/${item.itemsId}'>
             <div class="row item_small">
             <div class="image_box col-lg-4 col-xs-4">
-            <img src="/css/img/item_small_noback.png" alt="item_image_small">
+            <img src="${item.imgAddress}" alt="item_image_small">
               </div>
               <p class="col-lg-4 col-xs-5 text-center">${item.name} <br> ${item.stage}</p>
               <p class="col-lg-4 col-xs-5 text-center">수익률  ${Math.round((item.price - (item.cost/item.quantity))/(item.cost/item.quantity))}% <br> 현재가 ${item.price}</p>
@@ -67,7 +68,7 @@ export default class ClearView{
     let textNode = `
       <div class="item_image">
         <div class="preview">
-          <p>상품이미지</p>
+          <img src="${item.imgAddress}" alt="detail_image">
         </div>
       </div>
       <div class="item_container">
