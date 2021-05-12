@@ -76,7 +76,7 @@ export default class CatalogueView{
                 <div class="content_box">
                   <p class="list_item_price">현재가 : ${item.price}</p>  
                   <p class="list_item_name">${item.name}</p>
-                  <small class="list_item_stage">${item.stage}: ~${item.stage === 'open' ? UnixTimestamp(item.openingDate) : UnixTimestamp(item.ipoDate)}</small>
+                  <small class="list_item_stage">${item.stage}: ${item.stage === 'open' ? UnixTimestamp(item.ipoDate) : item.stage === 'trade' ? UnixTimestamp(item.clearingDate) : '상품 판매중'}</small>
                 </div>
               </div>
             </a>
@@ -101,7 +101,7 @@ export default class CatalogueView{
                 <div class="content_box">
                   <p class="list_item_price">현재가 : ${item.price}</p>  
                   <p class="list_item_name">${item.name}</p>
-                  <small class="list_item_stage">${item.stage}: ~${item.stage === 'open' ? UnixTimestamp(item.openingDate) : UnixTimestamp(item.ipoDate)}</small>
+                  <small class="list_item_stage">${item.stage}: ${item.stage === 'open' ? UnixTimestamp(item.ipoDate) : item.stage === 'trade' ? UnixTimestamp(item.clearingDate) : '상품 판매중'}</small>
                 </div>
               </div>
             </a>
@@ -258,27 +258,31 @@ export default class CatalogueView{
     div.insertAdjacentHTML('afterbegin', textNode);
     row.appendChild(div);
     this.chart = document.querySelector('#canvas');
-    
-    const ctx = this.chart.getContext('2d');
-    const data = {
-        // The type of chart we want to create
-        type: 'line',
-        // The data for our dataset
-        data: {
-            labels: day,
-            datasets: [{
-                label: "일일 가격변동",
-                backgroundColor: 'rgb(255, 99, 132)',
-                fill:false, // line의 아래쪽을 색칠할 것인가? 
-                borderColor: 'rgb(255, 99, 132)',
-                lineTension:0.1, // 값을 높이면, line의 장력이 커짐.
-                data: price,
-            }]
-        },
-        // Configuration options go here
-        options: {}
+    if ( !this.chart ) {
+      
+    } else {
+      const ctx = this.chart.getContext('2d');
+      const data = {
+          // The type of chart we want to create
+          type: 'line',
+          // The data for our dataset
+          data: {
+              labels: day,
+              datasets: [{
+                  label: "일일 가격변동",
+                  backgroundColor: 'rgb(255, 99, 132)',
+                  fill:false, // line의 아래쪽을 색칠할 것인가? 
+                  borderColor: 'rgb(255, 99, 132)',
+                  lineTension:0.1, // 값을 높이면, line의 장력이 커짐.
+                  data: price,
+              }]
+          },
+          // Configuration options go here
+          options: {}
+      }
+      const chart = new Chart(ctx, data);
     }
-    const chart = new Chart(ctx, data);
+    
   }
 
   

@@ -53,14 +53,13 @@ const qna = `
                 <div class="panel-heading">
                   <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseQ1">
-                      <span class="glyphicon glypicon-star"></span>
                       조각투자란?
                     </a>
                   </h4>
                 </div>
                 <div id="collapseQ1" class="panel-collapse collapse in">
                   <div class="panel-body">
-                    투자의 시대다. 적금으로 월급을 착실히 모아 내집 마련의 꿈을 이룰 수 있는 시기는 지났다. ‘성실’보다 ‘투자’가 계층사다리를 올라가는 방법이라고 판단하는 사람들이 늘었다. 청년층도 비록 소액일지라도 투자에 관심을 갖기 시작했다. 이러한 흐름을 타고 2030세대를 겨냥한 새로운 투자 형태가 생겼다. 바로 ‘조각투자’다. 수천만원을 웃도는 목돈을 준비할 필요가 없다. 투자 시작점은 ‘10만원’이다. 회수 기간은 평균 6개월로 짧다. 투자 대상은 ‘명품’이다. 익숙하고, 투자기간이 짧고, 소액이라는 점에서 젊은 층의 투자 문턱을 낮췄다.
+                    투자의 시대입니다. 은행을 통해, 착실히 돈을 모아 내집 마련의 꿈을 이룰 수 있는 시기는 지났습니다. 이제 계층 사다리를 이동하는방법은 '성실'보다는 '투자'입니다. 다양한 계층에서 투자에 관심을 갖기 시작했더라도, 투자를 할 곳은 마땅치가 않습니다. 그런 분들을 위해 준비한 투자 플랫폼이 바로 이곳 'GoldRush'입니다. 투자의 시작은 1000원이 될 수도 있고, 10000원이 될수도, 심지어 100원이 될 수도 있습니다. 짧은 기간동안 투자를 통해서 가장 큰 이익을 얻어보세요!
                   </div>
                 </div>
               </div>
@@ -68,14 +67,13 @@ const qna = `
                 <div class="panel-heading">
                   <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseQ2">
-                      <span class="glyphicon glypicon-star"></span>
-                      이만큼 잘나갑니다!
+                      어떤 상품을 취급하나요?
                     </a>
                   </h4>
                 </div>
                 <div id="collapseQ2" class="panel-collapse collapse">
                   <div class="panel-body">
-                    고가 명품이나 한정판을 구매하고 다시 팔아 수익을 거두는 리셀테크(리셀+재테크)가 MZ세대의 재테크 수단으로 떠오르고 있다. 리셀테크 인기에 발맞춰 소액으로 리셀테크 시장에 참여할 수 있는 펀드가 출시돼 큰 관심을 받고 있다.
+                    리셀테크에 활용될 수 있는, 시간이 지났을 때 가치가 오를 상품을 취급합니다. 이 상품들은 전문가들의 심사를 통해 판단됩니다. 절대 아무 상품이나 투자의 소재로 사용하지 않습니다!
                   </div>
                 </div>
               </div>
@@ -83,14 +81,13 @@ const qna = `
                 <div class="panel-heading">
                   <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseQ3">
-                      <span class="glyphicon glypicon-star"></span>
-                      등록은 언제 이뤄지나요?
+                      trade 단계는 무엇이가요?
                     </a>
                   </h4>
                 </div>
                 <div id="collapseQ3" class="panel-collapse collapse">
                   <div class="panel-body">
-                    최근 소액 투자로 소유권을 공동 구매하거나 공동 소유하는 플랫폼이 인기를 끌고 있다. 고액 자산가가 아니라면 소유하기 힘든 명품, 미술품, 저작권 등을 공동으로 소유하고 발생하는 수익금을 나누는 구조다. 온라인 미술품 경매사 서울옥션블루는 미술품, 스니커즈 등을 공동 구매할 수 있는 플랫폼 소투(SOTWO)를 운영하고 있다. 최근 걸그룹 브레이브걸스 노래 롤린 역주행과 함께 저작권 투자자들이 1000% 가까운 수익률을 거두며 음악 저작권 공유 플랫폼 뮤직카우가 큰 관심을 받기도 했다. 신범준 대표는 "명품은 눈에 보이는 현물이고 누구나 가치 변화를 알 수 있어 주식보다 쉽게 투자할 수 있는 대상"이라며 "최근 급성장하고 있는 리셀에 대한 수요가 피스로 자연스레 이동할 것으로 기대한다"고 말했다. 이어 "앞으로도 소액 투자자들도 의미 있는 수익을 누릴 수 있도록 가치 있고 우량한 현물 포트폴리오를 지속적으로 제안하겠다"고 밝혔다. 한편 집합 1호에 이은 피스의 후속 포트폴리오는 오는 6월 공개된다.
+                    청약기간동안 받은 상품들을 다른 투자자분과 거래하실 수 있습니다. 가치가 떨어질 것 같다면 처분하시고, 가치가 오를 것 같으면 확보하십시오! 이를 통해 투자자 스스로 리스크관리와 더불어 최대의 이익을 얻을 수도 있습니다!
                   </div>
                 </div>
               </div>
@@ -98,14 +95,27 @@ const qna = `
                 <div class="panel-heading">
                   <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseQ4">
-                      <span class="glyphicon glypicon-star"></span>
-                      비전이 있는 투자인가요?
+                      clear 단계는 어떻게 이뤄지나요?
                     </a>
                   </h4>
                 </div>
                 <div id="collapseQ4" class="panel-collapse collapse">
                   <div class="panel-body">
-                    온라인 미술품 경매사 서울옥션블루는 미술품과 아트 토이, 스니커즈 등을 공동구매할 수 있는 플랫폼 ‘소투(SOTWO)’를 운영 중이다. 테사(TESSA)에서도 뱅크시, 야요이 쿠사마 등의 작품을 소액으로 투자할 수 있다. 또, 잘만 투자하면 직접 곡을 쓰지 않더라도 ‘벚꽃연금’과 같은 저작권 수익을 올릴 수 있다. (버스커버스커의 ‘벚꽃 엔딩’은 매년 봄 많이 재생돼 벚꽃연금으로 불린다) 뮤직카우에선 옥션 또는 마켓 거래로 저작권 일부를 소유할 수 있다. 뮤직카우에 따르면 ‘차트 역주행’으로 재조명 받은 브레이브 걸스의 ‘롤린’은 최근 들어 1주일 사이 저작권 수익률 1000%에 이르기도 했다.                  </div>
+                    clear 단계에 돌입하면, 다른 투자자와의 거래가 불가해집니다. 이후 최상의 매입자를 모집합니다. 매입자에게 판매한 후 투자자분들의 보유율만큼 차익을 분배합니다!
+                  </div>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseQ5">
+                      비전이 있나요?
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseQ5" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    이미 해외에서 활발하게 진행되고 있는 리셀거래입니다. 국내에서도 현물의 가치는 나날이 우상향 곡선을 그리고 있습니다. 우상향 곡선을 타고 날아올라보세요! 
                 </div>
               </div>
             </div>

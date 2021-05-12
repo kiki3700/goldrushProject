@@ -93,27 +93,7 @@ const userInfo = `
                 </table>
                 <p class="pull-right account"></p> 
               </div>
-              <div class="trade_log">
-                <h1>거래내역</h1>
-                <table class="table trade_log_table">
-                  <thead>
-                    <tr>
-                      <th>item</th>
-                      <th>가격</th>
-                      <th>양</th>
-                      <th>매수 / 매도</th>
-                    </tr>
-                  </thead>  
-                  <tbody>
-                    <tr>
-                      <th scope="row">스폰지밥</th>
-                      <td>10000원</td>
-                      <td>1</td>
-                      <td>매수</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              
               <div class="offer_log">
                 <h1>호가 내역</h1>
                 <table class="table offer_log_table">
