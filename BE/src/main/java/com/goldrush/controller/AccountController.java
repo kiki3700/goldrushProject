@@ -43,7 +43,7 @@ public class AccountController {
 	private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
 	
 	@RequestMapping(value="/oauth")
-	public RedirectView oauth1(@CookieValue(name="open-banking") String banking, @CookieValue(name="membersId") int membersId, @CookieValue(name="amount") int amount, @CookieValue(name="withdraw") boolean withdraw, RedirectAttributes attributes) {
+	public RedirectView oauth1(@CookieValue(name="membersId") int membersId, @CookieValue(name="amount") int amount, @CookieValue(name="withdraw") boolean withdraw, RedirectAttributes attributes) {
 		logger.info(membersId+"th is trying to Oaut");
 		if(ser.checkWithdrawCondition(withdraw, membersId, amount)) return new RedirectView("/bank/noEnoughMoney");
 	          attributes.addAttribute("Access-Control-Allow-Origin", "*");
