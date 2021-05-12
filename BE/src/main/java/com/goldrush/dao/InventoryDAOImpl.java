@@ -236,6 +236,27 @@ public class InventoryDAOImpl implements InventoryDAO{
 		return response;
 	}
 	@Override
+	public int selectAvgPrice(int membersId, int itemsId) {
+		String SQL = "SELECT items_id, SUM(quantity) AS quantity, SUM(quantity*price)/SUM(quantity) as average_price from inventories where members_id =? AND items_id = ? GROUP BY items_id";
+		Connection con = db.connect();
+		PreparedStatement pstmt=null;
+		ResultSet rs = null;
+		int avgPrice=0;
+		try {
+			pstmt=con.prepareStatement(SQL);
+			pstmt.setInt(1,membersId);
+			pstmt.setInt(2, itemsId);
+			rs= pstmt.executeQuery();
+			if(rs.next()) {
+				avgPrice=rs.getInt("average_price");
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return avgPrice;
+	}
+	
+	@Override
 	public List<PortfolioDTO> selectPortfolio(int membersId) {
 		// TODO Auto-generated method stub
 		String SQL = "SELECT items_id, SUM(quantity) AS quantity, SUM(quantity*price)/SUM(quantity) as average_price from inventories where members_id =? GROUP BY items_id";

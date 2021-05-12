@@ -15,4 +15,5 @@ public interface InventoryDAO {
 	public ResponseDTO deleteInventory(InventoryDTO dto);
 	int checkEnoughQuantity(int membersId, int itemsId);
 	List<InventoryDTO> selectItems(int itemsId);
+	int selectAvgPrice(int membersId, int itemsId);
 }
