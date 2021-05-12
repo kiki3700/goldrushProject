@@ -72,7 +72,7 @@ public class ItemService {
 	
 	public ResponseDTO postThumnail(MultipartHttpServletRequest request, String code, String ext ,File file) {
 		logger.info("thumnail picture is trying to post");
-		String path = "eclipse-workspace/Goldrush/BE/src/main/webapp/resources/img/item/thumnail/";
+		String path = "eclipse-workspace/Goldrush/BE/src/main/webapp/resources/img/item/thumbnail/";
 		File thFile = new File(path,code+ext);
 		try {
 			BufferedImage Image = ImageIO.read(file);
