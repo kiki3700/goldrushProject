@@ -54,7 +54,7 @@ export default class CatalogueController{
     }
 
     await this.model.PostTradeItem(user.membersId, price, amount, itemsId);
-    location.reload()
+    
   }
 
   offerButton = async() => {
@@ -68,7 +68,7 @@ export default class CatalogueController{
     }
 
     await this.model.PostMakeOffer(user.membersId, itemsId, price, quantity);
-    location.reload();
+    
   }
 
   clickLogout = () => {

@@ -55,8 +55,14 @@ export default class BuyModel {
         err => err
       )
       .then(
-        res => alert('성공적으로 판매하셨습니다.', res),
-        location.reload()
+        res => {
+          if (res.result === 1){
+            alert('성공적으로 판매하셨습니다.'),
+            location.reload()
+          } else {
+            alert('보유량이 부족합니다.');
+          }
+        }
       )
       .catch((err) => {
         alert('트레이드 실패!',err);
@@ -86,8 +92,14 @@ export default class BuyModel {
         err => err
       )
       .then(
-        res => alert('매수장터에 등록되었습니다.', res),
-        location.reload()
+        res => {
+          if ( res.result === 1) {
+            alert('매수 오퍼 등록에 성공하셨습니다.');
+            location.reload();
+          } else {
+            alert('매수 오퍼 등록에 실패하였습니다.');
+          }
+        }
       )
       .catch((err) => {
         alert('매수 오퍼 실패!', err);
