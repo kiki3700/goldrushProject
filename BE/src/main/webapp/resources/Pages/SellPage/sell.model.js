@@ -57,7 +57,8 @@ export default class SellModel {
         err => err
       )
       .then(
-        res => console.log(res)
+        res => alert('성공적으로 구입하셨습니다.', res),
+        location.reload()
       )
       .catch((err) => {
         alert('트레이드 실패!',err);
@@ -86,10 +87,11 @@ export default class SellModel {
         err => err
       )
       .then(
-        res => console.log(res)
+        res => alert('매도장터에 등록되었습니다.', res),
+        location.reload()
       )
       .catch((err) => {
-        alert('매수 오퍼 실패!', err);
+        alert('매도 오퍼 실패!', err);
       })
 
       return offer;

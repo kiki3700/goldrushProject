@@ -63,7 +63,7 @@ export default class CatalogueView{
 
     if ( !window.location.hash.match(/\/[a-zA-z]+/) ) {
       for (var item of list) {
-        
+        item.imgAddress = item.imgAddress.slice(0,9) + '/thumbnail' + item.imgAddress.slice(9);
         if (item.stage !== 'unopen' && item.stage !== 'close') {
           let li = document.createElement('li');
           li.className = 'item_li';
@@ -89,14 +89,14 @@ export default class CatalogueView{
       let condition = window.location.hash.match(/\/\w+/)[0].substr(1);
       for (const item of list) {
         if (item.stage === condition) {
-          
+          item.imgAddress = item.imgAddress.slice(0,9) + '/thumbnail' + item.imgAddress.slice(9);
           let li = document.createElement('li');
           li.className = 'item_li';
           let textNode = `
             <a href = '#catalogue/${condition}/${item.itemsId}'>
               <div class="row item_small">
                 <div class="image_box col-lg-4 col-xs-4">
-                  <img src="/css/img/item_small_noback.png" alt="item_image_small">
+                  <img src="${item.imgAddress}" alt="item_image_small">
                 </div>
                 <div class="content_box">
                   <p class="list_item_price">현재가 : ${item.price}</p>  
@@ -131,7 +131,7 @@ export default class CatalogueView{
       </div>  
       <div style="overflow:auto; width:100%; height: 69vh;">
         <div class="item_image">
-          <img src="/css/img/item.jpg" alt="detail_image">
+          <img src="${item.imgAddress}" alt="detail_image">
         </div>
         <div class="item_container">
           <div class="row item_info item_name text-center">
@@ -171,7 +171,7 @@ export default class CatalogueView{
       </div>  
       <div style="overflow:auto; width:100%; height: 69vh;">
         <div class="item_image">
-          <img src="/css/img/item.jpg" alt="detail_image">
+          <img src="${item.imgAddress}" alt="detail_image">
         </div>
         <div class="item_container">
           <div class="row item_info item_name text-center">
@@ -210,7 +210,7 @@ export default class CatalogueView{
       </div>  
       <div style="overflow:auto; width:100%; height: 69vh;">
         <div class="item_image">
-          <img src="/css/img/item.jpg" alt="detail_image">
+          <img src="${item.imgAddress}" alt="detail_image">
         </div>
         <div class="item_container">
           <div class="row item_info item_name text-center">
