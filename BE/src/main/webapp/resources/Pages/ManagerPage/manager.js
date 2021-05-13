@@ -21,7 +21,7 @@ const manager = `
   
   <section class="merchandise_list">
     <div class="container-fluid">
-      <div class="item_box">
+      <div class="item_box">x
         <div class="row">
           <div class="menu col-lg-2 col-xs-2">
             <div class="row">

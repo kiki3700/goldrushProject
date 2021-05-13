@@ -51,7 +51,14 @@ export default class CatalogueModel {
         err => err,
       )
       .then(
-        response => console.log(response),
+        response => {
+          if (response.result === 1) {
+            alert('청약에 성공하셨습니다.');
+            return location.reload();
+          } else {
+            return alert('청약에 실패하셨습니다.');
+          }
+        },
       )
       .catch((err) => {
         console.log(err);

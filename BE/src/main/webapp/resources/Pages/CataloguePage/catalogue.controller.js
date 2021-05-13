@@ -74,7 +74,7 @@ export default class CatalogueController{
     const quantity = Number(this.view.contractInput.value);
     
     await this.model.PostMakeSubscription(userInfo.membersId, itemid, quantity);
-    location.reload();
+    
   }
 
 

@@ -39,10 +39,13 @@ export default class CatalogueController{
   check = () => {
     const limit = Number(this.view.limit.innerHTML);
     let amount = Number(this.view.count.value);
-    if (limit < amount) {
+    if ( !limit ) {
+      return alert('수량이 없습니다!');
+    } else if (limit < amount) {
       this.view.count.value = '';
       return alert(`${limit}조각 이상은 처분할 수 없습니다!`);
     }
+    
   }
   
   sellButton = async() => {
