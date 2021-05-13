@@ -58,7 +58,6 @@ body {
 }
 .item_ul li {
   border-bottom: 1px solid #808080;
-  height: 15vh;
   padding: 0px 0px;
 }
 .item_ul li:last-child {
@@ -72,7 +71,6 @@ body {
   align-items: center;
 }
 .image_box {
-  height: 100%;
   padding: 0px;
 }
 .image_box img {
