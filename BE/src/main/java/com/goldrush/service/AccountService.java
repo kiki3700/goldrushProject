@@ -108,7 +108,6 @@ public class AccountService {
 	}
 	public ResponseLookupInfo getUserInfo(ResponseToken3legger token) {
 		String url = "https://testapi.openbanking.or.kr/v2.0/user/me";
-		UriComponentsBuilder builder  =UriComponentsBuilder.fromHttpUrl(url).queryParam("user_seq_no", token.getUser_seq_no());
 		System.out.println(url);
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.set("Authorization", "Bearer "+token.getAccess_token());
