@@ -16,7 +16,7 @@ export default class EnrollModel {
       res => {
         if (res.result === 1) {
           alert('상품등록에 성공하셨습니다.');
-          location.href = '#manager'
+          location.href = '#enroll'
         } else {
           alert('상품등록에 실패하셨습니다.');
         }
