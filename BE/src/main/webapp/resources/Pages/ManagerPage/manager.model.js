@@ -43,7 +43,14 @@ export default class ManagerModel {
       response => response.json(),
       error => error)
     .then(
-      res => alert('상품을 수정하였습니다.', res)
+      res => {
+        if (res.result === 1) {
+          alert('상품을 수정하였습니다.', res);
+          location.reload()
+        } else {
+          alert('상품 수정에 실패하였습니다.')
+        }
+      }
     )
     .catch((error) => {
       alert('수정하는 데 실패!' ,error);

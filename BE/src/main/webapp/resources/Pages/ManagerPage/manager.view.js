@@ -136,7 +136,7 @@ export default class ManagerView{
           <input type="date" name="clearingDate" value="${UnixTimestamp(item.clearingDate)}">
         </div>
         <div class="row item_info">
-          <textarea class="item_Description" name="description" placeholder='${item.description}'></textarea>
+          <textarea class="item_Description" name="description">${item.description}</textarea>
         </div>
         <div class="row item_info">
           <input type="submit" class="btn btn-outline-info update_item" value="수정"></input>
