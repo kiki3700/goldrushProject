@@ -74,7 +74,7 @@ export default class CatalogueView{
                   <img src= "${item.imgAddress}" alt="item_image_small">
                 </div>
                 <div class="content_box">
-                  <p class="list_item_price">현재가 : ${item.price}</p>  
+                  <p class="list_item_price">현재가 : ${item.price}원</p>  
                   <p class="list_item_name">${item.name}</p>
                   <small class="list_item_stage">${item.stage}: ${item.stage === 'open' ? UnixTimestamp(item.ipoDate) : item.stage === 'trade' ? UnixTimestamp(item.clearingDate) : '상품 판매중'}</small>
                 </div>
@@ -99,7 +99,7 @@ export default class CatalogueView{
                   <img src="${item.imgAddress}" alt="item_image_small">
                 </div>
                 <div class="content_box">
-                  <p class="list_item_price">현재가 : ${item.price}</p>  
+                  <p class="list_item_price">현재가 : ${item.price}원</p>  
                   <p class="list_item_name">${item.name}</p>
                   <small class="list_item_stage">${item.stage}: ${item.stage === 'open' ? UnixTimestamp(item.ipoDate) : item.stage === 'trade' ? UnixTimestamp(item.clearingDate) : '상품 판매중'}</small>
                 </div>
@@ -140,7 +140,7 @@ export default class CatalogueView{
           </div>
           <div class="row item_info item_price text-center">
             <p class="col-lg-6 col-xs-6">상품 가격</p>
-            <p class="col-lg-6 col-xs-6">$${item.cost}</p>
+            <p class="col-lg-6 col-xs-6">${item.cost}원</p>
           </div>
           <div class="row item_info item_piece text-center">
             <p class="col-lg-6 col-xs-6">상품 남은 조각</p>
@@ -152,7 +152,7 @@ export default class CatalogueView{
           </div>
           <div class="row item_info item_piece_price text-center" >
             <p class="col-lg-6 col-xs-6">공모가</p>
-            <p class="col-lg-6 col-xs-6">$${item.cost / item.quantity}</p>
+            <p class="col-lg-6 col-xs-6">${item.cost / item.quantity}원</p>
           </div>
           <div class="row item_info item_explain text-center">
             <p class="col-lg-12">
@@ -180,7 +180,7 @@ export default class CatalogueView{
           </div>
           <div class="row item_info item_price text-center">
             <p class="col-lg-6 col-xs-6">상품 가격</p>
-            <p class="col-lg-6 col-xs-6">$${item.cost}</p>
+            <p class="col-lg-6 col-xs-6">${item.cost}원</p>
           </div>
           <div class="row item_info item_piece text-center">
             <p class="col-lg-6 col-xs-6">상품 조각</p>
@@ -188,7 +188,7 @@ export default class CatalogueView{
           </div>
           <div class="row item_info item_piece_price text-center" >
             <p class="col-lg-6 col-xs-6">현재가</p>
-            <p class="col-lg-6 col-xs-6">$${item.price}</p>
+            <p class="col-lg-6 col-xs-6">${item.price}원</p>
           </div>
           <div class="row item_info item_explain text-center">
             <p class="col-lg-12">
@@ -219,7 +219,7 @@ export default class CatalogueView{
           </div>
           <div class="row item_info item_price text-center">
             <p class="col-lg-6 col-xs-6">상품 가격</p>
-            <p class="col-lg-6 col-xs-6">$${item.cost}</p>
+            <p class="col-lg-6 col-xs-6">${item.cost}원</p>
           </div>
           <div class="row item_info item_piece text-center">
             <p class="col-lg-6 col-xs-6">상품 조각 지울거임</p>
@@ -227,7 +227,7 @@ export default class CatalogueView{
           </div>
           <div class="row item_info item_piece_price text-center" >
             <p class="col-lg-6 col-xs-6">조각 당 가격 => 팔린가격</p>
-            <p class="col-lg-6 col-xs-6">$${item.cost / item.quantity}</p>
+            <p class="col-lg-6 col-xs-6">${item.cost / item.quantity}원</p>
           </div>
           <div class="row item_info item_explain text-center">
             <p class="col-lg-12">

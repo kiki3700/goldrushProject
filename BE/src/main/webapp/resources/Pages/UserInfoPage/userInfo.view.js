@@ -90,9 +90,9 @@ export default class UserInfoView{
     
     for(const item of offer) {
       if ( item.buy ) {
-        item.buy = '판매'
-      } else {
         item.buy = '구입'
+      } else {
+        item.buy = '판매'
       }
       tableNode += `
       <tr>
@@ -140,28 +140,17 @@ export default class UserInfoView{
     }
     
     for(const item of account) {
-      if (account.length -1 !== account.indexOf(item)) {
-        tableNode += `
-          <tr>  
-            <th scope="row">${UnixTimestamp(Number(item.timestamp))}</th>
-            <td>${item.action}</td>
-            <td>${item.amount}</td>
-          </tr>
-        `
-      } else {
-        tableNode += `
-          <tr>  
-            <th scope="row">${UnixTimestamp(Number(item.timestamp))}</th>
-            <td>${item.action}</td>
-            <td>${item.amount}</td>
-          </tr>
-        `
-        
-        this.account = document.querySelector('.account');
-        this.account.innerHTML = `잔액 : <b class="amountAccount">${item.balance}</b>원`
-      }
-      
+      tableNode += `
+        <tr>  
+          <th scope="row">${UnixTimestamp(Number(item.timestamp))}</th>
+          <td>${item.action}</td>
+          <td>${item.amount}</td>
+        </tr>
+      `
     }
+    
+    this.account = document.querySelector('.account');
+    this.account.innerHTML = `잔액 : <b class="amountAccount">${item.balance}</b>원`
 
     this.accountLog.insertAdjacentHTML('afterbegin', tableNode);
 
