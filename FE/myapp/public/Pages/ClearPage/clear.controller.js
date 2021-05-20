@@ -8,23 +8,38 @@ export default class ManagerController{
   }
 
   getlist = async(callback) => {
-    // console.log(await callback());
-    console.log('list 생성');
+    
     this.list = await callback();
-    this.view.makeList(this.list);
+    this.view.makeClearList(this.list);
   }
 
   getItem = async(callback) => {
-    console.log('item 생성');
-    this.item = await callback(window.location.hash.match(/[0-9]*$/)[0] || 1);
-    this.view.updateItemDetail(this.item);
+    
+    this.hash = window.location.hash.match(/[0-9]*$/)[0];
+    if ( !this.hash ){
+      return '시작페이지'  
+    } else {
+      this.item = await callback(window.location.hash.match(/[0-9]*$/)[0]);
+      
+      this.view.updateItemDetail(this.item);
+    }
   }
   
   total = async() => {
-    //await this.getlist(this.model.GetItemList);
-    //await this.getItem(this.model.GetItem);
+    await this.getlist(this.model.GetItemList);
+    await this.getItem(this.model.GetItem);
 
     this.view.BindLogoutButton(this.clickLogout);
+    this.view.BindClearBtn(this.clear);
+    
+  }
+
+  clear = () => {
+    
+    const itemid = Number(location.hash.match(/[0-9]*$/)[0]);
+    const nowPrice = Number(this.view.nowPrice.value);
+    
+    this.model.GetClear(itemid, nowPrice);
   }
 
   clickLogout = () => {

@@ -15,7 +15,6 @@ export default class BuyModel {
     .catch((error) => {
       alert('오퍼리스트 읽는 것에 실패', error);
     })
-
     return offerList;
   }
 
@@ -36,7 +35,7 @@ export default class BuyModel {
   }
 
   PostTradeItem(membersId, price, quantity, itemsId) {
-     var buy =  fetch(`http://192.168.1.70:8080/trade/trade`, {
+    var buy =  fetch(`http://192.168.1.70:8080/trade/trade`, {
       method: 'POST',
       body: JSON.stringify({
         'membersId' : membersId,
@@ -86,12 +85,31 @@ export default class BuyModel {
         err => err
       )
       .then(
-        res => console.log(res)
+        res => console.log(res),
+        location.reload()
       )
       .catch((err) => {
         alert('매수 오퍼 실패!', err);
       })
 
       return offer;
+  }
+
+  GetPortfolio(membersId) {
+    const portfolios = fetch(`http://192.168.1.70:8080/member/portfolio/?membersId=${membersId}`, {
+      method: 'GET',
+    })
+    .then(
+      response => response.json(),
+      error => error)
+    .then((portfolios) => {
+      
+      return portfolios;
+    })
+    .catch((error) => {
+      alert('읽어오는 데 실패하였습니다.', error);
+    })
+    
+    return portfolios;
   }
 }

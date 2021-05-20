@@ -20,23 +20,6 @@ export default class UserInfoModel {
     return portfolios;
   }
 
-  // GetTradeLog(membersId) {
-  //   const tradeLog = fetch(`http://192.168.1.70:8080/member/trade/?membersId=${membersId}`, {
-  //     method: 'GET',
-  //   })
-  //   .then(
-  //     response => response.json(),
-  //     error => error)
-  //   .then((tradeLog) => {
-  //     return tradeLog;
-  //   })
-  //   .catch((error) => {
-  //     alert('트레이더로그 : 실패.', error);
-  //   })
-    
-  //   return tradeLog;
-  // }
-
   GetOfferLog(membersId) {
     const offerLog = fetch(`http://192.168.1.70:8080/member/offer/?membersId=${membersId}`, {
       method: 'GET',
@@ -55,7 +38,7 @@ export default class UserInfoModel {
   }
 
   GetAccountLog(membersId) {
-    const accountLog = fetch(`http://192.168.1.70:8080//member/account/?membersId=${membersId}`, {
+    const accountLog = fetch(`http://192.168.1.70:8080/member/account/?membersId=${membersId}`, {
       method: 'GET',
     })
     .then(
@@ -69,5 +52,22 @@ export default class UserInfoModel {
     })
     
     return accountLog;
+  }
+
+  DeleteCancelOffer(offersId) {
+    const cancelOffer = fetch(`http://192.168.1.70:8080/trade/offer/?offersId=${offersId}`,{
+      method : 'DELETE',
+    })
+    .then(
+      response => response.json(),
+      error => error
+    )
+    .then(
+      json => alert('오퍼를 취소하셨습니다.', json)
+    )
+    .catch((error) => {
+      alert('삭제하는 데 실패!', error)
+    })
+    return cancelOffer;
   }
 }

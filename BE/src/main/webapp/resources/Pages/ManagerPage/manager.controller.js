@@ -8,16 +8,20 @@ export default class ManagerController{
   }
 
   getlist = async(callback) => {
-    // console.log(await callback());
-    console.log('list 생성');
+    
     this.list = await callback();
     this.view.makeList(this.list);
   }
 
   getItem = async(callback) => {
-    console.log('item 생성');
-    this.item = await callback(window.location.hash.match(/[0-9]*$/)[0] || 1);
-    this.view.updateItemDetail(this.item);
+    this.hash = window.location.hash.match(/[0-9]*$/)[0];
+    if ( !this.hash ){
+      return '시작페이지'  
+    } else {
+      this.item = await callback(window.location.hash.match(/[0-9]*$/)[0]);
+      
+      this.view.updateItemDetail(this.item);
+    }
   }
   
   total = async() => {
@@ -32,30 +36,21 @@ export default class ManagerController{
 
   update = (e) => {
     e.preventDefault();
-    console.log(this.view.formData);
+    
     const formData = new FormData(this.view.formData);
     this.itemId = window.location.hash.match(/[0-9]*$/)[0] || 1;
     
-    for (let key of formData.keys()) {
-      console.log(key);
-    }
-    
-    // FormData의 value 확인
-    for (let value of formData.values()) {
-      console.log(value);
-    }
     this.model.PostUpdateItem(formData, this.itemId);
-    
   }
   delete = (e) => {
     e.preventDefault();
-    console.log('delete 버튼이 눌렸다.');
+    
     this.itemId = window.location.hash.match(/[0-9]*$/)[0] || 1;
     this.model.DeleteItem(this.itemId);
   }
 
   updateImageDisplay = () => {
-    console.log('눌리긴하니?');
+    
     const preview = this.view.previewImage;
     const input = this.view.inputBtn;
     const fileTypes = [
@@ -80,8 +75,7 @@ export default class ManagerController{
     }
   
     const curFiles = input.files;
-    console.log(input);
-    console.log(curFiles[0]);
+    
     if(curFiles.length === 0 || curFiles.length > 1) {
       const para = document.createElement('p');
       para.textContent = '이미지는 단 하나만 삽입할 수 있습니다.';
@@ -97,7 +91,6 @@ export default class ManagerController{
         
           const image = document.createElement('img');
           image.src = URL.createObjectURL(file);
-          console.log(image.src);
           listItem.appendChild(image);
         
         }

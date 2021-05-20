@@ -10,7 +10,10 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -27,7 +30,7 @@ import com.goldrush.dto.OfferLogDTO;
 import com.goldrush.dto.PortfolioDTO;
 import com.goldrush.dto.ResponseDTO;
 import com.goldrush.dto.TradeLogDTO;
-
+@Transactional
 public class MemberService {
 	private MemberDAO memberDAO;
 	private InventoryDAO inventoryDAO;
@@ -42,35 +45,34 @@ public class MemberService {
 		this.offerDAO = (OfferDAO) ctx.getBean("OfferDAO");
 		this.tradeDAO = (TradeDAO) ctx.getBean("TradeDAO");
 	}
-	
+	private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
 	
 	
 	public ResponseDTO signup(MemberDTO dto) {
-//		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
-//		ctx.load("classpath:dao-context.xml");
-//		MemberDAO memberDAO = (MemberDAO) ctx.getBean("MemberDAO");
 		MemberDTO dtoForCheck = memberDAO.selectByUserId(dto.getUserId());
 		if(dtoForCheck.getMembersId()==0) {
 		memberDAO.insertNewMemeber(dto);
+		logger.info("signupis success");
 		return new ResponseDTO(1, "sucess");
 		}else{
+			logger.info("there is already exgist");
 			return new ResponseDTO(0, "이미 등록된 아이디 입니다..");
 		}
 	}
 	public ResponseDTO login(MemberDTO dto) {
-//		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
-//		ctx.load("classpath:dao-context.xml");
-//		MemberDAO memberDAO = (MemberDAO) ctx.getBean("MemberDAO");
 		MemberDTO comparedDto = memberDAO.selectByUserId(dto.getUserId());
-		if(comparedDto.getMembersId()==0) return new ResponseDTO(0,"존재하지 않는 아이디 입니다.");
-		if(!comparedDto.getPassword().equals(dto.getPassword())) return new ResponseDTO(0, "비밀번호가 틀렸습니다.");
+		if(comparedDto.getMembersId()==0) { 
+			logger.info("there is no id");
+			return new ResponseDTO(0,"존재하지 않는 아이디 입니다.");
+			}
+		if(!comparedDto.getPassword().equals(dto.getPassword())) {
+			logger.info("password is wrong");
+			return new ResponseDTO(0, "비밀번호가 틀렸습니다.");
+		}
 		return new ResponseDTO(1, "로그인 되었습니다.", comparedDto);
 	}
 	
 	public ResponseDTO changePassword(int membersId, String newPassword) {
-//		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
-//		ctx.load("classpath:dao-context.xml");
-//		MemberDAO memberDAO = (MemberDAO) ctx.getBean("MemberDAO");
 		int result = memberDAO.updatePassword(membersId, newPassword);
 		if(result==1) {
 			return new ResponseDTO(1, "비밀번호가 변경되었습니다.");
@@ -80,9 +82,7 @@ public class MemberService {
 	}
 	
 	public ResponseDTO signout(int membersId) {
-//		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
-//		ctx.load("classpath:dao-context.xml");
-//		MemberDAO memberDAO = (MemberDAO) ctx.getBean("MemberDAO");
+
 		int result = memberDAO.signout(membersId);
 		if(result==1) {
 			return new ResponseDTO(1, "회원탈퇴되었습니다..");

@@ -32,4 +32,38 @@ export default class CatalogueModel {
     })
     return item
   }
+  PostMakeSubscription(membersId, itemsId, quantity) {
+    const contract = fetch(`http://192.168.1.70:8080/trade/subscription`, {
+      method: 'POST',
+      body: JSON.stringify({
+        'membersId': membersId,
+        'itemsId' : itemsId,
+        'quantity' : quantity,
+      }),
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        'Access-Control-Allow-Origin': '*',
+        'Accept': 'application/json'
+      },
+    })
+      .then(
+        res => res.json(),
+        err => err,
+      )
+      .then(
+        response => {
+          if (response.result === 1) {
+            alert('청약에 성공하셨습니다.');
+            return location.reload();
+          } else {
+            return alert('청약에 실패하셨습니다.');
+          }
+        },
+      )
+      .catch((err) => {
+        console.log(err);
+      })
+      return contract;
+  }
+  
 }

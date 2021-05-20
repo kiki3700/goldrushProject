@@ -71,8 +71,6 @@ export default class UserInfoView{
     
     this.portfolioBody.insertAdjacentHTML('afterbegin', tableNode);  
     this.portfolioFoot.insertAdjacentHTML('afterbegin', tableFootNode);
-
-
   }
 
   BindOfferList = (offer) => {
@@ -89,13 +87,16 @@ export default class UserInfoView{
       return year + "-" + month.substr(-2) + "-" + day.substr(-2) + " " + hour.substr(-2) + ":" + minute.substr(-2); 
     }
     let tableNode = ``;
+    
     for(const item of offer) {
       tableNode += `
       <tr>
-        <th scope="row">${item.name}</th>
+        <th class="offerId" scope="row">${item.offersId}</th>
+        <td>${item.name}</td>
         <td>${item.offerPrice}</td>
         <td>${item.quantity}</td>
         <td>${UnixTimestamp(item.timeStamp)}</td>
+        <td><button class="btn">취소</button></td>
       </tr>
       `
     }
@@ -103,7 +104,7 @@ export default class UserInfoView{
   }
 
   BindAccountList = (account) => {
-    //시간등록
+    console.log(account);
     const UnixTimestamp = (t) => {
       const date = new Date(t);
       const year = date.getFullYear();
@@ -144,25 +145,43 @@ export default class UserInfoView{
           </tr>
         `
         
-        this.account = document.querySelector('.account');
-        this.account.innerHTML = `잔액 : ${item.balance}원`
+        
       }
       
     }
+    this.account = document.querySelector('.account');
+    
+    this.account.innerHTML = `잔액 : <b class="amountAccount">${account.balance}</b>원`
 
     this.accountLog.insertAdjacentHTML('afterbegin', tableNode);
 
   }
 
   BindChargeButton = (callback) => {
+    this.chargeAmount = document.querySelector('.amount');
+    
     this.chargeButton.addEventListener('click', callback);
+    
   }
   BindDischargeButton = (callback) => {
+    this.chargeAmount = document.querySelector('.amount');
+    this.limitAmount = document.querySelector('.amountAccount');
     this.dischargeButton.addEventListener('click', callback);
   }
-  BindMailForm = (callback) => {
-    this.mailForm.addEventListener('keyup', callback);
+
+  BindCancelOffer = (callback) => {
+    this.cancelOffer = document.querySelectorAll('.offer_log_table .btn')
+    if ( !this.cancelOffer ) {
+      console.log('캔슬오퍼할 것이 없어오.')
+    } else {
+      this.cancelOffer.forEach(btn => {
+        this.offersId = document.querySelectorAll('.offerId')
+        btn.addEventListener('click', callback)
+      });
+    }
+    
   }
+
   BindfirstPwdForm = (callback) => {
     this.firstPwdForm.addEventListener('keyup', callback);
   }

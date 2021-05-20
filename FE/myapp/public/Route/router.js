@@ -20,28 +20,30 @@ export default class Router {
 
   hashChange = () => {
     const hash = window.location.hash;
-    console.log('hashchane이벤트 발생', hash);
+    
     const route = this.routes.filter(route => hash.match(route.name));
-    console.log('아니 이름이 왜 이상하게 잡히냐!', route[0].name);
-    console.log(typeof(route[0].name));
+    
     const noAuthority = ['create', 'main', 'login'];
     const userAuthority = ['catalogue', 'userInfo', 'qna', 'contact', 'buy', 'sell'];
     const managerAuthority = ['manager', 'enroll', 'userManage', 'clear'];
     const user = JSON.parse(window.localStorage.getItem('userInfo'));
     
     if (noAuthority.includes(route[0].name)) {
-      console.log('a');
+    
+      
       route[0].ctrl.view.render();
       route[0].ctrl.total();
-      
+      //route[0].ctrl.view.loaded();
     } else if (userAuthority.includes(route[0].name)) {
-      console.log('b');
+      
       if ( !user ) {
         alert('권한이 없습니다.')
         window.location.href = '#main';
       } else {
+        
         route[0].ctrl.view.render();
         route[0].ctrl.total();
+        
       }
     } else if (managerAuthority.includes(route[0].name)) {
       if ( !user ) {

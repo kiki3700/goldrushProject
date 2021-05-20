@@ -26,37 +26,36 @@ const userInfo = `
           <div class="menu col-lg-2 col-xs-2">
             <div class="row">
               <div class="col">
-                <a class="selected" href="#userInfo"><p>My Info</p></a>
-                <a><p>item</p></a>
-                <ul class="nav flex-column collapse in">
+                <ul class="list flex-column">
                   <li>
-                    <a href="#catalogue" class="total_list">Total</a>
+                    <a href="#catalogue" class="total_list"><span class="glyphicon glyphicon-list" aria-hidden="true"> TotalStage</span></a>
                   </li>
                   <li>
-                    <a href="#catalogue/open" class="IPO_list">Open Stage</a>
+                    <a href="#catalogue/open" class="IPO_list"><span class="glyphicon glyphicon-star" aria-hidden="true"> OpenStage</span></a>
                   </li>
                   <li>
-                    <a href="#catalogue/trade" class="Trading_list">Trade Stage</a>
+                    <a href="#catalogue/trade" class="Trading_list"><span class="glyphicon glyphicon-usd" aria-hidden="true"> TradeStage</span></a>
                   </li>
                   <li>
-                    <a href="#catalogue/clear" class="Clearing_list">Clear Stage</a>
+                    <a href="#catalogue/clear" class="Clearing_list"><span class="glyphicon glyphicon-saved" aria-hidden="true"> ClearStage</span></a>
                   </li>
                 </ul>
-                <a href="#qna"><p>QNA</p></a>
-                <a href="#contact"><p>Contact</p></a>
+                <p><a href="#userInfo" class="selected"><span class="glyphicon glyphicon-cog" aria-hidden="true"> MyInfo</span></a></p>
+                <p><a href="#qna"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"> QNA</span></a></p>
+                <p><a href="#contact"><span class="glyphicon glyphicon-envelope" aria-hidden="true"> Contact</span></a></p>
               </div>
             </div>
           </div>
           <div class="follow_menu col-lg-10 col-xs-10">
             <div style="overflow:auto; width:100%; height:79vh;">
               <div class="account_info">
-                <h1>계좌 정보</h1>
+                <h1>충전 • 환전</h1>
                 <div class="account_transfer">
-                  잔액 : <b>300000</b>
-                  <button class="btn btn-sm charge_money">입금</button>
-                  <button class="btn btn-sm discharge_money">출금</button>
+                  <input type="number" class="form-control amount" placeholder="충전, 환전하실 금액을 입력해주세요."/>
+                  <br>
+                  <button class="btn btn-sm charge_money">충전</button>
+                  <button class="btn btn-sm discharge_money">환전</button>
                 </div> 
-                <button class="btn">계좌 등록</button> <= 계좌 있냐 없냐에 따라서 위나 아래가 나옴.
               </div>
               <div class="portfolio">
                 <h1>포트폴리오</h1>
@@ -84,7 +83,7 @@ const userInfo = `
                   <thead>
                     <tr>
                       <th scope="col">날짜</th>
-                      <th scope="col">구매/판매 | 충전/환전 </th>
+                      <th scope="col">구매/판매 | 충전/환전 | 청약 | 청산</th>
                       <th scope="col">금액</th>
                     </tr>
                   </thead>
@@ -92,57 +91,33 @@ const userInfo = `
                     
                   </tbody>
                 </table>
-                <p class="pull-right account">잔액 : 0원</p> 
+                <p class="pull-right account"></p> 
               </div>
-              <div class="trade_log">
-                <h1>거래내역</h1>
-                <table class="table trade_log_table">
-                  <thead>
-                    <tr>
-                      <th>item</th>
-                      <th>가격</th>
-                      <th>양</th>
-                      <th>매수 / 매도</th>
-                    </tr>
-                  </thead>  
-                  <tbody>
-                    <tr>
-                      <th scope="row">스폰지밥</th>
-                      <td>10000원</td>
-                      <td>1</td>
-                      <td>매수</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              
               <div class="offer_log">
                 <h1>호가 내역</h1>
                 <table class="table offer_log_table">
                   <thead>
                     <tr>
+                      <th scope="col">호가 번호</th>
+                      <th scope="col">호가 유형</th>
                       <th scope="col">상품 이름</th>
                       <th scope="col">호가 가격</th>
                       <th scope="col">수량</th>
                       <th scope="col">등록시간</th>
+                      <th scope="col">호가 취소</th>
                     </tr>
                   </thead>
                   <tbody>
-                    
+                    <tr>
+                      
+                    </tr>
                   </tbody>
                 </table>
               </div>
               <div class="change_id_pwd">
                 <h1>회원정보수정</h1>
                 <div class="form-group">
-                  <label for="emailcheck">회원님의 이메일</label>
-                  <input type="email" class="form-control" id="emailcheck" placeholder="변경하실 이메일을 적어주세요.">
-                  <small>
-                    <div class="check_email">
-                      이미 있는 이메일입니다.
-                    </div>
-                  </small>
-                  <br>
-                  <br>
                   <label for="pwdcheck">회원님의 비밀번호</label>
                   <input type="password" class="form-control" id="pwdcheck" placeholder="변경하실 비밀번호를 적어주세요.">
                   <input type="password" class="form-control" id="pwd_double_check" placeholder="다시 한번 적어주세요">
@@ -158,7 +133,7 @@ const userInfo = `
                   <button class="btn delete_user">
                     회원 탈퇴
                   </button>
-                </div>
+                
               </div>
             </div>
           </div>

@@ -38,26 +38,25 @@ public class ItemController {
 	ItemService ser = new ItemService();
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public @ResponseBody List<ItemListDTO> getItemList(){
-		logger.info("아이템 리스트 출력");
-		System.out.println("아이템 리스트 출력");
+		logger.info("item list print");
 		return ser.getItemList();
 	}
 	
 	@RequestMapping(value="/list", method = RequestMethod.GET)
 	public @ResponseBody List<ItemListDTO> getItemListByStage(@RequestParam("stage") String stage){
-		logger.info(stage+" 아이템 리스트 출력");
+		logger.info(stage+" ");
 		return ser.getItemListByStage(stage);
 	}
 	
 	@RequestMapping(value="/detail", method = RequestMethod.GET)
 	public @ResponseBody ItemListDTO getItem(@RequestParam("itemsId") int itemsId){
-		logger.info(itemsId+"번 아이탐 디테일 리스트 출력");
+		logger.info(itemsId+"th item print");
 		return ser.getItem(itemsId);
 	}
 	
 	@RequestMapping(value="/list", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<ResponseDTO> postNewItem(MultipartHttpServletRequest request){
-		logger.info("새로운 아이템 추가");
+		logger.info("new item is trying to add");
 		ItemDTO dto = new ItemDTO();
 		dto.setCode(request.getParameter("code"));
 		dto.setCategory(request.getParameter("category"));
@@ -82,7 +81,7 @@ public class ItemController {
 	
 	@RequestMapping(value="/listEdit", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<ResponseDTO> putItem(MultipartHttpServletRequest request){
-		logger.info("아이템 수정...");
+		logger.info(request.getParameter("itemsId")+"th item is trying to edit");
 		ItemDTO dto = new ItemDTO();
 		dto.setItemsId(Integer.parseInt(request.getParameter("itemsId")));
 		dto.setCode(request.getParameter("code"));
@@ -109,7 +108,7 @@ public class ItemController {
 	
 	@RequestMapping(value="/list", method = RequestMethod.DELETE)
 	public @ResponseBody ResponseEntity<ResponseDTO> deleteItem(@RequestParam("itemsId") int itemsId){
-		logger.info("try to item delete");
+		logger.info("try to "+itemsId+"th item delete");
 		ItemDTO dto = new ItemDTO();
 		dto.setItemsId(itemsId);
 		ResponseDTO response = ser.deleteItem(dto);
@@ -117,7 +116,7 @@ public class ItemController {
 			logger.info("item delete success");
 			return new ResponseEntity(response, HttpStatus.ACCEPTED);
 		}else {
-			logger.info("item delete fail");
+			logger.debug("item delete fail");
 			return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
 		}
 	}

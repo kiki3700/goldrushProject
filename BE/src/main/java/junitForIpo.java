@@ -41,9 +41,14 @@ public class junitForIpo {
 //		System.out.println(ser.makeSubscription(offer5));
 //		System.out.println(ser.makeSubscription(offer6));
 //	}
+//	@Test
+//	public void ipoTest() {
+//		TradeService ser = new TradeService();
+//		ser.changeStage();
+//	}
 	@Test
-	public void ipoTest() {
+	public void clear() {
 		TradeService ser = new TradeService();
-		ser.changeStage();
+		ser.clear(3, 60);
 	}
 }

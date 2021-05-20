@@ -34,6 +34,16 @@ body {
   font-size: 20px;
 }
 
+.list {
+  list-style: none;
+  padding-left: 0px;
+}
+
+.list > li {
+  padding: 0px;
+  margin-bottom: 10px;
+}
+
 .item_list {
   background-color: #fff;
   padding: 0px 0px;
@@ -143,7 +153,7 @@ a {
 }
 
 a:hover,
-a:active {
+a:focus {
   text-decoration: none;
   color: #79955f;
 }
@@ -159,13 +169,17 @@ a:active {
   flex-direction: column;
 }
 
+.amount {
+  width: 35%;
+}
+
 .change_id_pwd .btn {
   margin-left: 0px;
 }
 .btn {
   background-color: #79955f;
   color: #fff;
-  margin-left: 20px;
+  margin-right: 5%;
 }
 .btn:hover,
 .btn:focus {
@@ -185,4 +199,10 @@ a:active {
 }
 .change_id_pwd {
   margin-bottom: 5%;
+}
+
+.offer_log_table .btn {
+  height: 20px;
+  padding: 0px;
+  width: 60px;
 }

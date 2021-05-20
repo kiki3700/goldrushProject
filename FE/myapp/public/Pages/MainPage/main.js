@@ -21,7 +21,7 @@ const pMain = `
   <div class="content_body">
     <section class="content1">
       <div class="row">
-        <div class="container-fluid text-center">
+        <div class="con tainer-fluid text-center">
           <div class="section-left col-lg-6 col-sm-12">
             <h1>쉽고 즐거운 투자의 시작.</h1>
             <br><br>
@@ -37,41 +37,50 @@ const pMain = `
       </div>
     </section>
     <hr class="style-five">
-    <section class="content2">
+    <section class="content2 text-center">
       <div class="row">
         <div class="explain col-lg-4 col-xs-4 col-lg-offset-2 col-xs-offset-2 text-center">
-            <h1>1단계</h1>
-            <p>가치가 오를 상품을 매입합니다.</p>
+          <h1>OpenStage</h1>
+          <p>상품에 대한 청약을 진행합니다.</p>
         </div>
         <div class="explain col-lg-4 col-xs-4 text-center">
-          <h1>사진자리</h1>
+          <p>외부 전문가에게 검증 받은 상품이 사이트에 등록됩니다. 청약기간동안 선착순으로 상품을 구매합니다.</p>
         </div>
       </div>
+
+      <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+
       <div class="row">
         <div class="explain col-lg-4 col-xs-4 col-lg-offset-2 col-xs-offset-2 text-center">
-            <h1>사진자리</h1>
+          <p>청약기간동안 보유한 상품을 다른 투자자분들과 거래합니다. 가격이 오를 거 같다면 확보하고, 내려갈 것 같다면 처분하십시오!</p>
         </div>
         <div class="explain col-lg-4 col-xs-4 text-center">
-          <h1>2단계</h1>
-          <p>매입한 상품의 청약을 진행합니다.</p>
+          <h1>TradeStage</h1>
+          <p>상품에 대한 거래를 진행합니다.</p>
         </div>
       </div>
+
+      <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+
       <div class="row">
         <div class="explain col-lg-4 col-xs-4 col-lg-offset-2 col-xs-offset-2 text-center">
-          <h1>3단계</h1>
-          <p>일정기간 이후 상품을 판매합니다.</p>
+          <h1>ClearStage</h1>
+          <p>상품 교환이 제한됩니다.</p>
         </div>
         <div class="explain col-lg-4 col-xs-4 text-center">
-          <h1>사진자리</h1>
+          <p>6개월의 교환 과정이 종료됩니다. 이후 실제로 상품을 팔기까지의 기간을 ClearStage라 칭합니다.</p>
         </div>
       </div>
+
+      <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+
       <div class="row">
         <div class="explain col-lg-4 col-xs-4 col-lg-offset-2 col-xs-offset-2 text-center">
-          <h1>사진자리</h1>
+          <p>상품을 시장에 판매한 후, 그 차익만큼 투자자분들의 상품 보유량에 따라 손익이 분배됩니다!</p>
         </div>
         <div class="explain col-lg-4 col-xs-4 text-center">
-          <h1>4단계</h1>
-          <p>일어난 수익에 대하여 청산을 진행합니다.</p>
+          <h1>CloseStage</h1>
+          <p>상품을 시장에 판매합니다.</p>
         </div>
       </div>
     </section>

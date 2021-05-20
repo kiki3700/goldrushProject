@@ -26,6 +26,12 @@ export default class sellView {
     this.itemName.innerHTML = `${item.name} : 매도 장터`;
   }
 
+  BindReserveItem = (count) => {
+    this.reserveCount = document.querySelector('.reserve_item');
+    
+    this.reserveCount.value = `보유량 : ${count}`;
+  }
+
   BindList = (offer) => {
     this.table = document.querySelector('.table tbody');
     
@@ -61,7 +67,7 @@ export default class sellView {
     this.quantity = document.querySelector('.sell_offer input:nth-child(2)');
     this.offerButton = document.querySelector('.sell_offer button');
     this.offerButton.addEventListener('click', callback);
-    console.log(this.offerPrice, this.quantity);
+    
   }
 
   BindLogoutButton = (callback) => {

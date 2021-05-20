@@ -1,6 +1,10 @@
+* {
+  word-break: keep-all;
+}
 body {
   font-family: "Nanum Gothic", sans-serif;
-  padding: 5vh 0px;
+  padding-top: 5vh;
+
   background-color: #d3b8993d;
 }
 .navbar {
@@ -20,9 +24,9 @@ body {
 }
 
 .content1 {
-  padding: 50px;
+  padding: 5vh;
   color: rgb(0, 0, 0);
-  margin: 50px 0px;
+  margin: 5vh 0px;
 }
 .content1 h1 {
   font-weight: 700;
@@ -36,24 +40,31 @@ body {
   filter: drop-shadow(-30px 30px 10px rgba(114, 114, 114, 0.7));
 }
 .content2 {
-  padding: 50px;
+  padding: 5vh;
   color: rgb(0, 0, 0);
-  margin: 50px 0px;
+  margin: 5vh 0px;
 }
 .explain {
   margin-bottom: 40px;
 }
+.glyphicon {
+  margin-bottom: 40px;
+  font-size: 20px;
+}
 .content2 h1 {
   font-weight: 700;
   font-size: 50px;
+  margin: 0px;
+  margin-bottom: 20px;
+  padding: 0px;
 }
 .content2 p {
   font-size: 20px;
 }
 
 .content3 {
-  padding: 50px;
-  margin: 30px;
+  padding: 5vh;
+  margin: 3vh;
   color: #000;
 }
 
@@ -66,6 +77,10 @@ body {
 }
 .row-left {
   margin: 30px 0px;
+}
+
+.content3 .row > div:nth-child(2) {
+  margin: 45px 0px;
 }
 
 .footer_content {

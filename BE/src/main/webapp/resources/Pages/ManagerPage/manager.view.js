@@ -18,27 +18,46 @@ export default class ManagerView{
 
     
   }
-
+ 
   makeList = (list) => {
     let itemUl = document.querySelector('.item_ul');
     
     for (var item of list) {
-      
-      let li = document.createElement('li');
-      li.className = 'item_li';
-      let textNode = `
+      console.log(item);
+      item.imgAddress = item.imgAddress.slice(0,9) + '/thumbnail' + item.imgAddress.slice(9);
+      if ( item.stage === 'open' || item.stage === 'unopen' ) {
+        let li = document.createElement('li');
+        li.className = 'item_li';
+        let textNode = `
         <a href = '#manager/${item.itemsId}'>
-          <div class="row item_small">
-          <div class="image_box col-lg-4 col-xs-4">
-          <img src="/css/img/item_small_noback.png" alt="item_image_small">
+            <div class="row item_small">
+            <div class="image_box col-lg-4 col-xs-4">
+            <img src="${item.imgAddress}" alt="item_image_small">
+              </div>
+              <p class="col-lg-4 col-xs-5 text-center">${item.name} <br> ${item.stage}</p>
+              <p class="col-lg-4 col-xs-5 text-center">현재가 ${item.price}</p>
             </div>
-            <p class="col-lg-4 col-xs-5 text-center">${item.name} <br> ${item.stage}</p>
-            <p class="col-lg-4 col-xs-5 text-center">수익률  ${Math.round((item.price - (item.cost/item.quantity))/(item.cost/item.quantity))}% <br> 현재가 ${item.price}</p>
-          </div>
-        </a>
-      `
-      li.insertAdjacentHTML('afterbegin',textNode);
-      itemUl.appendChild(li);
+          </a>
+        `
+        li.insertAdjacentHTML('afterbegin',textNode);
+        itemUl.appendChild(li);
+      } else if ( item.stage !== "close" ){
+        let li = document.createElement('li');
+        li.className = 'item_li';
+        let textNode = `
+        <a href = '#manager/${item.itemsId}'>
+            <div class="row item_small">
+            <div class="image_box col-lg-4 col-xs-4">
+            <img src="${item.imgAddress}" alt="item_image_small">
+              </div>
+              <p class="col-lg-4 col-xs-5 text-center">${item.name} <br> ${item.stage}</p>
+              <p class="col-lg-4 col-xs-5 text-center">수익률  ${Math.round((item.price - (item.cost/item.quantity))/(item.cost/item.quantity))}% <br> 현재가 ${item.price}</p>
+            </div>
+          </a>
+        `
+        li.insertAdjacentHTML('afterbegin',textNode);
+        itemUl.appendChild(li);
+      }
     }
   }
 
@@ -69,7 +88,7 @@ export default class ManagerView{
             <input type="file" id="image_uploads" name="img" accept=".jpg, .jpeg, .png" multiple>
           </div>
           <div class="preview">
-            <p>100*100px의 크기로 들어가요!</p>
+            <img src="${item.imgAddress}" alt="detail_image">
           </div>
         </div>
       </div>
@@ -117,7 +136,7 @@ export default class ManagerView{
           <input type="date" name="clearingDate" value="${UnixTimestamp(item.clearingDate)}">
         </div>
         <div class="row item_info">
-          <textarea class="item_Description" name="description" placeholder='${item.description}'></textarea>
+          <textarea class="item_Description" name="description">${item.description}</textarea>
         </div>
         <div class="row item_info">
           <input type="submit" class="btn btn-outline-info update_item" value="수정"></input>
@@ -132,19 +151,33 @@ export default class ManagerView{
 
   BindUpdateItem = (callback) => {
     this.updateItem = document.querySelector('.update_item');
+    if ( !this.updateItem ) {
+      
+    } else {
+      this.formData = document.querySelector('.enroll_form')
+      this.updateItem.addEventListener('click', callback);
+    }
     
-    this.formData = document.querySelector('.enroll_form')
-    this.updateItem.addEventListener('click', callback);
   } 
   BindDeleteItem = (callback) => {
     this.deleteItem = document.querySelector('.delete_item');
-    this.deleteItem.addEventListener('click', callback);
+    if ( !this.deleteItem ) {
+      
+    } else {
+      this.deleteItem.addEventListener('click', callback);
+    }
+    
   }
 
   BindInputButton = (callback) => {
     this.inputBtn = document.querySelector('#image_uploads');
-    this.previewImage = document.querySelector('.preview');
-    this.inputBtn.addEventListener('change', callback);
+    if( !this.inputBtn ) {
+      
+    } else {
+      this.previewImage = document.querySelector('.preview');
+      this.inputBtn.addEventListener('change', callback);
+    }
+    
   }
   
   BindLogoutButton = (callback) => {

@@ -21,7 +21,7 @@ const buy = `
 
 <section>
   <div class="container service">
-    <h1 class="text-center">스폰지밥 : 매수 & 오퍼</h1>
+    <h1 class="text-center"></h1>
     <hr class="style-five">
     <div class="scroll" style="overflow:auto; width:100%; height:32vh;">
       <table class="table text-center">
@@ -40,13 +40,13 @@ const buy = `
     <div class="buy">
       <div class="sell_item">  
         <input type="number" class="form-control" placeholder="수량을 입력하세요.">
-        
+        <input type="text" class="form-control reserve_item" disabled>
         <button type="submit" class="btn-lg">처분</button>
       </div>
       <div class="buy_offer">
         <input type="number" class="form-control" placeholder="가격을 입력하세요.">
         <input type="number" class="form-control" placeholder="수량을 입력하세요.">
-        <button type="submit" class="btn-lg">오퍼</button>
+        <button type="submit" class="btn-lg">매수 오퍼</button>
       </div>  
     </div>
   </div>

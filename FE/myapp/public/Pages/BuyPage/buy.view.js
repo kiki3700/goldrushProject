@@ -26,6 +26,11 @@ export default class BuyView {
     this.itemName.innerHTML = `${item.name} : 매수 장터`;
   }
 
+  BindReserveItem = (count) => {
+    this.reserveCount = document.querySelector('.reserve_item');
+    this.reserveCount.value = `보유량 : ${count}`;
+  }
+
   BindLogoutButton = (callback) => {
     this.logout = document.querySelector('.logout');
     this.logout.addEventListener('click', callback);
@@ -33,8 +38,7 @@ export default class BuyView {
 
   BindList = (offer) => {
     this.table = document.querySelector('.table tbody');
-    console.log(this.table);
-    console.log(offer);
+    
     let textNode = '';
     
     for (const item of offer) {
@@ -59,8 +63,12 @@ export default class BuyView {
     this.count = document.querySelector('.sell_item input');
     this.buyButton = document.querySelector('.sell_item button');
     this.sellPrice = document.querySelector('tbody tr:first-child td:nth-child(1)');
-    console.log(this.sellPrice.innerHTML);
-    this.buyButton.addEventListener('click', callback);
+    if ( !this.sellPrice ) {
+    
+    } else {
+    
+      this.buyButton.addEventListener('click', callback);
+    }
   }
 
   BindOfferButton = (callback) => {
@@ -68,7 +76,7 @@ export default class BuyView {
     this.quantity = document.querySelector('.buy_offer input:nth-child(2)');
     this.offerButton = document.querySelector('.buy_offer button');
     this.offerButton.addEventListener('click', callback);
-    console.log(this.offerPrice, this.quantity);
+  
   }
 }
 

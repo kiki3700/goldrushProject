@@ -32,4 +32,31 @@ export default class CatalogueModel {
     })
     return item
   }
+  PostMakeSubscription(membersId, itemsId, quantity) {
+    const contract = fetch(`http://192.168.1.70:8080/trade/subscription`, {
+      method: 'POST',
+      body: JSON.stringify({
+        'membersId': membersId,
+        'itemsId' : itemsId,
+        'quantity' : quantity,
+      }),
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        'Access-Control-Allow-Origin': '*',
+        'Accept': 'application/json'
+      },
+    })
+      .then(
+        res => res.json(),
+        err => err,
+      )
+      .then(
+        response => console.log(response),
+      )
+      .catch((err) => {
+        console.log(err);
+      })
+      return contract;
+  }
+  
 }
