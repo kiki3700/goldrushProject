@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.goldrush.dao.AccountDAO;
 import com.goldrush.dao.InventoryDAO;
@@ -19,7 +20,7 @@ import com.goldrush.dto.OffersListDTO;
 import com.goldrush.dto.ResponseDTO;
 import com.goldrush.dto.TradeDTO;
 import com.goldrush.dto.TraderDTO;
-
+@Transactional
 public class TradeService {
 	OfferDAO offerDAO;
 	TradeDAO tradeDAO;

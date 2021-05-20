@@ -1,5 +1,6 @@
 package com.goldrush.service;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -12,6 +13,7 @@ import javax.imageio.ImageIO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -21,7 +23,7 @@ import com.goldrush.dao.ItemDAO;
 import com.goldrush.dto.ItemDTO;
 import com.goldrush.dto.ItemListDTO;
 import com.goldrush.dto.ResponseDTO;
-
+@Transactional
 public class ItemService {
 	private ItemDAO itemDAO;
 	
@@ -78,10 +80,11 @@ public class ItemService {
 			BufferedImage Image = ImageIO.read(file);
 			int tWidth = 100;
 			int tHeight = 100;
+			Color newBackgroundColor = java.awt.Color.WHITE;
 			BufferedImage tImage = new BufferedImage(tWidth, tHeight, BufferedImage.TYPE_3BYTE_BGR);
 			Graphics2D graphic = tImage.createGraphics();
 			Image image = Image.getScaledInstance(tWidth, tHeight, Image.SCALE_SMOOTH);
-			graphic.drawImage(image,0,0,tWidth, tHeight, null);
+			graphic.drawImage(image,0,0,tWidth, tHeight,newBackgroundColor, null);
 			graphic.dispose();
 			ImageIO.write(tImage, ext.substring(1), thFile);
 		} catch (IOException e) {

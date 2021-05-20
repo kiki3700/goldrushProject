@@ -15,6 +15,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -46,7 +47,7 @@ import com.goldrush.dto.accountDto.ResponseToken3legger;
 import com.goldrush.dto.accountDto.ResponseWithdraw;
 import com.goldrush.util.BankingUtils;
 import com.mysql.cj.xdevapi.JsonArray;
-
+@Transactional
 public class AccountService {
 	private AccountDAO accountDAO;
 	

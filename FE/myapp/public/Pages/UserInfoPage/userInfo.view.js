@@ -104,7 +104,7 @@ export default class UserInfoView{
   }
 
   BindAccountList = (account) => {
-    //시간등록
+    console.log(account);
     const UnixTimestamp = (t) => {
       const date = new Date(t);
       const year = date.getFullYear();
@@ -145,11 +145,13 @@ export default class UserInfoView{
           </tr>
         `
         
-        this.account = document.querySelector('.account');
-        this.account.innerHTML = `잔액 : <b class="amountAccount">${item.balance}</b>원`
+        
       }
       
     }
+    this.account = document.querySelector('.account');
+    
+    this.account.innerHTML = `잔액 : <b class="amountAccount">${account.balance}</b>원`
 
     this.accountLog.insertAdjacentHTML('afterbegin', tableNode);
 
