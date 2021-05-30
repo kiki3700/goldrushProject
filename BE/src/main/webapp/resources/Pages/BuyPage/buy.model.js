@@ -3,7 +3,7 @@ export default class BuyModel {
     
   }
   GetOfferList = (itemsId) => {
-    const offerList = fetch(`http://192.168.1.70:8080/trade/offer?itemsId=${itemsId}&buy=${true}`, {
+    const offerList = fetch(`http://3.36.216.37/trade/offer?itemsId=${itemsId}&buy=${true}`, {
       method: 'GET',
     })
     .then(
@@ -19,7 +19,7 @@ export default class BuyModel {
   }
 
   GetItem(itemsId) {
-    var item = fetch(`http://192.168.1.70:8080/item/detail/?itemsId=${itemsId}`, {
+    var item = fetch(`http://3.36.216.37/item/detail/?itemsId=${itemsId}`, {
       method: 'GET',
     })
     .then(
@@ -35,7 +35,7 @@ export default class BuyModel {
   }
 
   PostTradeItem(membersId, price, quantity, itemsId) {
-    var buy =  fetch(`http://192.168.1.70:8080/trade/trade`, {
+    var buy =  fetch(`http://3.36.216.37/trade/trade`, {
       method: 'POST',
       body: JSON.stringify({
         'membersId' : membersId,
@@ -72,7 +72,7 @@ export default class BuyModel {
 
 
   PostMakeOffer(membersId, itemsId, offerPrice, quantity) {
-    var offer = fetch(`http://192.168.1.70:8080/trade/offer/`, {
+    var offer = fetch(`http://3.36.216.37/trade/offer/`, {
       method: 'POST',
       body: JSON.stringify({
         'membersId' : membersId,
@@ -109,7 +109,7 @@ export default class BuyModel {
   }
 
   GetPortfolio(membersId) {
-    const portfolios = fetch(`http://192.168.1.70:8080/member/portfolio/?membersId=${membersId}`, {
+    const portfolios = fetch(`http://3.36.216.37/member/portfolio/?membersId=${membersId}`, {
       method: 'GET',
     })
     .then(

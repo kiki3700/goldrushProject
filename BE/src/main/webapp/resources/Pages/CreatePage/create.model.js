@@ -4,7 +4,7 @@ export default class CreateModel {
   }
 
   PostCreate = (id, pwd, name) => {
-    var PostCreate = fetch('http://192.168.1.70:8080/member/signup', {
+    var PostCreate = fetch('http://3.36.216.37/member/signup', {
       method: 'POST',
       body: JSON.stringify({
         "userId": id,
