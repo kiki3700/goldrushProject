@@ -4,7 +4,7 @@ export default class UserInfoModel {
   }
 
   GetPortfolio(membersId) {
-    const portfolios = fetch(`http://192.168.1.70:8080/member/portfolio/?membersId=${membersId}`, {
+    const portfolios = fetch(`http://3.36.216.37/member/portfolio/?membersId=${membersId}`, {
       method: 'GET',
     })
     .then(
@@ -21,7 +21,7 @@ export default class UserInfoModel {
   }
 
   GetOfferLog(membersId) {
-    const offerLog = fetch(`http://192.168.1.70:8080/member/offer/?membersId=${membersId}`, {
+    const offerLog = fetch(`http://3.36.216.37/member/offer/?membersId=${membersId}`, {
       method: 'GET',
     })
     .then(
@@ -38,7 +38,7 @@ export default class UserInfoModel {
   }
 
   GetAccountLog(membersId) {
-    const accountLog = fetch(`http://192.168.1.70:8080/member/account/?membersId=${membersId}`, {
+    const accountLog = fetch(`http://3.36.216.37/member/account/?membersId=${membersId}`, {
       method: 'GET',
     })
     .then(
@@ -55,7 +55,7 @@ export default class UserInfoModel {
   }
 
   DeleteCancelOffer(offersId) {
-    const cancelOffer = fetch(`http://192.168.1.70:8080/trade/offer/?offersId=${offersId}`,{
+    const cancelOffer = fetch(`http://3.36.216.37/trade/offer/?offersId=${offersId}`,{
       method : 'DELETE',
     })
     .then(

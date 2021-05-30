@@ -10,7 +10,7 @@
     <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
         <property name="url" value="jdbc:mysql://3.36.216.37:3306/goldrush"/>
         <property name="username" value="lee" />
-        <property name="password" value="kiki3700" />
+        <property name="password" value="3700" />
         <property name="driverClass" value="com.mysql.jdbc.Driver" />
     </bean>
 

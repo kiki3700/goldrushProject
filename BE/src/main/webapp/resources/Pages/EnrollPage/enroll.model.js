@@ -3,7 +3,7 @@ export default class EnrollModel {
     
   }
   postEnrollItem(formData) {
-    const enrollItem = fetch('http://192.168.1.70:8080/item/list', {
+    const enrollItem = fetch('http://3.36.216.37/item/list', {
       method: 'POST',
       body : formData,
       headers: {},

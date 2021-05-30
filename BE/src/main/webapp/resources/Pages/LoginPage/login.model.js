@@ -2,9 +2,8 @@ export default class LoginModel {
   constructor() {
     
   }
-  
   PostLogin = (id, pwd) =>  {
-  var PostLogin = fetch('http://192.168.1.70:8080/member/login', {
+  var PostLogin = fetch('http://3.36.216.37/member/login', {
     method: 'POST',
     body: JSON.stringify({
       "userId": id,
