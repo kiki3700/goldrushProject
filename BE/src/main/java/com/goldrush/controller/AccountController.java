@@ -53,7 +53,7 @@ public class AccountController {
 	@RequestMapping(value="/noEnoughMoney")
 	public String noMoney() {
 		logger.info("OAuth is fail because of account balance");
-		return "redirect:http://192.168.1.70:8080/#userInfo?result=false";
+		return "redirect:http://3.36.216.37/#userInfo?result=false";
 		}
 	
 	@RequestMapping(value="/auth_second", method=RequestMethod.GET)
@@ -90,10 +90,10 @@ public class AccountController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			logger.info("withdraw is failed");
-			return "redirect:http://192.168.1.70:8080/#userInfo?result=false";
+			return "redirect:http://3.36.216.37/#userInfo?result=false";
 		}
 		logger.info("withdraw is success");
-		return "redirect:http://192.168.1.70:8080/#userInfo?result=true";
+		return "redirect:http://3.36.216.37/#userInfo?result=true";
 	}
 	@RequestMapping(value="deposit")
 	public String deposit(HttpServletRequest request,@CookieValue(name="open-banking") String banking,
@@ -106,10 +106,10 @@ public class AccountController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			logger.info("deposit is failed");
-			return "redirect:http://192.168.1.70:8080/#userInfo?result=false";
+			return "redirect:http://3.36.216.37/#userInfo?result=false";
 		}
 		logger.info("deposit is success");
-		return  "redirect:http://192.168.1.70:8080/#userInfo?result=true";
+		return  "redirect:http://3.36.216.37/#userInfo?result=true";
 	}
 }
 

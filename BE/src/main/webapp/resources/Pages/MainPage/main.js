@@ -30,7 +30,7 @@ const pMain = `
             <p>투자 풀을 형성해 쉽고 빠르게 투자할 수 있습니다.</p>
           </div>
           <div class="section-right col-lg-6 col-sm-12">
-            <img src="/css/img/시계 첨부용.png" alt="일성이시계">
+            <img src="/css/img/시계 첨부용.png" alt="main Asset">
           </div>
         </div>
       </div>
