@@ -65,6 +65,7 @@ public class AccountController {
 		ResponseLookupInfo information = ser.getUserInfo(token);
 		String cookieString;
 		try {
+			logger.info(information.toString());
 			cookieString = ser.makeCookieString(token, information);
 			System.out.println(cookieString);
 			Cookie cookie = new Cookie("open-banking",URLEncoder.encode(cookieString,"UTF-8"));
