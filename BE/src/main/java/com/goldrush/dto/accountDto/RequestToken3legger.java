@@ -4,7 +4,7 @@ public class RequestToken3legger {
 	private String code;
 	private String client_id="d8ef0825-f755-44a1-a768-f23fba7a4a52";
 	private String client_secret="76c74923-3d80-4cf2-a0f5-a92216c3d235";
-	private String redirct_uri="http://192.168.1.70:8080/bank/auth_second";
+	private String redirct_uri="http://3.36.216.37/bank/auth_second";
 	private final String grant_type ="authorization_code";
 	public String getCode() {
 		return code;
