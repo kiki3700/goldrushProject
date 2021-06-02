@@ -73,7 +73,7 @@ export default class UserInfoController {
       setCookie('amount', Number(this.view.chargeAmount.value));
       setCookie('withdraw', false);
       
-      location.href = 'http://192.168.1.70:8080/bank/oauth';
+      location.href = 'http://3.36.216.37/bank/oauth';
     }
   
     
@@ -124,7 +124,7 @@ export default class UserInfoController {
         setCookie('membersId', user.membersId);
         setCookie('amount', Number(this.view.chargeAmount.value));
         setCookie('withdraw', true);
-        location.href = 'http://192.168.1.70:8080/bank/oauth';
+        location.href = 'http://3.36.216.37/bank/oauth';
     }
   }
 

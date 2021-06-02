@@ -3,7 +3,7 @@ package com.goldrush.dto.accountDto;
 public class RequestOAuth3legger {
 	private String response_type ="code";
 	private String client_id="d8ef0825-f755-44a1-a768-f23fba7a4a52";
-	private String redirect_uri="http://192.168.1.70:8080/bank/auth_second";
+	private String redirect_uri="http://3.36.216.37/bank/auth_second";
 	private String scope = "login inquiry transfer";
 	private String state="b80BLsfigm9OokPTjy03elbJqRHOfGSY";
 	private int auth_type;
