@@ -1,9 +1,10 @@
+import domainUrl from "../env"
 export default class LoginModel {
   constructor() {
     
   }
   PostLogin = (id, pwd) =>  {
-  var PostLogin = fetch('http://3.36.216.37/member/login', {
+  var PostLogin = fetch(domainUrl+'member/login', {
     method: 'POST',
     body: JSON.stringify({
       "userId": id,

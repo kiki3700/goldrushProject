@@ -1,8 +1,9 @@
+import { domainUrl } from "../env";
 export default class CatalogueModel {
   constructor() {
   }
   GetItemList() {
-    var itemList = fetch('http://3.36.216.37/item/', {
+    var itemList = fetch(domainUrl+'item/', {
       method: 'GET',
     })
     .then(
@@ -18,7 +19,7 @@ export default class CatalogueModel {
     return itemList;
   }
   GetItem(itemsId) {
-    var item = fetch(`http://3.36.216.37/item/detail/?itemsId=${itemsId}`, {
+    var item = fetch(domainUrl+`/item/detail/?itemsId=${itemsId}`, {
       method: 'GET',
     })
     .then(
@@ -33,7 +34,7 @@ export default class CatalogueModel {
     return item
   }
   PostMakeSubscription(membersId, itemsId, quantity) {
-    const contract = fetch(`http://3.36.216.37/trade/subscription`, {
+    const contract = fetch(domainUrl+`/trade/subscription`, {
       method: 'POST',
       body: JSON.stringify({
         'membersId': membersId,

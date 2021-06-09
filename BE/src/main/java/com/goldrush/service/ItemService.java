@@ -50,7 +50,7 @@ public class ItemService {
 
 	public String postPicture(String code, MultipartHttpServletRequest request) {
 		logger.info(code+" post picture");
-		String path = "/var/img/item";
+		String path = "/var/lib/tomcat9/webapps/Goldrush/resources/img/item";
 		//request.getSession().getServletContext().getRealPath("/resources/")+
 		String address = "/img/item/";
 		MultipartFile mf = request.getFile("img");
@@ -74,7 +74,7 @@ public class ItemService {
 	
 	public ResponseDTO postThumnail(MultipartHttpServletRequest request, String code, String ext ,File file) {
 		logger.info("thumnail picture is trying to post");
-		String path = "/var/img/item/thumbnail/";
+		String path = "/var/lib/tomcat9/webapps/Goldrush/resources/img/item/thumbnail/";
 		File thFile = new File(path,code+ext);
 		try {
 			BufferedImage Image = ImageIO.read(file);

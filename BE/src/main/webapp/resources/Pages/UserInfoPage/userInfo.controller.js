@@ -1,6 +1,6 @@
 import UserInfoView from './userInfo.view.js';
-import UserInfoModel from './userInfo.model.js'
-
+import UserInfoModel from './userInfo.model.js';
+import domainUrl from '../env';
 export default class UserInfoController {
   constructor() {
     this.view = new UserInfoView();
@@ -73,7 +73,7 @@ export default class UserInfoController {
       setCookie('amount', Number(this.view.chargeAmount.value));
       setCookie('withdraw', false);
       
-      location.href = 'http://3.36.216.37/bank/oauth';
+      location.href = domainUrl+'bank/oauth';
     }
   
     
@@ -124,7 +124,7 @@ export default class UserInfoController {
         setCookie('membersId', user.membersId);
         setCookie('amount', Number(this.view.chargeAmount.value));
         setCookie('withdraw', true);
-        location.href = 'http://3.36.216.37/bank/oauth';
+        location.href = domainUrl+'bank/oauth';
     }
   }
 
