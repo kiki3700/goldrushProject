@@ -1,16 +1,31 @@
 package com.goldrush.dto.accountDto;
 
+import org.springframework.context.support.GenericXmlApplicationContext;
+
 public class RequestOAuth3legger {
-	private String response_type ="code";
-	private String client_id="d8ef0825-f755-44a1-a768-f23fba7a4a52";
-	private String redirect_uri="http://192.168.1.70:8080/bank/auth_second";
-	private String scope = "login inquiry transfer";
-	private String state="b80BLsfigm9OokPTjy03elbJqRHOfGSY";
+	
+	
+	private String response_type;
+	private String client_id;
+	private String redirect_uri;
+	private String scope ;
+	private String state;
 	private int auth_type;
 	private String Kftc_Bfop_UserSeqNo;
 	private String Kftc_Bfop_UserCI;
 	private String Kftc_Bfop_AccessToken;
 
+	
+	
+	public RequestOAuth3legger() {
+		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:env.xml");
+		this.response_type="code";
+		this.client_id="d8ef0825-f755-44a1-a768-f23fba7a4a52";
+		this.redirect_uri=(String) ctx.getBean("ip")+"bank/auth_second";
+		this.scope="login inquriy transfer";
+		this.state="b80BLsfigm9OokPTjy03elbJqRHOfGSY";
+		
+	}
 	public String getResponse_type() {
 		return response_type;
 	}

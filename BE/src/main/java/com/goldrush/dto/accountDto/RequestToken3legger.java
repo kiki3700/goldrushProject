@@ -1,11 +1,25 @@
 package com.goldrush.dto.accountDto;
 
+import org.springframework.context.support.GenericXmlApplicationContext;
+
 public class RequestToken3legger {
 	private String code;
-	private String client_id="d8ef0825-f755-44a1-a768-f23fba7a4a52";
-	private String client_secret="76c74923-3d80-4cf2-a0f5-a92216c3d235";
-	private String redirct_uri="http://192.168.1.70:8080/bank/auth_second";
-	private final String grant_type ="authorization_code";
+	private String client_id;
+	private String client_secret;
+	private String redirct_uri;
+	private String grant_type ;
+	
+	
+	
+	public RequestToken3legger() {
+		super();
+		// TODO Auto-generated constructor stub
+		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:env.xml");
+		this.client_id="d8ef0825-f755-44a1-a768-f23fba7a4a52";
+		this.client_secret="76c74923-3d80-4cf2-a0f5-a92216c3d235";
+		this.redirct_uri=ctx.getBean("ip")+"bank/auth_second";
+		this.grant_type ="authorization_code";
+	}
 	public String getCode() {
 		return code;
 	}

@@ -53,27 +53,27 @@ const qna = `
                 <div class="panel-heading">
                   <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseQ1">
-                      조각투자란?
+                      <strong>리셀투자란?</strong>
                     </a>
                   </h4>
                 </div>
                 <div id="collapseQ1" class="panel-collapse collapse in">
                   <div class="panel-body">
-                    투자의 시대입니다. 은행을 통해, 착실히 돈을 모아 내집 마련의 꿈을 이룰 수 있는 시기는 지났습니다. 이제 계층 사다리를 이동하는방법은 '성실'보다는 '투자'입니다. 다양한 계층에서 투자에 관심을 갖기 시작했더라도, 투자를 할 곳은 마땅치가 않습니다. 그런 분들을 위해 준비한 투자 플랫폼이 바로 이곳 'GoldRush'입니다. 투자의 시작은 1000원이 될 수도 있고, 10000원이 될수도, 심지어 100원이 될 수도 있습니다. 짧은 기간동안 투자를 통해서 가장 큰 이익을 얻어보세요!
-                  </div>
+                    투자의 시대입니다. 리셀 투자는 희소성이 있는 현물을 매입하고 프리미엄을 붙여 매도하는 행위를 말합니다. 골드 러시에서는 기성 투자 상품을 너머 새로운 투자 대안을 제시합니다. 미술품, 골동품 명품 등 고가여서 투자하기 어려웠던 상품들을 'gold rush'와 함께 합리적인 가격으로 투자를 시작하세요. 
+                   </div>
                 </div>
               </div>
               <div class="panel">
                 <div class="panel-heading">
                   <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseQ2">
-                      어떤 상품을 취급하나요?
+                      <strong>어떤 상품을 취급하나요?</strong>
                     </a>
                   </h4>
                 </div>
                 <div id="collapseQ2" class="panel-collapse collapse">
                   <div class="panel-body">
-                    리셀테크에 활용될 수 있는, 시간이 지났을 때 가치가 오를 상품을 취급합니다. 이 상품들은 전문가들의 심사를 통해 판단됩니다. 절대 아무 상품이나 투자의 소재로 사용하지 않습니다!
+                   리셀 테크기업 'gold rush'의 투자 상품에는 한계란 없습니다. 고가의 미술품, 골동품, 스니커즈 까지 다양한 전문가와 협업하여 다양한 상품군을 발굴하여 최상의 투자 기회를 제공하겠습니다. 
                   </div>
                 </div>
               </div>
@@ -81,13 +81,13 @@ const qna = `
                 <div class="panel-heading">
                   <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseQ3">
-                      trade 단계는 무엇이가요?
+                     <strong> trade 단계는 무엇이가요?</strong>
                     </a>
                   </h4>
                 </div>
                 <div id="collapseQ3" class="panel-collapse collapse">
                   <div class="panel-body">
-                    청약기간동안 받은 상품들을 다른 투자자분과 거래하실 수 있습니다. 가치가 떨어질 것 같다면 처분하시고, 가치가 오를 것 같으면 확보하십시오! 이를 통해 투자자 스스로 리스크관리와 더불어 최대의 이익을 얻을 수도 있습니다!
+                    IPO 이후 goldrush 마켓에서 지분을 거래하실 수 있습니다. trade stage의 상품들을 매도, 매수하여 다양한 상품들에 투자하세요!
                   </div>
                 </div>
               </div>
@@ -95,13 +95,13 @@ const qna = `
                 <div class="panel-heading">
                   <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseQ4">
-                      clear 단계는 어떻게 이뤄지나요?
+                     <strong> clear 단계는 어떻게 이뤄지나요?</strong>
                     </a>
                   </h4>
                 </div>
                 <div id="collapseQ4" class="panel-collapse collapse">
                   <div class="panel-body">
-                    clear 단계에 돌입하면, 다른 투자자와의 거래가 불가해집니다. 이후 최상의 매입자를 모집합니다. 매입자에게 판매한 후 투자자분들의 보유율만큼 차익을 분배합니다!
+                    clear 단계에 돌입하면, 상품에 대한 지분은 다른 투자자와의 거래가 불가해집니다. 상품을 최상의 조건에 판매합니다. 판매 수익은 투자자분들의 보유율지분 만큼 수익을 분배합니다! 수익금 분배는 clear 이후 최소 일주일 부터 최장 한달 까지 걸릴 수 있습니다.
                   </div>
                 </div>
               </div>
@@ -109,7 +109,7 @@ const qna = `
                 <div class="panel-heading">
                   <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseQ5">
-                      비전이 있나요?
+                      <strong>비전이 있나요?</strong>
                     </a>
                   </h4>
                 </div>

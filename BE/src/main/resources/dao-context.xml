@@ -7,10 +7,12 @@
 		
 
     <!-- DataSource 설정 -->
+    <!--  elastic ip: //3.36.216.37:3306/ -->
+    <!--  domain ip :  -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-        <property name="url" value="jdbc:mysql://localhost/goldrush"/>
+        <property name="url" value="jdbc:mysql://3.36.216.37:3306/goldrush?useUnicode=yes&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=UTC"/>
         <property name="username" value="lee" />
-        <property name="password" value="kiki3700" />
+        <property name="password" value="3700" />
         <property name="driverClass" value="com.mysql.jdbc.Driver" />
     </bean>
 

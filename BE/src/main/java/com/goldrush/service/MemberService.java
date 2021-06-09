@@ -13,6 +13,7 @@ import javax.imageio.ImageIO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -29,7 +30,7 @@ import com.goldrush.dto.OfferLogDTO;
 import com.goldrush.dto.PortfolioDTO;
 import com.goldrush.dto.ResponseDTO;
 import com.goldrush.dto.TradeLogDTO;
-
+@Transactional
 public class MemberService {
 	private MemberDAO memberDAO;
 	private InventoryDAO inventoryDAO;

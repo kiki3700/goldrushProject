@@ -1,10 +1,11 @@
+import domainUrl from "../env"
 export default class CreateModel {
   constructor() {
     
   }
 
   PostCreate = (id, pwd, name) => {
-    var PostCreate = fetch('http://192.168.1.70:8080/member/signup', {
+    var PostCreate = fetch(domainUrl+'member/signup', {
       method: 'POST',
       body: JSON.stringify({
         "userId": id,

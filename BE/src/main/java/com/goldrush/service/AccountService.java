@@ -15,6 +15,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -46,7 +47,7 @@ import com.goldrush.dto.accountDto.ResponseToken3legger;
 import com.goldrush.dto.accountDto.ResponseWithdraw;
 import com.goldrush.util.BankingUtils;
 import com.mysql.cj.xdevapi.JsonArray;
-
+@Transactional
 public class AccountService {
 	private AccountDAO accountDAO;
 	
@@ -108,8 +109,6 @@ public class AccountService {
 	}
 	public ResponseLookupInfo getUserInfo(ResponseToken3legger token) {
 		String url = "https://testapi.openbanking.or.kr/v2.0/user/me";
-		UriComponentsBuilder builder  =UriComponentsBuilder.fromHttpUrl(url).queryParam("user_seq_no", token.getUser_seq_no());
-		System.out.println(url);
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.set("Authorization", "Bearer "+token.getAccess_token());
 		MultiValueMap<String, Object> parameters = new LinkedMultiValueMap<>();
@@ -120,8 +119,10 @@ public class AccountService {
 		HttpEntity entity = new HttpEntity(httpHeaders);
 		ResponseEntity<ResponseLookupInfo> info = template.exchange(url+"?user_seq_no="+token.getUser_seq_no(), HttpMethod.GET, entity, ResponseLookupInfo.class);
 		ResponseLookupInfo information = info.getBody();
+	
 		return information;
 	}
+	
 	public String makeCookieString(ResponseToken3legger token, ResponseLookupInfo information) throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
 		String json ="";

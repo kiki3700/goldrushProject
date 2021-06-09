@@ -147,10 +147,11 @@ export default class UserInfoView{
           <td>${item.amount}</td>
         </tr>
       `
+      this.account = document.querySelector('.account');
+      this.account.innerHTML = `잔액 : <b class="amountAccount">${item.balance}</b>원`
     }
     
-    this.account = document.querySelector('.account');
-    this.account.innerHTML = `잔액 : <b class="amountAccount">${item.balance}</b>원`
+    
 
     this.accountLog.insertAdjacentHTML('afterbegin', tableNode);
 

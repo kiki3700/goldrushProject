@@ -1,10 +1,11 @@
+import domainUrl from "../env"
 export default class SellModel {
   constructor() {
     
   }
 
   GetOfferList = (itemsId) => {
-    const offerList = fetch(`http://192.168.1.70:8080/trade/offer?itemsId=${itemsId}&buy=${false}`, {
+    const offerList = fetch(domainUrl+`trade/offer?itemsId=${itemsId}&buy=${false}`, {
       method: 'GET',
     })
     .then(
@@ -21,7 +22,7 @@ export default class SellModel {
   }
 
   GetItem(itemsId) {
-    var item = fetch(`http://192.168.1.70:8080/item/detail/?itemsId=${itemsId}`, {
+    var item = fetch(domainUrl+`item/detail/?itemsId=${itemsId}`, {
       method: 'GET',
     })
     .then(
@@ -37,7 +38,7 @@ export default class SellModel {
   }
 
   PostTradeItem(membersId, price, quantity, itemsId) {
-    var buy =  fetch(`http://192.168.1.70:8080/trade/trade`, {
+    var buy =  fetch(domainUrl+`trade/trade`, {
       method: 'POST',
       body: JSON.stringify({
         'membersId' : membersId,
@@ -73,7 +74,7 @@ export default class SellModel {
   }
 
   PostMakeOffer(membersId, itemsId, offerPrice, quantity) {
-    var offer = fetch(`http://192.168.1.70:8080/trade/offer/`, {
+    var offer = fetch(domainUrl+`trade/offer/`, {
       method: 'POST',
       body: JSON.stringify({
         'membersId' : membersId,
@@ -110,7 +111,7 @@ export default class SellModel {
   }
 
   GetPortfolio(membersId) {
-    const portfolios = fetch(`http://192.168.1.70:8080/member/portfolio/?membersId=${membersId}`, {
+    const portfolios = fetch(domainUrl+`member/portfolio/?membersId=${membersId}`, {
       method: 'GET',
     })
     .then(

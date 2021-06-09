@@ -1,9 +1,10 @@
+import {domainUrl} from "../env"
 export default class ClearModel {
   constructor() {
     
   }
   GetItemList() {
-    var itemList = fetch('http://192.168.1.70:8080/item/', {
+    var itemList = fetch(domainUrl+'item/', {
       method: 'GET',
     })
     .then(
@@ -19,7 +20,7 @@ export default class ClearModel {
     return itemList;
   }
   GetItem(itemsId) {
-    var item = fetch(`http://192.168.1.70:8080/item/detail/?itemsId=${itemsId}`, {
+    var item = fetch(domainUrl+`/item/detail/?itemsId=${itemsId}`, {
       method: 'GET',
     })
     .then(
@@ -35,7 +36,7 @@ export default class ClearModel {
   }
 
   GetClear(itemid, sellPrice) {
-    const clear = fetch(`http://192.168.1.70:8080/trade/clear/?itemsId=${itemid}&price=${sellPrice}`, {
+    const clear = fetch(domainUrl+`/trade/clear/?itemsId=${itemid}&price=${sellPrice}`, {
       method: 'GET',
     })
     .then(
