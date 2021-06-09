@@ -1,9 +1,10 @@
+import {domainUrl} from "../env.js";
 export default class BuyModel {
   constructor() {
-    
   }
+ 
   GetOfferList = (itemsId) => {
-    const offerList = fetch(`http://3.36.216.37/trade/offer?itemsId=${itemsId}&buy=${true}`, {
+    const offerList = fetch(domainUrl+`trade/offer?itemsId=${itemsId}&buy=${true}`, {
       method: 'GET',
     })
     .then(
@@ -19,7 +20,7 @@ export default class BuyModel {
   }
 
   GetItem(itemsId) {
-    var item = fetch(`http://3.36.216.37/item/detail/?itemsId=${itemsId}`, {
+    var item = fetch(domainUrl+`item/detail/?itemsId=${itemsId}`, {
       method: 'GET',
     })
     .then(
@@ -35,7 +36,7 @@ export default class BuyModel {
   }
 
   PostTradeItem(membersId, price, quantity, itemsId) {
-    var buy =  fetch(`http://3.36.216.37/trade/trade`, {
+    var buy =  fetch(domainUrl+`trade/trade`, {
       method: 'POST',
       body: JSON.stringify({
         'membersId' : membersId,

@@ -1,9 +1,10 @@
+import domainUrl from "../env"
 export default class EnrollModel {
   constructor() {
     
   }
   postEnrollItem(formData) {
-    const enrollItem = fetch('http://3.36.216.37/item/list', {
+    const enrollItem = fetch(domainUrl+'item/list', {
       method: 'POST',
       body : formData,
       headers: {},

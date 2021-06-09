@@ -1,10 +1,11 @@
+import domainUrl from "../env"
 export default class UserInfoModel {
   constructor() {
     
   }
 
   GetPortfolio(membersId) {
-    const portfolios = fetch(`http://3.36.216.37/member/portfolio/?membersId=${membersId}`, {
+    const portfolios = fetch(domainUrl+`member/portfolio/?membersId=${membersId}`, {
       method: 'GET',
     })
     .then(
@@ -21,7 +22,7 @@ export default class UserInfoModel {
   }
 
   GetOfferLog(membersId) {
-    const offerLog = fetch(`http://3.36.216.37/member/offer/?membersId=${membersId}`, {
+    const offerLog = fetch(domainUrl+`member/offer/?membersId=${membersId}`, {
       method: 'GET',
     })
     .then(
@@ -38,7 +39,7 @@ export default class UserInfoModel {
   }
 
   GetAccountLog(membersId) {
-    const accountLog = fetch(`http://3.36.216.37/member/account/?membersId=${membersId}`, {
+    const accountLog = fetch(domainUrl+`member/account/?membersId=${membersId}`, {
       method: 'GET',
     })
     .then(
@@ -55,7 +56,7 @@ export default class UserInfoModel {
   }
 
   DeleteCancelOffer(offersId) {
-    const cancelOffer = fetch(`http://3.36.216.37/trade/offer/?offersId=${offersId}`,{
+    const cancelOffer = fetch(domainUrl+`trade/offer/?offersId=${offersId}`,{
       method : 'DELETE',
     })
     .then(

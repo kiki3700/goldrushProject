@@ -1,9 +1,10 @@
+import domainUrl from "../env"
 export default class ManagerModel {
   constructor() {
     
   }
   GetItemList() {
-    const itemList = fetch('http://3.36.216.37/item/', {
+    const itemList = fetch(domainUrl+'item/', {
       method: 'GET',
     })
     .then(
@@ -19,7 +20,7 @@ export default class ManagerModel {
     return itemList;
   }
   GetItem(itemId) {
-    const item = fetch(`http://3.36.216.37/item/detail/?itemsId=${itemId}`, {
+    const item = fetch(domainUrl+`item/detail/?itemsId=${itemId}`, {
       method: 'GET',
     })
     .then(
@@ -34,7 +35,7 @@ export default class ManagerModel {
     return item
   }
   PostUpdateItem(formData, itemId) {
-    const update = fetch(`http://3.36.216.37/item/listEdit/?itemsId=${itemId}`, {
+    const update = fetch(domainUrl+`item/listEdit/?itemsId=${itemId}`, {
       method: 'POST',
       body: formData,
       headers: {},
@@ -58,7 +59,7 @@ export default class ManagerModel {
     return this.PutUpdateItem;
   }
   DeleteItem(itemId) {
-    const item = fetch(`http://3.36.216.37/item/list?itemsId=${itemId}`, {
+    const item = fetch(domainUrl+`item/list?itemsId=${itemId}`, {
       method: 'DELETE',
     })
     .then(
