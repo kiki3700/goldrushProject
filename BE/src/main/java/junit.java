@@ -13,7 +13,7 @@ public class junit {
 	@Test
 	public void test() {
 		testa t = new testa();
-		System.out.println(t.v);
+		System.out.println(t.getV());
 	}
 
 }
