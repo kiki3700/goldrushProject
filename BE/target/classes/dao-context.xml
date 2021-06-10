@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+		
+
+    <!-- DataSource 설정 -->
+    <!--  elastic ip: //3.36.216.37:3306/ -->
+    <!--  domain ip :  -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+        <property name="url" value="jdbc:mysql://3.36.216.37:3306/goldrush?useUnicode=yes&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=UTC"/>
+        <property name="username" value="lee" />
+        <property name="password" value="3700" />
+        <property name="driverClass" value="com.mysql.jdbc.Driver" />
+    </bean>
+
+	 <bean id="DBHandler" class="com.goldrush.dao.DBHandler"/>
+	 
+	 <bean id="MemberDAO" class="com.goldrush.dao.MemberDAOImpl">
+	 	<property name="db" ref="DBHandler"/>
+	 </bean>
+	 
+	 <bean id="InventoryDAO" class="com.goldrush.dao.InventoryDAOImpl">
+	 	<property name="db" ref="DBHandler"/>
+	 </bean>
+	 
+	 <bean id="ItemDAO" class="com.goldrush.dao.ItemDAOImpl">
+	 	<property name="db" ref="DBHandler"/>
+	 </bean>
+	 
+	 	 <bean id="OfferDAO" class="com.goldrush.dao.OfferDAOImpl">
+	 	<property name="db" ref="DBHandler"/>
+	 </bean>
+	 
+ 	 <bean id="TradeDAO" class="com.goldrush.dao.TradeDAOImpl">
+	 	<property name="db" ref="DBHandler"/>
+	 </bean>
+
+ 	 <bean id="AccountDAO" class="com.goldrush.dao.AccountDAOImpl">
+	 	<property name="db" ref="DBHandler"/>
+	 </bean>
+	 
+
+
+</beans>

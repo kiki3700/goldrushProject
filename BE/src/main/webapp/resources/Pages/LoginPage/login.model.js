@@ -1,4 +1,4 @@
-import domainUrl from "../env"
+import {domainUrl} from "../env.js"
 export default class LoginModel {
   constructor() {
     

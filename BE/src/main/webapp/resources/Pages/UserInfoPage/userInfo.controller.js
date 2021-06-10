@@ -1,6 +1,6 @@
 import UserInfoView from './userInfo.view.js';
 import UserInfoModel from './userInfo.model.js';
-import domainUrl from '../env';
+import {domainUrl} from '../env.js';
 export default class UserInfoController {
   constructor() {
     this.view = new UserInfoView();
