@@ -22,7 +22,7 @@ public class RequestOAuth3legger {
 		this.response_type="code";
 		this.client_id="d8ef0825-f755-44a1-a768-f23fba7a4a52";
 		this.redirect_uri=(String) ctx.getBean("ip")+"bank/auth_second";
-		this.scope="login inquriy transfer";
+		this.scope="login inquiry transfer";
 		this.state="b80BLsfigm9OokPTjy03elbJqRHOfGSY";
 		
 	}
