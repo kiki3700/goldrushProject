@@ -120,8 +120,8 @@ public class TradeService {
 			logger.info("quantity balance : "+quantityBalance);
 			OfferDTO offerDTO = offerDAO.selectOfferBytrade(traderDTO);
 			logger.info("offer to trade : "+offerDTO);
-			int payToQuantity = 0;
-			if(offerDTO.getQuantity()==0) return new ResponseDTO(1, quantityBalance+"주 거래에 성공했습니다.");
+			int payToQuantity = 0; //이게 머야
+//			if(offerDTO.getQuantity()==0) return new ResponseDTO(1, quantityBalance+"주 거래에 성공했습니다."); // 이게 잘못된거 같은 왜 offer가 0인데 거래는 완료시키냐
 			TradeDTO dto = new TradeDTO();
 			dto.setMembersId(traderDTO.getMembersId());
 			dto.setOffersId(offerDTO.getOffersId());	
@@ -138,15 +138,8 @@ public class TradeService {
 				quantityBalance=0;
 				tradeDAO.insertTrade(dto);
 				logger.info("trade date insert complete");
-				}else if(offerDTO.getQuantity()==quantityBalance){
-					logger.info("2th divergence");
-						payToQuantity = quantityBalance;
-						quantityBalance=0;
-						offerDAO.updateCompeleteOffer(offerDTO);
-						tradeDAO.insertTrade(dto);
-						logger.info("trade date insert complete");
 				}else {
-					logger.info("3th divergence");
+					logger.info("2th divergence");
 					payToQuantity =	 offerDTO.getQuantity();
 						offerDAO.updateCompeleteOffer(offerDTO);
 						tradeDAO.insertTrade(dto);					
