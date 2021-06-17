@@ -3,7 +3,11 @@
 <mapper namespace="mapper.memberMapper">
 	<insert id ="insertNewMember">
 		INSERT INTO members(user_id, name, password) 
-		values(#{userId},#{name},#{password))
+		values(#{userId},#{name},#{password})
 	</insert>
+	
+	<select id="selectByUserId" resultType="MemberDTO">
+		select * from members WHERE user_id = #{userId}
+	</select>
 
 </mapper>
