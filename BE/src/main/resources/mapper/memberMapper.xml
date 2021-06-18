@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.memberMapper">
-	<insert id ="insertNewMember">
-		INSERT INTO members(user_id, name, password) 
-		values(#{userId},#{name},#{password})
-	</insert>
-	
+
 	<select id="selectByUserId" resultType="MemberDTO">
 		select * from members WHERE user_id = #{userId}
 	</select>
+	
+	<insert id="insertNewMember" parameterType="MemberDTO">
+		INSERT INTO members(user_id, name, password) values(#{userId},#{name},#{password})
+	</insert>
 
+	<update id="udatePassword" parameterType="MemberDTO">
+		UPDATE members SET password = #{password} WHERE members_id = #{membersId}
+	</update>
+	
+	<update id="signout" parameterType="Integer">
+		UPDATE members SET user_id = seignoutMember WHERE members_id =#{membersId} 
+	</update>
 </mapper>

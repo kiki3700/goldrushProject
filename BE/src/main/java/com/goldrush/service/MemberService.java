@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.goldrush.dao.AccountDAO;
 import com.goldrush.dao.InventoryDAO;
 import com.goldrush.dao.MemberDAO;
+import com.goldrush.dao.MemberMapper;
 import com.goldrush.dao.OfferDAO;
 import com.goldrush.dao.TradeDAO;
 import com.goldrush.dto.AccountDTO;
@@ -35,12 +36,14 @@ public class MemberService {
 	private MemberDAO memberDAO;
 	private InventoryDAO inventoryDAO;
 	private AccountDAO accountDAO;
+	private MemberMapper mm;
 	private OfferDAO offerDAO;
 	private TradeDAO tradeDAO;
 	public MemberService() {
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:dao-context.xml");
 		this.inventoryDAO = (InventoryDAO) ctx.getBean("InventoryDAO");
 		this.memberDAO = (MemberDAO) ctx.getBean("MemberDAO");
+		this.mm = (MemberMapper) ctx.getBean("MemberMapper");
 		this.accountDAO = (AccountDAO) ctx.getBean("AccountDAO");
 		this.offerDAO = (OfferDAO) ctx.getBean("OfferDAO");
 		this.tradeDAO = (TradeDAO) ctx.getBean("TradeDAO");

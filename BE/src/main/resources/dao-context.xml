@@ -16,10 +16,15 @@
         <property name="driverClass" value="com.mysql.jdbc.Driver" />
     </bean>
 
-
+	<bean id="DS" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/goldrush?useUnicode=yes&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=UTC"/>
+        <property name="username" value="lee" />
+        <property name="password" value="3700" />
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />	
+	</bean>
 
 	   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-             <property name="dataSource" ref="dataSource"></property>
+             <property name="dataSource" ref="DS"></property>
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
              <property name="configLocation" value="classpath:/mybatis-config.xml"></property>
@@ -30,6 +35,13 @@
 	    <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
 
+<!--  mapper module -->
+	<bean id="MemberMapper" class="com.goldrush.dao.MemberMapper">
+		<property name="factory" ref= "sqlSessionFactory"></property>
+	</bean>
+
+
+	<!-- jdbc module -->
 	 <bean id="DBHandler" class="com.goldrush.dao.DBHandler"/>
 	 
 	 <bean id="MemberDAO" class="com.goldrush.dao.MemberDAOImpl">
