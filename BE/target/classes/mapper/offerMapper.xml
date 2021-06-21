@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.offerMapper">
+	<select  id="selectOffers" resultType="OfferDTO">
+		SELECT
+		 offers_id as offersId,
+		members_id as membersId,
+		items_id as itemsId,
+		offer_price as offerPrice,
+		is_complete as isComplete,
+		quantity as quantity,
+		time_stamp as timeStamp 
+		FROM offers;
+	</select>
+	
+	<select id ="selectOfferBytrade" resultType="OfferDTO" parameterType="traderdto">
+		SELECT 
+		offers_id as offersId,
+		members_id as membersId,
+		items_id as itemsId,
+		offer_price as offerPrice,
+		is_complete as isComplete,
+		quantity as quantity,
+		time_stamp as timeStamp 
+		 FROM offers WHERE items_id = #{itemsId}  AND offer_price =#{offerPrice} AND is_complete=false AND buy = #{buy} ORDER BY time_stamp ASC limit 1
+	</select>
+
+</mapper>
