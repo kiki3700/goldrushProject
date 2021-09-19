@@ -108,7 +108,9 @@ public class OfferDAOImpl implements OfferDAO {
 	
 	@Override
 	public OfferDTO selectOfferForClearing(OfferDTO offerDTO) {
-		String SQL = "SELECT * FROM offers WHERE items_id = ? AND members_id = ? AND buy =false AND is_complete = true AND quantity = ? ORDER BY offers_id LIMIT 1";
+		String SQL = "SELECT * FROM offers WHERE items_id = ? AND members_id = ? AND "
+				+ "buy =false AND is_complete = true AND quantity = ? "
+				+ "ORDER BY offers_id LIMIT 1";
 		PreparedStatement pstmt= null;
 		Connection con= null;
 		ResultSet rs = null;
@@ -247,7 +249,7 @@ public class OfferDAOImpl implements OfferDAO {
 	}
 	@Override
 	public List<OfferDTO> selectOffersByPrice(int price) {
-		String SQL = "SELECT * FROM offers WHERE offer_price = ? is_compelete = false";
+		String SQL = "SELECT * FROM offers WHERE offer_price = ? AND is_compelete = false";
 		PreparedStatement pstmt= null;
 		Connection con= null;
 		ResultSet rs = null;
@@ -283,7 +285,7 @@ public class OfferDAOImpl implements OfferDAO {
 	}
 	@Override
 	public List<OfferDTO> selectOffersByItemsId(int itemsId) {
-		String SQL = "SELECT * FROM offers WHERE items_id = ? is_compelete = false";
+		String SQL = "SELECT * FROM offers WHERE items_id = ? AND is_compelete = false";
 		PreparedStatement pstmt= null;
 		Connection con= null;
 		ResultSet rs = null;

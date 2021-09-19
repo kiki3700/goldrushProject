@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.inventoryMapper">
+	<select id="selectInv" resultType="HashMap">
+		SELECT * FROM inventories WHERE members_id = #{membersId}
+	</select>
+	<select id="checkEnoughQuantity" resultType="int">
+		SELECT SUM(quantity) as quantity 
+		From inventories 
+		WHERE 
+		members_id = #{membersId} 
+		AND 
+		itmem_id #{itemsID}
+	</select>
+	<insert id="insertInventory" parameterType='InventoryDTO'>
+		INSERT INTO inventoryies(
+			members_id,
+			items_id,
+			price, quantity)
+		value(
+			#{membersId},
+			#{itemsId},
+			#{price},
+			#{quantity}
+			)
+	</insert>
+	<update id="updateInventoryprice" parameterType = 'InventoryDTO'>
+		UPDATE inventroies
+			SET 
+				price = #{price},
+				quantity = #{quantity}
+			WHERE
+				items_id = #{itemsId}
+			AND
+				members_id = #{membersId}
+	</update>
+	<delete id="deleteInventory" parameterType = 'InventoryDTO'>
+		DELETE FROM inventories
+			WHERE
+				items_id = #{itemsId}
+					AND
+				members_id = #{memberesId}
+	</delete>
+	<select id="selectAvgPrice" parameterType='HashMap' resultType="HashMap">
+		SELECT 
+			items_id, 
+			SUM(quantity) AS quantity,
+			SUM(quantity*price)/SUM(quantity) AS average_price
+		FROM inventories
+		WHERE 
+			members_id = #{memberes_id}
+		AND
+			items_id = #{itemsId}
+		GROUP BY items_id
+	</select>
+</mapper>

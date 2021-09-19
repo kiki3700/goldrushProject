@@ -31,7 +31,9 @@ public class AccountDAOImpl implements AccountDAO{
 	//
 	@Override
 	public int selectCount() {
-		String SQL = "select COUNT(*) as count FROM accounts WHERE time_stamp>=CURDATE() AND action='deposit' OR action='withdraw'";
+		String SQL = "select COUNT(*) as count FROM accounts"
+				+ " WHERE time_stamp>=CURDATE() "
+				+ "AND action='deposit' OR action='withdraw'";
 		Statement stmt=null;
 		ResultSet rs = null;
 		Connection con =db.connect();

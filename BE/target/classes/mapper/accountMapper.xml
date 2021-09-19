@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.accountMapper">
+	<select id='selectCount' resultType ='int'>
+		SELECT COUNT(*) AS COUNT FROM accounts
+			WHERE time_stamp = CURDATE() 
+				AND
+			action = 'deposit'
+				OR
+			action = 'withdraw'
+	</select>
+	<select id ='selectBalance' parameterType ='HashMap' resultType='int'>
+		SELECT SUM(amount) as balance
+			FROM accounts
+			WHERE members_id = #{membersId}
+	</select>
+	<select id = 'selectAccountLog' parameterType = 'int' resultType = 'HashMap'>
+		SELECT *
+			FROM
+		accounts
+			WHERE
+		members_id = #{num}
+	</select>
+	<insert id='insertSellResult' parameterType = 'HashMap'>
+		INSERT accounts(
+			action,
+			members_id,
+			amount)
+		values(
+			'sell',
+			#{membersID},
+			#{amount})
+	</insert>
+	<insert id = 'insertBuyResult' parameterType='HashMap'>
+		INSERT accounts(
+			action,
+			members_id,
+			amount)
+		VALUES(
+			'buy',
+			#{membersId})
+	</insert>
+	<insert id='insertIpoResult' parameterType ='HashMap'>
+		INSERT account(
+			action,
+			members_id,
+			amount)
+		values(
+			'IPO',
+			#{membersId},
+			#{amount})
+	</insert>
+	<insert id='insertBankingResult' parameterType ='HashMap'>
+		INSERT account(
+			action, 
+			members_id,
+			amount)
+		values(
+			#{category},
+			#{membersId},
+			#{amount})
+	</insert>
+	<select id ='selectTranId' resultType='int'>
+		SELECT count(*) AS count
+			from trun_ids
+			WHERE time_stamp >= CURDATE()
+	</select>
+	<insert id ='insertTranIds'>
+		INSERT tran_ids() values()
+	</insert>
+</mapper>
