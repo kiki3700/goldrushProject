@@ -5,6 +5,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -16,7 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class MyBatisTest {
 	
 	//SqlSessionFactory 객체를 자동으로 생성
-	@Inject
+	@Autowired
 	private SqlSessionFactory sqlFactory;
 	
 	//SqlSessionFactory 객체가 제대로 만들어졌는지 Test

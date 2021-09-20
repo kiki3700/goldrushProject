@@ -46,7 +46,6 @@ import com.goldrush.dto.accountDto.ResponseToken2legger;
 import com.goldrush.dto.accountDto.ResponseToken3legger;
 import com.goldrush.dto.accountDto.ResponseWithdraw;
 import com.goldrush.util.BankingUtils;
-import com.mysql.cj.xdevapi.JsonArray;
 @Transactional
 public class AccountService {
 	private AccountDAO accountDAO;
@@ -179,7 +178,11 @@ public class AccountService {
 		HttpEntity<String> r = new HttpEntity<>(json,httpHeaders);
 		ResponseWithdraw withdrawResult=restTemplate.postForObject(url, r, ResponseWithdraw.class);
 		accountDAO.insertTranIds();
-		accountDAO.insertWithdrawResult(membersId, -amount);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("membersId", membersId);
+		params.put("amount", -amount);
+		params.put("category", "widthraw");
+		accountDAO.insertResult(params);
 		return withdrawResult;
 	}
 	
@@ -228,7 +231,11 @@ public class AccountService {
 		ResponseDeposit depositResult=restTemplate.postForObject(url, r, ResponseDeposit.class);
 		depositResult.getRes_list();
 		accountDAO.insertTranIds();
-		System.out.println(accountDAO.insertDepositResult(membersId, amount));
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("membersId", membersId);
+		params.put("amount", -amount);
+		params.put("category", "deposit");
+		accountDAO.insertResult(params);
 		System.out.println(depositResult);
 		return depositResult;
 	}

@@ -132,11 +132,13 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		    <artifactId>spring-jdbc</artifactId>
 		    <version>5.3.5</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 		    <groupId>mysql</groupId>
 		    <artifactId>mysql-connector-java</artifactId>
-		    <version>5.1.31</version>
+		    <version>8.0.26</version>
 		</dependency>
+
 
 		
 		<dependency>

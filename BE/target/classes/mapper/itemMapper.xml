@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.itemMapper">
-	<select id='selectItemList' resultType = 'HashMap'>
+	<select id='selectItemList' resultType = 'ItemDTO'>
 		SELECT * FROM items
 	</select>
+	<select id='selectItemListByStage' parameterType = 'String' resultType= 'ItemDTO'>
+		SELECT * FROM items
+			WHERE stage = #{String}
+	</select>
+	<select id ='selectItem' parameterType ='int' resultType = 'ItemDTO'>
+		SELECT * FROM items WHERE items_id = #{num}
+	</select>
+
 </mapper>

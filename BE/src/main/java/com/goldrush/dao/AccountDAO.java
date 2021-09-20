@@ -1,19 +1,20 @@
 package com.goldrush.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.goldrush.dto.AccountDTO;
 
-public interface AccountDAO {
+public interface AccountDAO<Hashmap> {
 
 	int selectBalacne(int members_id);
 	List<AccountDTO> selectAccountLog(int membersId);
-	int insertSellResult(int membersId, int amount);
-	int insertBuyResult(int membersId, int amount);
-	int insertIpoResult(int membersId, int amount);
-	int insertClearingResult(int membersId, int amount);
-	int insertWithdrawResult(int membersId, int amount);
-	int insertDepositResult(int membersId, int amount);
+	int insertResult(HashMap<String, Object> params);
+//	int insertBuyResult(HashMap<String, Object> params);
+//	int insertIpoResult(HashMap<String, Object> params);
+//	int insertClearingResult(HashMap<String, Object> params);
+//	int insertWithdrawResult(HashMap<String, Object> params);
+//	int insertDepositResult(HashMap<String, Object> params);
 	int selectCount();
 	int selectTranId();
 	void insertTranIds();

@@ -13,7 +13,7 @@
 		itmem_id #{itemsID}
 	</select>
 	<insert id="insertInventory" parameterType='InventoryDTO'>
-		INSERT INTO inventoryies(
+		INSERT INTO inventories(
 			members_id,
 			items_id,
 			price, quantity)
@@ -25,7 +25,7 @@
 			)
 	</insert>
 	<update id="updateInventoryprice" parameterType = 'InventoryDTO'>
-		UPDATE inventroies
+		UPDATE inventories
 			SET 
 				price = #{price},
 				quantity = #{quantity}

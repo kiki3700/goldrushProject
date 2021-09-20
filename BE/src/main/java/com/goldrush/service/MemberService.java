@@ -51,9 +51,9 @@ public class MemberService {
 	public ResponseDTO signup(MemberDTO dto) {
 		MemberDTO dtoForCheck = memberDAO.selectByUserId(dto.getUserId());
 		if(dtoForCheck.getMembersId()==0) {
-		memberDAO.insertNewMemeber(dto);
-		logger.info("signupis success");
-		return new ResponseDTO(1, "sucess");
+			memberDAO.insertNewMemeber(dto);
+			logger.info("signupis success");
+			return new ResponseDTO(1, "sucess");
 		}else{
 			logger.info("there is already exgist");
 			return new ResponseDTO(0, "이미 등록된 아이디 입니다..");

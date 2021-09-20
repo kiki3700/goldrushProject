@@ -1,64 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.offerMapper">
-	<select id = 'selectOfferByTrade' parameterType = 'OfferDTO' resultType='TraderDTO'>
-		SELECT * FROM offers
-			WHERE
-		items_id = #{items_id}
-			AND
-		offer_price =#{offerPrice}
-			AND
+	<select id='selectOfferBytrade' parameterType ='TradeDTO' resultType = 'OfferDTO'>
+		SELECT * FROM offers WHERE 
+		 WHERE items_id = #{itemsId}
+		 AND offer_price =#{offerPrice}
+		 AND is_complete=false 
+		 AND buy =#{buy}
+		 ORDER BY time_stamp ASC limit 1
+	</select>
+	<select id ='selectOffer' parameterType='OfferDTO' resultType='OfferDTO'>
+		SELECT * FROM offers WHERE offers_id = #{offersId}
+	</select>
+	<select id='selectOfferForClearing' parameterType ='OfferDTO' resultType = 'OfferDTO'>
+		SELECT * FROM offers WHERE
+			items_id = #{itemsId}
+			AND members_id = #{membersId}
+			AND buy = false
+			AND is_complete = true
+			AND quantity = #{quantity}
+			ORDER BY offers_id LIMIT 1
+	</select>
+	<select id = 'selectOffersForIPO' parameterType = 'int' resultType= 'OfferDTO'>
+		SELECT* FROM offers WHERE items_id =#{itemsId}
+		AND buy = true AND
 		is_complete = false
-			AND
-		buy = #{buby}
-			ORDER ASC limit 1
 	</select>
-	<select id = 'selectOffer' parameterType ='OfferDTO' resultType='OfferDTO'>
-		SELECT * FROM offers WHERE offers_id = #{offeresId}
-	</select>
-	<select id = 'offerForClearing' parameterType ='offerDTO' resultType ='OfferDTO'>
-		SELECT * FROM offers
-			WHERE 
-		items_id = #{items_id}
-			AND
-		buy = false
-			AND
-		is_complete = true
-			AND
-		quantity = #{quantity}
-		ORDER BY offers_id LIMIT 1
-	</select>
-	<select id = 'selectOfferForIPO' parameterType = 'int' resultType="OfferDTO">
-		SELECT * FROM offers
-			WHERE items_id =#{itemsId}
-				AND
-			buy = true
-				AND
-			is_complete = false
-	</select> 
-	<delete id = 'delteOffersFoClearing' parameterType ='int'>
-		DELETE FROM offers WHERE items_id= #{num} AND is_complete = false
+	<delete id="deleteOffersForClearing" parameterType = 'int'>
+		DELE FROM offers WHERE items_id =#{num}
+		AND is_complete = false
 	</delete>
-	<select id='selectOffers' resultType = 'OfferDOT'>
+	<select id = 'selectOffers' resultType = 'OfferDTO'>
 		SELECT * FROM offers
 	</select>
-	<select id='selectOferByPrice' parameterType = 'int' resultType='OfferDTO'>
-		SELECT * FROM offers WHERE offer_price = #{num}
+	<select id = 'selectOffersByPrice' parameterType ='int' resultType="offerDTO">
+		SELECT * FROM offers WHERE offer_price = #{offerPrice}
+		AND is_complete =false
+	</select>
+	<select id = 'selectOfferByItemsId' parameterType ='int' resultType='OfferDTO'>
+		SELECT * FROM offers LEFT JOIN items ON offers.items_id  = items.items_id
+			WHERE 
+		members_id = #{members_id}
 			AND
 		is_complete = false
 	</select>
-	<select id = 'selectOfferByItemsId' parameterType='int' resultType='OfferDTO'>
-		SELECT * FROM offers WHERE items_id = #{num}
-			AND
-		is_complete = false
-	</select>
-	<select id = 'selectOfferByMembersId' parameterType ='int' resultType ='OfferLogDTO'>
-		SELECT * FROM offers 
-			LEFT JOIN items on offers_items =items.items_id
-				WHERE
-			members_id = #{num} AND is_complete = false
-	</select>
-	<insert id =' insertNewOffer' parameterType = 'OfferDTO' >
+	<insert id = 'insertNewOffer' parameterType ='OfferDTO'>
 		INSERT INTO offers(
 			members_id,
 			items_id,
@@ -66,13 +52,13 @@
 			offer_price,
 			quantity)
 		values(
-			#{membersId},
+			#{members_id},
 			#{itemsId},
 			#{buy},
 			#{offerPrice},
 			#{quantity})
 	</insert>
-	<insert id = 'insetOfferForClear' parameterType ='OfferDTO'>
+	<insert id = 'insertOfferForClear' parameterType='OfferDTO'>
 		INSERT INTO offers(
 			members_id,
 			items_id,
@@ -87,74 +73,63 @@
 			#{offerPrice},
 			#{quantity},
 			true)
-	</insert>'
-	<insert id ='insertOffer' parameterType = 'OfferDTO'>
+	</insert>
+	<insert id='insertOffer' parameterType='OfferDTO'>
 		INSERT INTO offers(
-			members_id,
-			items_id,
-			buy,
+			members_id, 
+			items_id, 
+			buy, 
 			offer_price,
 			quantity,
-			time_stamp)
-		values(
+			time_stamp) 
+		value(
 			#{membersId},
-			#{itemsId},
-			#{buy},
-			#{offerPrice},
-			#{Quantity},
-			SYSDATE())
+			#{itemsId}, 
+			#{buy}, 
+			#{offerPrice}, 
+			#{quantity}, 
+			SYSDATE)
 	</insert>
-	<update id ='updateCompleteOffer' parameterType = 'OfferDTO'>
-		UPDATE offer SET is_COMPLETE = true
-			WHERE
-		offers_id = #{offersId}
+	<delete id="deleteOffer" parameterType='OfferDTO'>
+		DELETE FROM offers
+		WHERE offers_id = #{offersId}
+	</delete>
+	<update id = 'updateCompleteOffer' parameterType = 'OfferDTO'>
+		UPDATE offer SET
+			is_complete =true
+		WHERE offers_id = #{offersId}
 	</update>
-	<update id = 'updateOfferByTrade' parameterType='OfferDTO'>
+	<update id = 'updateOfferByTrade' parameterType = 'OfferDTO'>
 		UPDATE offers SET
 			quantity = #{quantity},
 			is_complete = true
 		WHERE offers_id = #{offersId}
 	</update>
-	<select id = 'selectBuyOfferList' parameterType = 'OfferDTO' resultType='OfferListDTO'>
-		SELECT * FROM offers WHERE items_id = #{itemsId}
-			AND
-		is_complete =false
-			AND
-		buy = true
-			ORDER BY offer_price DESC
+	<select id = 'selectBuyOfferList' parameterType='OfferDTO' resultType = 'OffersListDTO'>
+		SELECT * FROM offers 
+			WHERE 
+		items_id = #{itemsId} AND
+		is_complete = false AND
+		buy = true 
+		ORDER BY offer_price DESC
 	</select>
-	<select id='selectSellOfferList' parameterType ='OfferDTO' resultType ='OfferListDTO'>
-		SELECT * FROM offers
+	<select id = 'checkEnoughBalance' parameterType='int' resultType='int'>
+		select sum(offer_price*quantity) AS total
+		 from offers 
 			WHERE
-		items_id = #{itemsId}
-			AND
-		is_complete =0 
-			AND
-		buy = false
-			ORDER BY offer_price ASC
-		</select>
-		<select id='checkEnoutBalance' parameterType ='int' resultType ='int'>
-			SELECT * FROM offers WHERE numbers_id =#{membersId}
-				AND
-			is_complete = false AND buy = true
-		</select>
-		<select id = 'checkOfferedQuantity' parameterType ='HashMap' resultType = 'int'>
-			SELECT * FROM offers
-				WHERE 
-					members_id = #{membersId}
-					AND
-					is_complete = false
-					AND 
-					buy = false
-					AND
+			members_id = #{num} AND 
+			is_complete =false AND 
+			buy = true
+	</select> 
+	<select id = 'checkOfferedQuantity' parameterType ='HashMap' resultType='int'>
+		select SUM(quantity) as totalQuantity
+			from offers
+				where members_id =2 AND 
+					is_complete = false AND 
+					buy = false AND
 					items_id = #{itemsId}
-		</select>
-		<select id = 'checkQuantityBalance' parameterType = 'int' resultType = 'int'>
-			SELECT * FROM offer
-				 WHERE
-				 is_complete = false
-				 AND
-				 buy = false
-				 AND items_id = #{num}
-		</select>
+	</select>
+	<select id = 'checkQuantityBalance' parameterType='int' resultType='int'>
+		SELECT sum(quantity) AS quantity FROM offers WHERE is_complete=false AND buy=true AND items_id = ?
+	</select>
 </mapper>

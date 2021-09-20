@@ -141,7 +141,7 @@ public class TradeService {
 				}else {
 					logger.info("2th divergence");
 					payToQuantity =	 offerDTO.getQuantity();
-						offerDAO.updateCompeleteOffer(offerDTO);
+						offerDAO.updateCompleteOffer(offerDTO);
 						tradeDAO.insertTrade(dto);					
 						quantityBalance= quantityBalance-offerDTO.getQuantity();
 						logger.info("trade date insert complete");
@@ -211,7 +211,7 @@ public class TradeService {
 		int quantity = itemDTO.getQuantity();
 		int price = itemDTO.getCost()/quantity;
 		for(OfferDTO dto : offers) {
-			offerDAO.updateCompeleteOffer(dto);
+			offerDAO.updateCompleteOffer(dto);
 			TradeDTO tradeDTO = new TradeDTO();
 			tradeDTO.setOffersId(dto.getOffersId());
 			tradeDTO.setMembersId(1);

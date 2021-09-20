@@ -10,5 +10,9 @@
 		<typeAlias type="com.goldrush.dto.AccountDTO" alias="AccountDTO"/>
 		<typeAlias type="com.goldrush.dto.ItemDTO" alias="ItemDTO"/>
 		<typeAlias type="com.goldrush.dto.OfferDTO" alias="OfferDTO"/>
+		<typeAlias type="com.goldrush.dto.InventoryDTO" alias="InventoryDTO"/>
+		<typeAlias type="com.goldrush.dto.OfferDTO" alias="OfferDTO"/>
+		<typeAlias type="com.goldrush.dto.TradeDTO" alias="TradeDTO"/>
+		<typeAlias type="com.goldrush.dto.OffersListDTO" alias="OffersListDTO"/>
     </typeAliases>
 </configuration>

@@ -506,7 +506,7 @@ public class OfferDAOImpl implements OfferDAO {
 	
 
 	@Override
-	public ResponseDTO updateCompeleteOffer(OfferDTO dto) {
+	public ResponseDTO updateCompleteOffer(OfferDTO dto) {
 		String SQL = "UPDATE offers SET is_complete= true WHERE offers_id = ?";
 		PreparedStatement pstmt= null;
 		Connection con= null;
@@ -567,7 +567,8 @@ public class OfferDAOImpl implements OfferDAO {
 	
 	@Override
 	public List<OffersListDTO> selectBuyOfferList(OfferDTO dto){
-		String SQL = "SELECT * FROM offers WHERE items_id = ? AND is_complete=false AND buy=true ORDER BY offer_price DESC";
+		String SQL = "SELECT * FROM offers WHERE items_id = ? AND"
+				+ " is_complete=false AND buy=true ORDER BY offer_price DESC";
 		PreparedStatement pstmt= null;
 		Connection con= null;
 		ResultSet rs = null;
@@ -610,7 +611,8 @@ public class OfferDAOImpl implements OfferDAO {
 	}
 	@Override
 	public List<OffersListDTO> selectSellOfferList(OfferDTO dto){
-		String SQL = "SELECT * FROM offers WHERE items_id = ? AND is_complete=0 AND buy=false ORDER BY offer_price ASC";
+		String SQL = "SELECT * FROM offers WHERE items_id = ? AND is_complete=0 "
+				+ "AND buy=false ORDER BY offer_price ASC";
 		PreparedStatement pstmt= null;
 		Connection con= null;
 		ResultSet rs = null;
@@ -654,7 +656,8 @@ public class OfferDAOImpl implements OfferDAO {
 	
 	@Override
 	public int checkEnoughBalance(int membersId){
-		String SQL = "SELECT * FROM offers WHERE members_id = ? AND is_complete=false AND buy=true";
+		String SQL = "SELECT * FROM offers WHERE members_id = ? AND"
+				+ " is_complete=false AND buy=true";
 		PreparedStatement pstmt= null;
 		Connection con= null;
 		ResultSet rs = null;

@@ -16,7 +16,7 @@ public interface OfferDAO {
 	public ResponseDTO deleteOffer(OfferDTO dto);
 	public List<OffersListDTO> selectBuyOfferList(OfferDTO dto);
 	public List<OffersListDTO> selectSellOfferList(OfferDTO dto);
-	ResponseDTO updateCompeleteOffer(OfferDTO dto);
+	ResponseDTO updateCompleteOffer(OfferDTO dto);
 	List<OfferLogDTO> selectOffersByMembersId(int membersId);
 	OfferDTO selectOffer(OfferDTO offerDTO);
 	OfferDTO selectOfferBytrade(TraderDTO dto);
