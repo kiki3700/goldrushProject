@@ -13,6 +13,7 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 
 import com.goldrush.dao.MemberDAO;
 import com.goldrush.dto.MemberDTO;
+import com.goldrush.service.MemberService;
 
 public class mybatis {
 	
@@ -51,6 +52,17 @@ public class mybatis {
 	@Test
 	public void bean() {
 		System.out.println(sqlFactory);
+		
+	}
+	@Test
+	public void test1() {
+		MemberService ser = new MemberService();
+		MemberDTO dto = new MemberDTO();
+		dto.setMembersId(9);
+		dto.setName("lee");
+		dto.setPassword("3700");
+		dto.setUserId("5575492q@gmail.com");
+		System.out.print(ser.signup(dto).getMessage());
 		
 	}
 

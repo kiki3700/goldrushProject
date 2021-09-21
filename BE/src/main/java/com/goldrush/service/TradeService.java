@@ -1,6 +1,7 @@
 package com.goldrush.service;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -189,15 +190,29 @@ public class TradeService {
 	
 	
 	public void transferCash(TradeDTO tradeDTO, OfferDTO offerDTO, int amount) {
+		HashMap<String, Object> map =new HashMap<>();
+
 		if(!offerDTO.isBuy()) {
 			if(offerDTO.getMembersId()!=1) {
-			accountDAO.insertSellResult(offerDTO.getMembersId(), amount);
+				map.put("members_id", offerDTO.getMembersId());
+				map.put("amount", amount);
+				map.put("action", "sell");
+			accountDAO.insertResult(map);
 			}
-			accountDAO.insertBuyResult(tradeDTO.getMembersId(),-amount);
+			map.put("members_id", tradeDTO.getMembersId());
+			map.put("amount", -amount);
+			map.put("action", "buy");
+			accountDAO.insertResult(map);
 		}else {
-			accountDAO.insertSellResult(tradeDTO.getMembersId(), amount);
+			map.put("members_id", tradeDTO.getMembersId());
+			map.put("amount", amount);
+			map.put("action", "sell");
+			accountDAO.insertResult(map);
 			if(offerDTO.getMembersId()!=1) {
-			accountDAO.insertBuyResult(offerDTO.getMembersId(),-amount);
+				map.put("members_id", offerDTO.getMembersId());
+				map.put("amount", -amount);
+				map.put("action", "buy");
+			accountDAO.insertResult(map);
 			}
 		}
 		logger.info("transfer stock data insert complete");
@@ -222,7 +237,12 @@ public class TradeService {
 			inventoryDTO.setQuantity(dto.getQuantity());
 			inventoryDTO.setMembersId(dto.getMembersId());
 			inventoryDAO.insertInventory(inventoryDTO);
-			accountDAO.insertIpoResult(dto.getMembersId(), -dto.getQuantity()*price);
+			HashMap<String, Object> map =new HashMap<>();
+			map.put("members_id", dto.getMembersId());
+			map.put("amount", -dto.getQuantity()*price);
+			map.put("action", "ipo");
+			
+			accountDAO.insertResult(map);
 			quantity -= dto.getQuantity();
 			logger.info(dto.getMembersId()+"th members offer is satisfied by ipo");
 		}
@@ -272,7 +292,13 @@ public class TradeService {
 			inventoryDTO.setQuantity(-offerDTO.getQuantity());
 			inventoryDTO.setPrice(inventoryDAO.selectAvgPrice(offerDTO.getMembersId(), offerDTO.getItemsId()));
 			inventoryDAO.insertInventory(inventoryDTO);
-			accountDAO.insertClearingResult(offerDTO.getMembersId(), offerDTO.getQuantity()*returnForMember);
+			
+			HashMap<String, Object> map =new HashMap<>();
+			map.put("members_id", offerDTO.getMembersId());
+			map.put("amount", offerDTO.getQuantity()*returnForMember);
+			map.put("action", "clear");
+			
+			accountDAO.insertResult(map);
 			logger.info("process complete");
 			
 		}

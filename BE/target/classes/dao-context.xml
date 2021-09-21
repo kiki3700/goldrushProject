@@ -10,7 +10,7 @@
     <!--  elastic ip: //3.36.216.37:3306/ -->
     <!--  domain ip :  -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-        <property name="url" value="jdbc:mysql://127.0.0.1:3306/goldrush?useUnicode=yes&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=UTC"/>
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/goldrush?useUnicode=yes&amp;characterEncoding=utf8&amp;useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=UTC"/>
         <property name="username" value="lee" />
         <property name="password" value="3700" />
         <property name="driverClass" value="com.mysql.jdbc.Driver" />
@@ -35,7 +35,6 @@
 	 	<property name="sqlSession" ref="sqlSession"/>
 	 </bean>
 	 
-	 
 	 <bean id="InventoryDAO" class="com.goldrush.dao.InventoryDAOImpl">
 	 	<property name="db" ref="DBHandler"/>
 	 </bean>
@@ -53,9 +52,9 @@
 	 </bean>
 
  	 <bean id="AccountDAO" class="com.goldrush.dao.AccountDAOImpl">
-	 	<property name="db" ref="DBHandler"/>
+	 	<property name="sqlSession" ref="sqlSession"/>
 	 </bean>
 	 
 
-
+	<context:annotation-config />
 </beans>

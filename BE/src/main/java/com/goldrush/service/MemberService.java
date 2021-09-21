@@ -12,7 +12,9 @@ import javax.imageio.ImageIO;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,9 +32,10 @@ import com.goldrush.dto.OfferLogDTO;
 import com.goldrush.dto.PortfolioDTO;
 import com.goldrush.dto.ResponseDTO;
 import com.goldrush.dto.TradeLogDTO;
-@Transactional
+
+@Service
 public class MemberService {
-	private MemberDAO memberDAO;
+	private MemberDAO memberDAO;	
 	private InventoryDAO inventoryDAO;
 	private AccountDAO accountDAO;
 	private OfferDAO offerDAO;
@@ -47,10 +50,9 @@ public class MemberService {
 	}
 	private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
 	
-	
 	public ResponseDTO signup(MemberDTO dto) {
 		MemberDTO dtoForCheck = memberDAO.selectByUserId(dto.getUserId());
-		if(dtoForCheck.getMembersId()==0) {
+		if(dtoForCheck==null) {
 			memberDAO.insertNewMemeber(dto);
 			logger.info("signupis success");
 			return new ResponseDTO(1, "sucess");

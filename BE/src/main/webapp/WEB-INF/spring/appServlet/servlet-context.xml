@@ -16,6 +16,7 @@
 	<annotation-driven /> 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/**" location="/resources/" />
+	
 	<!-- <resources mapping="/img/**" location="/resources/img/" />
 	<resources mapping="/css/**" location="/resources/css/" />
 	<resources mapping="/js/**" location="/resources/css/" /> -->
@@ -44,17 +45,7 @@
    <beans:property name="characterEncoding" value="UTF-8" /> 
     <beans:property name="order" value="1" /> 
    </beans:bean> 
-       <beans:bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-        <beans:property name="url" value="jdbc:mysql://127.0.0.1:3306/goldrush?useUnicode=yes&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=UTC"/>
-        <beans:property name="username" value="lee" />
-        <beans:property name="password" value="3700" />
-        <beans:property name="driverClass" value="com.mysql.jdbc.Driver" />
-    </beans:bean>
-   	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-             <beans:property name="dataSource" ref="dataSource"/>
-             <beans:property name="configLocation" value="classpath:/mybatis-config.xml"/>
-            <beans:property name="mapperLocations" value="classpath:mapper/**/*Mapper.xml"/>
-	</beans:bean>
+
 
 	<context:component-scan base-package="com.goldrush.controller" />
 </beans:beans>

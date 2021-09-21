@@ -3,6 +3,8 @@ package com.goldrush.util;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import org.springframework.context.support.GenericXmlApplicationContext;
+
 import com.goldrush.dao.AccountDAO;
 import com.goldrush.dao.AccountDAOImpl;
 import com.goldrush.dao.DBHandler;
@@ -12,7 +14,8 @@ public class BankingUtils {
 	private String bank_tran_id;
 	AccountDAO dao;
 	public BankingUtils(){
-		dao = new AccountDAOImpl(new DBHandler());
+		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:dao-context.xml");
+		dao= (AccountDAO) ctx.getBean("AccountDAO");
 		this.bank_tran_id = getUser_id()+"U"+String.format("%09d", dao.selectTranId()+1);
 
 	}
